@@ -13,9 +13,10 @@
 using namespace std;
 class Vector3
 {
-
+    
 public:
     double x,y,z;
+    Vector3();
     Vector3(double x, double y, double z);//constructor with three parameters for the vector coordinates
     Vector3 operator+(const Vector3&); //overload operator '+' for addition
     Vector3 operator-(const Vector3&); //overload operator '-' for subtraction
@@ -28,6 +29,13 @@ public:
     void print(string comment);// print x,y and z components of the vector after a comment string
     friend class Matrix4;
     double distance(const Vector3&v1);
-
+    
+    double getX();
+    double getY();
+    double getZ();
+    void setX(double mx);
+    void setY(double my);
+    void setZ(double mz);
+    
 };
 #endif /* defined(__CSE167HW1__Vector3__) */
