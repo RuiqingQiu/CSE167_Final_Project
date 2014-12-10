@@ -17,6 +17,8 @@ using namespace std;
 
 namespace Globals
 {
+    Model* pikachu;
+    Camera* main_camera;
 };
 
 
@@ -65,11 +67,76 @@ int main(int argc, char *argv[])
     glutSpecialFunc(Window::processSpecialKeys);
     glutKeyboardFunc(Window::processNormalKeys);
     
+    Globals::pikachu = new Model();
+    Globals::main_camera = new Camera();
     
+    load_model();
     //Shader
 //    Globals::s = new Shader("","", true);
 //    Globals::s->bind();
 //    Globals::s->printLog("hello");
     glutMainLoop();
     return 0;
+}
+
+void load_model(){
+    FILE* fp;     // file pointer
+    float x,y,z;  // vertex coordinates
+    float r,g,b;  // vertex color
+    int c1,c2;    // characters read from file
+    
+    fp = fopen("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Pikachu.obj","r");
+    if (fp==NULL) { cerr << "error loading file" << endl; exit(-1); }
+    while(true){
+        c1 = fgetc(fp);
+        c2 = fgetc(fp);
+        if((c1=='v') && (c2 == ' ')){
+            fscanf(fp, "%f %f %f %f %f %f\n", &x, &y, &z, &r, &g, &b);
+            //fscanf(fp, "%f %f %f\n", &x, &y, &z);
+            Globals::pikachu->x_list.push_back(x);
+            Globals::pikachu->y_list.push_back(y);
+            Globals::pikachu->z_list.push_back(z);
+            Globals::pikachu->color_list.push_back(Vector3(r, g, b));
+            if(x > Globals::pikachu->x_max){
+                Globals::pikachu->x_max = x;
+            }
+            if(x < Globals::pikachu->x_min){
+                Globals::pikachu->x_min = x;
+            }
+            if(y > Globals::pikachu->y_max){
+                Globals::pikachu->y_max = y;
+            }
+            if(y < Globals::pikachu->y_min){
+                Globals::pikachu->y_min = y;
+            }if(z > Globals::pikachu->z_max){
+                Globals::pikachu->z_max = z;
+            }
+            if(z < Globals::pikachu->z_min){
+                Globals::pikachu->z_min = z;
+            }
+            
+        }
+        else if(c1=='v' && c2 =='n'){
+            fscanf(fp, " %f %f %f\n", &x, &y, &z);
+            Vector3 normal = Vector3(x, y, z);
+            normal.normalize();
+            Globals::pikachu->normal_list.push_back(normal);
+        }
+        else if(c1 == 'f' && c2==' '){
+            fscanf(fp, "%f//%f %f//%f %f//%f\n", &x, &y, &z, &r, &g, &b);
+            //fscanf(fp, "%f %f %f\n", &x, &y, &z);
+            
+            Globals::pikachu->face_vertices.push_back(Vector3(x, z, g));
+            Globals::pikachu->face_normal.push_back(Vector3(y,r,b));
+            Globals::pikachu->face_number++;
+        }
+        else{
+            fscanf(fp, "\n");
+        }
+        if(feof(fp)){
+            break;
+        }
+    }
+    // parse other cases and loop over lines of file
+    fclose(fp);   // make sure you don't forget to close the file when done
 }

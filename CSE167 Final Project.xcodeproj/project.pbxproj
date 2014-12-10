@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA12601C1A36A0D30068BE80 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601A1A36A0D30068BE80 /* Model.cpp */; };
+		AA1260211A36A3090068BE80 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601D1A36A3090068BE80 /* Light.cpp */; };
+		AA1260221A36A3090068BE80 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601F1A36A3090068BE80 /* Material.cpp */; };
+		AA7428421A37D5BF00627741 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7428401A37D5BF00627741 /* Camera.cpp */; };
 		AAAD8C4B1A3575C0007D8951 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAD8C4A1A3575C0007D8951 /* OpenGL.framework */; };
 		AAAD8C4D1A3575C7007D8951 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAD8C4C1A3575C7007D8951 /* GLUT.framework */; };
 		AAAD8C511A3575F5007D8951 /* image_DXT.c in Sources */ = {isa = PBXBuildFile; fileRef = AAAD8C4E1A3575F5007D8951 /* image_DXT.c */; };
@@ -33,6 +37,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA1260191A36A0AD0068BE80 /* Pikachu.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pikachu.obj; sourceTree = "<group>"; };
+		AA12601A1A36A0D30068BE80 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
+		AA12601B1A36A0D30068BE80 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		AA12601D1A36A3090068BE80 /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
+		AA12601E1A36A3090068BE80 /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Light.h; sourceTree = "<group>"; };
+		AA12601F1A36A3090068BE80 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
+		AA1260201A36A3090068BE80 /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
+		AA7428401A37D5BF00627741 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		AA7428411A37D5BF00627741 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		AAAD8C401A3575B2007D8951 /* CSE167 Final Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CSE167 Final Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAAD8C4A1A3575C0007D8951 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		AAAD8C4C1A3575C7007D8951 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
@@ -74,6 +87,7 @@
 		AAAD8C371A3575B2007D8951 = {
 			isa = PBXGroup;
 			children = (
+				AA1260191A36A0AD0068BE80 /* Pikachu.obj */,
 				AAAD8C621A35770D007D8951 /* Helper */,
 				AAAD8C5F1A3576CA007D8951 /* Window.cpp */,
 				AAAD8C601A3576CA007D8951 /* Window.h */,
@@ -114,6 +128,14 @@
 		AAAD8C621A35770D007D8951 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				AA7428401A37D5BF00627741 /* Camera.cpp */,
+				AA7428411A37D5BF00627741 /* Camera.h */,
+				AA12601D1A36A3090068BE80 /* Light.cpp */,
+				AA12601E1A36A3090068BE80 /* Light.h */,
+				AA12601F1A36A3090068BE80 /* Material.cpp */,
+				AA1260201A36A3090068BE80 /* Material.h */,
+				AA12601A1A36A0D30068BE80 /* Model.cpp */,
+				AA12601B1A36A0D30068BE80 /* Model.h */,
 				AAAD8C631A35771F007D8951 /* Matrix4.cpp */,
 				AAAD8C641A35771F007D8951 /* Matrix4.h */,
 				AAAD8C651A35771F007D8951 /* Vector3.cpp */,
@@ -180,6 +202,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA7428421A37D5BF00627741 /* Camera.cpp in Sources */,
+				AA1260211A36A3090068BE80 /* Light.cpp in Sources */,
 				AAAD8C511A3575F5007D8951 /* image_DXT.c in Sources */,
 				AAAD8C6B1A35771F007D8951 /* Vector4.cpp in Sources */,
 				AAAD8C611A3576CA007D8951 /* Window.cpp in Sources */,
@@ -187,6 +211,8 @@
 				AAAD8C521A3575F5007D8951 /* image_helper.c in Sources */,
 				AAAD8C5A1A35760E007D8951 /* SOIL.c in Sources */,
 				AAAD8C5E1A357632007D8951 /* main.cpp in Sources */,
+				AA1260221A36A3090068BE80 /* Material.cpp in Sources */,
+				AA12601C1A36A0D30068BE80 /* Model.cpp in Sources */,
 				AAAD8C5B1A35760E007D8951 /* stb_image_aug.c in Sources */,
 				AAAD8C691A35771F007D8951 /* Matrix4.cpp in Sources */,
 			);

@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <GLUT/GLUT.h>
 #include "Matrix4.h"
+#include "main.h"
 class Window	  // OpenGL output window related routines
 {
 public:
@@ -22,5 +23,7 @@ public:
     static void displayCallback(void);
     static void processSpecialKeys(int key, int x, int y);
     static void processNormalKeys(unsigned char key, int x, int y);
+    static void displayPikachu(void);
+    static void idlePikachu(void);
 };
 #endif /* defined(__CSE167_Final_Project__Window__) */
