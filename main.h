@@ -18,7 +18,16 @@
 namespace Globals
 {
     extern Camera* main_camera;
+    extern Camera* second_camera;
+    //These are the Models we use
     extern Model3D *pika;
-
+    extern Model3D* bulbasaur;
+    extern Model3D* charmander;
+    extern Model3D* vulpix;
+    extern Model3D* meowth;
+    extern Model3D* psyduck;
+    
+    //These will be the flag we use for keyboard controls:
+    extern bool secondCameraOn;
 };
 #endif /* defined(__CSE167_Final_Project__main__) */

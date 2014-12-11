@@ -12,7 +12,7 @@
 int Window::width  = 512;   // set window width in pixels here
 int Window::height = 512;   // set window height in pixels here
 float t = 0.0;//A time counter
-const float number_of_curves = 3;
+const float number_of_curves = 5;
 Matrix4 Window::world = Matrix4();
 /// a structure to hold a control point of the surface
 struct Point {
@@ -20,7 +20,7 @@ struct Point {
     float y;
     float z;
 };
-Point Points[3][4] ={
+Point Points[5][4] ={
     {
         {0,0,5},
         {0,5,5},
@@ -36,10 +36,22 @@ Point Points[3][4] ={
     },
     {
         { 10,0,-10 },
-        { 10,0,-5},
-        { 10,0,15 },
+        { 20,0,-5},
+        { 20,0,15 },
         { 0,0,20 }
 
+    },
+    {
+        {-5,0,-15},
+        {0,0,-15},
+        {5,0,-15},
+        {10, 0, -10}
+    },
+    {
+        {0,15,5},
+        {0,10,0},
+        {0,5,-10},
+        {-5,0,-15}
     }
    };
 
@@ -102,6 +114,8 @@ void Window::processSpecialKeys(int key, int x, int y){
     }
 }
 void Window::displayPikachu(void){
+    clock_t startTime = clock();
+
     t += 0.01;
     if(t > number_of_curves){
         t = 0;
@@ -112,27 +126,98 @@ void Window::displayPikachu(void){
     Globals::main_camera->e->z = tt.z;
     Globals::main_camera->update();
     Matrix4 camera = Globals::main_camera->getMatrix();
-    
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // clear color and depth buffers
-    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
-    // Tell OpenGL what ModelView matrix to use:
-    Matrix4 glmatrix;
-    glmatrix.identity();
     Matrix4 scale;
     scale.makeScale(10, 10, 10);
-    glmatrix = glmatrix*scale;
-    Matrix4 pos = Globals::pika -> localpos;
-    //Matrix4 rot = Matrix4();
-    //rot.makeRotateY(1);
-    Globals::pika->localpos = Globals::pika->localpos;
-    glmatrix = camera*glmatrix*pos;
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // clear color and depth buffers
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    Matrix4 glmatrix;
+    glmatrix.identity();
+    // Tell OpenGL what ModelView matrix to use:
+    if(Globals::secondCameraOn){
+        Globals::second_camera->e->x = 5;
+        Globals::second_camera->e->y = 5;
+        Globals::second_camera->e->z = 10;
+        Globals::second_camera->update();
+        camera = Globals::second_camera->getMatrix();
+    }
+
+  
+    Matrix4 tmp;
+    tmp.makeTranslate(tt.x, tt.y, tt.z);
+    glmatrix = camera*glmatrix*tmp;
+    glDisable(GL_TEXTURE_2D);
+    glPushMatrix();
     glmatrix.transpose();
     glLoadMatrixd(glmatrix.getPointer());
+    glutSolidSphere(0.5, 20, 20);
+    glPopMatrix();
 
+    
+    glmatrix.identity();
+    Matrix4 pos = Globals::pika -> localpos;
+    Globals::pika->localpos = Globals::pika->localpos;
+    glmatrix = camera*glmatrix*scale*pos;
+    glmatrix.transpose();
+    glLoadMatrixd(glmatrix.getPointer());
     Globals::pika->draw();
+    
+    
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    Matrix4 trans = Matrix4();
+    trans.makeTranslate(-8, 0, 0);
+    glmatrix.identity();
+    glmatrix = camera * glmatrix * trans *pos*scale ;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    Globals::bulbasaur->draw();
+
+    
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    trans = Matrix4();
+    trans.makeTranslate(0, 0, -10);
+    glmatrix.identity();
+    glmatrix = camera * glmatrix * trans *pos*scale ;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    Globals::vulpix->draw();
+    
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    trans = Matrix4();
+    trans.makeTranslate(8, 0, 0);
+    glmatrix.identity();
+    glmatrix = camera * glmatrix * trans *pos*scale ;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    Globals::charmander->draw();
+    
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    trans = Matrix4();
+    trans.makeTranslate(8, 0, -10);
+    glmatrix.identity();
+    glmatrix = camera * glmatrix * trans *pos*scale ;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    Globals::meowth->draw();
+    
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    trans = Matrix4();
+    trans.makeTranslate(-8, 0, -10);
+    glmatrix.identity();
+    glmatrix = camera * glmatrix * trans *pos*scale ;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    Globals::psyduck->draw();
     
     glFlush();
     glutSwapBuffers();
+    clock_t endTime = clock();
+    cout << float((endTime - startTime))/CLOCKS_PER_SEC << endl;
+    cout << "frame rate: " << 1.0/(float((endTime - startTime))/CLOCKS_PER_SEC) << endl;
 }
 void Window::idlePikachu(void){
     displayPikachu();
@@ -145,10 +230,10 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     if (key == 27){
         exit(0);
     }
-    else if(key == 'r'){
-        Matrix4 tmp = Matrix4();
-        tmp.makeRotateY(10);
-        world = world * tmp;
+    //Key 1 for second camera look at bezier curve
+    else if(key == '1'){
+        Globals::secondCameraOn = !Globals::secondCameraOn;
+        t = 0;
     }
 }
 //----------------------------------------------------------------------------

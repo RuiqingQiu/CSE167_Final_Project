@@ -19,12 +19,17 @@ using namespace std;
 namespace Globals
 {
     Camera* main_camera;
+    Camera* second_camera;
+
+    
     Model3D *pika;
+    Model3D* bulbasaur;
+    Model3D* charmander;
+    Model3D* vulpix;
+    Model3D* meowth;
+    Model3D* psyduck;
+    bool secondCameraOn = false;
 };
-
-
-
-
 
 
 int main(int argc, char *argv[])
@@ -60,8 +65,13 @@ int main(int argc, char *argv[])
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
        //pika = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Pikachu.obj");
-    //Globals::pika = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Pikachu.obj");
-    Globals::pika = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Squirtle.obj");
+    Globals::pika = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Pikachu.obj");
+    Globals::bulbasaur = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Bulbasaur.obj");
+    Globals::charmander= new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Charmander.obj");
+    Globals::vulpix= new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Vulpix.obj");
+    Globals::meowth = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Meowth.obj");
+    Globals::psyduck = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Psyduck.obj");
+    
     // Install callback functions:
     //glutDisplayFunc(Window::displayCallback);
     glutReshapeFunc(Window::reshapeCallback);
@@ -74,6 +84,7 @@ int main(int argc, char *argv[])
     Window::world.identity();
    
     Globals::main_camera = new Camera();
+    Globals::second_camera = new Camera();
     
 
     //Shader

@@ -15,6 +15,10 @@
 		AA0702E81A39318100000E38 /* Model3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0702E61A39318100000E38 /* Model3D.cpp */; };
 		AA0702EB1A39318800000E38 /* Face.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0702E91A39318800000E38 /* Face.cpp */; };
 		AA0702ED1A39322800000E38 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601F1A36A3090068BE80 /* Material.cpp */; };
+		AA07030A1A3A0F1D00000E38 /* MatrixTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0703021A3A0F1D00000E38 /* MatrixTransform.cpp */; };
+		AA07030B1A3A0F1D00000E38 /* Geode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0703041A3A0F1D00000E38 /* Geode.cpp */; };
+		AA07030C1A3A0F1D00000E38 /* Group.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0703061A3A0F1D00000E38 /* Group.cpp */; };
+		AA07030D1A3A0F1D00000E38 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0703081A3A0F1D00000E38 /* Node.cpp */; };
 		AA1260211A36A3090068BE80 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601D1A36A3090068BE80 /* Light.cpp */; };
 		AA7428421A37D5BF00627741 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7428401A37D5BF00627741 /* Camera.cpp */; };
 		AAAD8C4B1A3575C0007D8951 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAD8C4A1A3575C0007D8951 /* OpenGL.framework */; };
@@ -59,10 +63,36 @@
 		AA0702E91A39318800000E38 /* Face.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Face.cpp; sourceTree = "<group>"; };
 		AA0702EA1A39318800000E38 /* Face.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Face.h; sourceTree = "<group>"; };
 		AA0702EC1A3931E700000E38 /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
-		AA0702F21A39A2B400000E38 /* Squirtle.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Squirtle.obj; sourceTree = "<group>"; };
-		AA0702F31A39A2C200000E38 /* Zenigame.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Zenigame.mtl; sourceTree = "<group>"; };
-		AA0702F41A39A2DD00000E38 /* ZenigameDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZenigameDh.tga; sourceTree = "<group>"; };
-		AA0702F51A39A2DD00000E38 /* ZenigameEyeDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZenigameEyeDh.tga; sourceTree = "<group>"; };
+		AA0702F71A39A42F00000E38 /* Charmander.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Charmander.obj; sourceTree = "<group>"; };
+		AA0702F81A39A43600000E38 /* HitokageDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = HitokageDh.tga; sourceTree = "<group>"; };
+		AA0702F91A39A43600000E38 /* HitokageEyeDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = HitokageEyeDh.tga; sourceTree = "<group>"; };
+		AA0702FA1A39A43F00000E38 /* Hitokage.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Hitokage.mtl; sourceTree = "<group>"; };
+		AA0702FB1A39A48A00000E38 /* Bulbasaur.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Bulbasaur.obj; sourceTree = "<group>"; };
+		AA0702FC1A39A49300000E38 /* Fushigidane.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fushigidane.mtl; sourceTree = "<group>"; };
+		AA0702FD1A39A4B300000E38 /* FushigidaneDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = FushigidaneDh.tga; sourceTree = "<group>"; };
+		AA0702FE1A39A4B300000E38 /* FushigidaneEyeDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = FushigidaneEyeDh.tga; sourceTree = "<group>"; };
+		AA0703021A3A0F1D00000E38 /* MatrixTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MatrixTransform.cpp; sourceTree = "<group>"; };
+		AA0703031A3A0F1D00000E38 /* MatrixTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatrixTransform.h; sourceTree = "<group>"; };
+		AA0703041A3A0F1D00000E38 /* Geode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Geode.cpp; sourceTree = "<group>"; };
+		AA0703051A3A0F1D00000E38 /* Geode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geode.h; sourceTree = "<group>"; };
+		AA0703061A3A0F1D00000E38 /* Group.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Group.cpp; sourceTree = "<group>"; };
+		AA0703071A3A0F1D00000E38 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		AA0703081A3A0F1D00000E38 /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		AA0703091A3A0F1D00000E38 /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		AA07030E1A3A100E00000E38 /* Rokon.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rokon.mtl; sourceTree = "<group>"; };
+		AA07030F1A3A101400000E38 /* Vulpix.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Vulpix.obj; sourceTree = "<group>"; };
+		AA0703101A3A101E00000E38 /* RokonDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = RokonDh.tga; sourceTree = "<group>"; };
+		AA0703111A3A101E00000E38 /* RokonEyeDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = RokonEyeDh.tga; sourceTree = "<group>"; };
+		AA0703121A3A101E00000E38 /* RokonMouthDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = RokonMouthDh.tga; sourceTree = "<group>"; };
+		AA0703151A3A116A00000E38 /* Meowth.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Meowth.obj; sourceTree = "<group>"; };
+		AA0703161A3A116F00000E38 /* Nyarth.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Nyarth.mtl; sourceTree = "<group>"; };
+		AA0703171A3A117700000E38 /* NyarthDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = NyarthDh.tga; sourceTree = "<group>"; };
+		AA0703181A3A117700000E38 /* NyarthEyeDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = NyarthEyeDh.tga; sourceTree = "<group>"; };
+		AA0703191A3A117700000E38 /* NyarthMouthDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = NyarthMouthDh.tga; sourceTree = "<group>"; };
+		AA07031F1A3A120B00000E38 /* KoduckDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoduckDh.tga; sourceTree = "<group>"; };
+		AA0703201A3A120B00000E38 /* KoduckEyeDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoduckEyeDh.tga; sourceTree = "<group>"; };
+		AA0703211A3A120B00000E38 /* Psyduck.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Psyduck.obj; sourceTree = "<group>"; };
+		AA0703221A3A120B00000E38 /* Koduck.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Koduck.mtl; sourceTree = "<group>"; };
 		AA1260191A36A0AD0068BE80 /* Pikachu.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pikachu.obj; sourceTree = "<group>"; };
 		AA12601B1A36A0D30068BE80 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		AA12601D1A36A3090068BE80 /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
@@ -121,27 +151,58 @@
 			name = Pikachu;
 			sourceTree = "<group>";
 		};
-		AA0702F61A39A2E000000E38 /* Squirtle */ = {
+		AA0702FF1A39A4CB00000E38 /* Bulbasaur */ = {
 			isa = PBXGroup;
 			children = (
-				AA0702F41A39A2DD00000E38 /* ZenigameDh.tga */,
-				AA0702F51A39A2DD00000E38 /* ZenigameEyeDh.tga */,
-				AA0702F31A39A2C200000E38 /* Zenigame.mtl */,
-				AA0702F21A39A2B400000E38 /* Squirtle.obj */,
+				AA0702FD1A39A4B300000E38 /* FushigidaneDh.tga */,
+				AA0702FE1A39A4B300000E38 /* FushigidaneEyeDh.tga */,
+				AA0702FC1A39A49300000E38 /* Fushigidane.mtl */,
+				AA0702FB1A39A48A00000E38 /* Bulbasaur.obj */,
 			);
-			name = Squirtle;
+			name = Bulbasaur;
 			sourceTree = "<group>";
 		};
-		AAAD8C371A3575B2007D8951 = {
+		AA0703001A39A4D500000E38 /* Charmander */ = {
 			isa = PBXGroup;
 			children = (
-				AA0702F61A39A2E000000E38 /* Squirtle */,
-				AA0702D01A38DD3B00000E38 /* Pikachu */,
-				AAAD8C621A35770D007D8951 /* Helper */,
-				AAAD8C5F1A3576CA007D8951 /* Window.cpp */,
-				AAAD8C601A3576CA007D8951 /* Window.h */,
-				AAAD8C5C1A357632007D8951 /* main.cpp */,
-				AAAD8C5D1A357632007D8951 /* main.h */,
+				AA0702FA1A39A43F00000E38 /* Hitokage.mtl */,
+				AA0702F81A39A43600000E38 /* HitokageDh.tga */,
+				AA0702F91A39A43600000E38 /* HitokageEyeDh.tga */,
+				AA0702F71A39A42F00000E38 /* Charmander.obj */,
+			);
+			name = Charmander;
+			sourceTree = "<group>";
+		};
+		AA0703011A3A0F1100000E38 /* SceneGraph */ = {
+			isa = PBXGroup;
+			children = (
+				AA0703021A3A0F1D00000E38 /* MatrixTransform.cpp */,
+				AA0703031A3A0F1D00000E38 /* MatrixTransform.h */,
+				AA0703041A3A0F1D00000E38 /* Geode.cpp */,
+				AA0703051A3A0F1D00000E38 /* Geode.h */,
+				AA0703061A3A0F1D00000E38 /* Group.cpp */,
+				AA0703071A3A0F1D00000E38 /* Group.h */,
+				AA0703081A3A0F1D00000E38 /* Node.cpp */,
+				AA0703091A3A0F1D00000E38 /* Node.h */,
+			);
+			name = SceneGraph;
+			sourceTree = "<group>";
+		};
+		AA0703131A3A102100000E38 /* Vulpix */ = {
+			isa = PBXGroup;
+			children = (
+				AA0703101A3A101E00000E38 /* RokonDh.tga */,
+				AA0703111A3A101E00000E38 /* RokonEyeDh.tga */,
+				AA0703121A3A101E00000E38 /* RokonMouthDh.tga */,
+				AA07030F1A3A101400000E38 /* Vulpix.obj */,
+				AA07030E1A3A100E00000E38 /* Rokon.mtl */,
+			);
+			name = Vulpix;
+			sourceTree = "<group>";
+		};
+		AA0703141A3A103500000E38 /* SOIL */ = {
+			isa = PBXGroup;
+			children = (
 				AAAD8C541A35760E007D8951 /* SOIL.c */,
 				AAAD8C551A35760E007D8951 /* SOIL.h */,
 				AAAD8C561A35760E007D8951 /* stb_image_aug.c */,
@@ -152,6 +213,49 @@
 				AAAD8C4E1A3575F5007D8951 /* image_DXT.c */,
 				AAAD8C4F1A3575F5007D8951 /* image_DXT.h */,
 				AAAD8C501A3575F5007D8951 /* image_helper.c */,
+			);
+			name = SOIL;
+			sourceTree = "<group>";
+		};
+		AA0703231A3A120D00000E38 /* Meowth */ = {
+			isa = PBXGroup;
+			children = (
+				AA0703171A3A117700000E38 /* NyarthDh.tga */,
+				AA0703181A3A117700000E38 /* NyarthEyeDh.tga */,
+				AA0703191A3A117700000E38 /* NyarthMouthDh.tga */,
+				AA0703161A3A116F00000E38 /* Nyarth.mtl */,
+				AA0703151A3A116A00000E38 /* Meowth.obj */,
+			);
+			name = Meowth;
+			sourceTree = "<group>";
+		};
+		AA0703241A3A121D00000E38 /* Psyduck */ = {
+			isa = PBXGroup;
+			children = (
+				AA07031F1A3A120B00000E38 /* KoduckDh.tga */,
+				AA0703201A3A120B00000E38 /* KoduckEyeDh.tga */,
+				AA0703211A3A120B00000E38 /* Psyduck.obj */,
+				AA0703221A3A120B00000E38 /* Koduck.mtl */,
+			);
+			name = Psyduck;
+			sourceTree = "<group>";
+		};
+		AAAD8C371A3575B2007D8951 = {
+			isa = PBXGroup;
+			children = (
+				AA0703241A3A121D00000E38 /* Psyduck */,
+				AA0703231A3A120D00000E38 /* Meowth */,
+				AA0703011A3A0F1100000E38 /* SceneGraph */,
+				AAAD8C621A35770D007D8951 /* Helper */,
+				AAAD8C5F1A3576CA007D8951 /* Window.cpp */,
+				AAAD8C601A3576CA007D8951 /* Window.h */,
+				AAAD8C5C1A357632007D8951 /* main.cpp */,
+				AAAD8C5D1A357632007D8951 /* main.h */,
+				AA0703131A3A102100000E38 /* Vulpix */,
+				AA0703001A39A4D500000E38 /* Charmander */,
+				AA0702FF1A39A4CB00000E38 /* Bulbasaur */,
+				AA0702D01A38DD3B00000E38 /* Pikachu */,
+				AA0703141A3A103500000E38 /* SOIL */,
 				AAAD8C4C1A3575C7007D8951 /* GLUT.framework */,
 				AAAD8C4A1A3575C0007D8951 /* OpenGL.framework */,
 				AAAD8C421A3575B2007D8951 /* CSE167 Final Project */,
@@ -256,14 +360,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA07030B1A3A0F1D00000E38 /* Geode.cpp in Sources */,
+				AA07030C1A3A0F1D00000E38 /* Group.cpp in Sources */,
 				AA0702ED1A39322800000E38 /* Material.cpp in Sources */,
 				AA7428421A37D5BF00627741 /* Camera.cpp in Sources */,
 				AA1260211A36A3090068BE80 /* Light.cpp in Sources */,
 				AAAD8C511A3575F5007D8951 /* image_DXT.c in Sources */,
 				AA0702E11A392C3500000E38 /* Model.cpp in Sources */,
+				AA07030A1A3A0F1D00000E38 /* MatrixTransform.cpp in Sources */,
 				AAAD8C6B1A35771F007D8951 /* Vector4.cpp in Sources */,
 				AAAD8C611A3576CA007D8951 /* Window.cpp in Sources */,
 				AA0702EB1A39318800000E38 /* Face.cpp in Sources */,
+				AA07030D1A3A0F1D00000E38 /* Node.cpp in Sources */,
 				AAAD8C6A1A35771F007D8951 /* Vector3.cpp in Sources */,
 				AAAD8C521A3575F5007D8951 /* image_helper.c in Sources */,
 				AAAD8C5A1A35760E007D8951 /* SOIL.c in Sources */,
