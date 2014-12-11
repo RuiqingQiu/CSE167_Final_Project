@@ -12,6 +12,10 @@
 		AA0702CD1A38DD2600000E38 /* PikachuHohoDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702CC1A38DD2600000E38 /* PikachuHohoDh.tga */; };
 		AA0702CF1A38DD3200000E38 /* PikachuMouthDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702CE1A38DD3200000E38 /* PikachuMouthDh.tga */; };
 		AA0702E11A392C3500000E38 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0702E01A392C3500000E38 /* Model.cpp */; };
+		AA0702E51A3930AE00000E38 /* mewtwo_0_0.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702E41A3930AE00000E38 /* mewtwo_0_0.tga */; };
+		AA0702E81A39318100000E38 /* Model3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0702E61A39318100000E38 /* Model3D.cpp */; };
+		AA0702EB1A39318800000E38 /* Face.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0702E91A39318800000E38 /* Face.cpp */; };
+		AA0702ED1A39322800000E38 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601F1A36A3090068BE80 /* Material.cpp */; };
 		AA1260211A36A3090068BE80 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601D1A36A3090068BE80 /* Light.cpp */; };
 		AA7428421A37D5BF00627741 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7428401A37D5BF00627741 /* Camera.cpp */; };
 		AAAD8C4B1A3575C0007D8951 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAD8C4A1A3575C0007D8951 /* OpenGL.framework */; };
@@ -34,6 +38,7 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
+				AA0702E51A3930AE00000E38 /* mewtwo_0_0.tga in CopyFiles */,
 				AA0702CF1A38DD3200000E38 /* PikachuMouthDh.tga in CopyFiles */,
 				AA0702CD1A38DD2600000E38 /* PikachuHohoDh.tga in CopyFiles */,
 				AA0702CA1A38DD1500000E38 /* PikachuDh.tga in CopyFiles */,
@@ -50,6 +55,14 @@
 		AA0702CC1A38DD2600000E38 /* PikachuHohoDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuHohoDh.tga; sourceTree = "<group>"; };
 		AA0702CE1A38DD3200000E38 /* PikachuMouthDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuMouthDh.tga; sourceTree = "<group>"; };
 		AA0702E01A392C3500000E38 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
+		AA0702E21A39307E00000E38 /* BR_Mewtwo.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = BR_Mewtwo.obj; sourceTree = "<group>"; };
+		AA0702E31A39308200000E38 /* BR_Mewtwo.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = BR_Mewtwo.mtl; sourceTree = "<group>"; };
+		AA0702E41A3930AE00000E38 /* mewtwo_0_0.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = mewtwo_0_0.tga; sourceTree = "<group>"; };
+		AA0702E61A39318100000E38 /* Model3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model3D.cpp; sourceTree = "<group>"; };
+		AA0702E71A39318100000E38 /* Model3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model3D.h; sourceTree = "<group>"; };
+		AA0702E91A39318800000E38 /* Face.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Face.cpp; sourceTree = "<group>"; };
+		AA0702EA1A39318800000E38 /* Face.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Face.h; sourceTree = "<group>"; };
+		AA0702EC1A3931E700000E38 /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		AA1260191A36A0AD0068BE80 /* Pikachu.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pikachu.obj; sourceTree = "<group>"; };
 		AA12601B1A36A0D30068BE80 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		AA12601D1A36A3090068BE80 /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
@@ -110,6 +123,9 @@
 		AAAD8C371A3575B2007D8951 = {
 			isa = PBXGroup;
 			children = (
+				AA0702E41A3930AE00000E38 /* mewtwo_0_0.tga */,
+				AA0702E31A39308200000E38 /* BR_Mewtwo.mtl */,
+				AA0702E21A39307E00000E38 /* BR_Mewtwo.obj */,
 				AA0702D01A38DD3B00000E38 /* Pikachu */,
 				AA0702C31A38DCA200000E38 /* Pikachu.mtl */,
 				AA74288C1A37E2BC00627741 /* cubeMap.obj */,
@@ -154,12 +170,17 @@
 		AAAD8C621A35770D007D8951 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				AA0702E91A39318800000E38 /* Face.cpp */,
+				AA0702EA1A39318800000E38 /* Face.h */,
+				AA0702E61A39318100000E38 /* Model3D.cpp */,
+				AA0702E71A39318100000E38 /* Model3D.h */,
 				AA0702E01A392C3500000E38 /* Model.cpp */,
 				AA7428401A37D5BF00627741 /* Camera.cpp */,
 				AA7428411A37D5BF00627741 /* Camera.h */,
 				AA12601D1A36A3090068BE80 /* Light.cpp */,
 				AA12601E1A36A3090068BE80 /* Light.h */,
 				AA12601F1A36A3090068BE80 /* Material.cpp */,
+				AA0702EC1A3931E700000E38 /* Material.h */,
 				AA12601B1A36A0D30068BE80 /* Model.h */,
 				AAAD8C631A35771F007D8951 /* Matrix4.cpp */,
 				AAAD8C641A35771F007D8951 /* Matrix4.h */,
@@ -227,16 +248,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0702ED1A39322800000E38 /* Material.cpp in Sources */,
 				AA7428421A37D5BF00627741 /* Camera.cpp in Sources */,
 				AA1260211A36A3090068BE80 /* Light.cpp in Sources */,
 				AAAD8C511A3575F5007D8951 /* image_DXT.c in Sources */,
 				AA0702E11A392C3500000E38 /* Model.cpp in Sources */,
 				AAAD8C6B1A35771F007D8951 /* Vector4.cpp in Sources */,
 				AAAD8C611A3576CA007D8951 /* Window.cpp in Sources */,
+				AA0702EB1A39318800000E38 /* Face.cpp in Sources */,
 				AAAD8C6A1A35771F007D8951 /* Vector3.cpp in Sources */,
 				AAAD8C521A3575F5007D8951 /* image_helper.c in Sources */,
 				AAAD8C5A1A35760E007D8951 /* SOIL.c in Sources */,
 				AAAD8C5E1A357632007D8951 /* main.cpp in Sources */,
+				AA0702E81A39318100000E38 /* Model3D.cpp in Sources */,
 				AAAD8C5B1A35760E007D8951 /* stb_image_aug.c in Sources */,
 				AAAD8C691A35771F007D8951 /* Matrix4.cpp in Sources */,
 			);

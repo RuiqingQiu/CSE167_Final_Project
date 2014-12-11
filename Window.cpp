@@ -147,7 +147,7 @@ void Window::displayPikachu(void){
     }
     
     cout << "scale is " << scale << endl;
-    tmp.makeScale(0.3*scale, 0.3*scale, 0.3*scale);
+    tmp.makeScale(0.7*scale, 0.7*scale, 0.7*scale);
     tmp.print("scale matrix");
     Globals::pikachu->getMatrix() =  tmp * Globals::pikachu->getMatrix();
     
@@ -166,12 +166,10 @@ void Window::displayPikachu(void){
     Matrix4 camera = Globals::main_camera->getMatrix();
     glMatrixMode(GL_MODELVIEW);
     
-    
     Matrix4 glmatrix = camera * world * Globals::pikachu->getMatrix();
-    
     glmatrix.transpose();
     glLoadMatrixd(glmatrix.getPointer());
-    //gluLookAt(0, 0, 5, 0, 0, 0, 0, 1, 0);
+    gluLookAt(0, 0, 2, 0, 0, 0, 0, 1, 0);
     cout << "total number of faces: " << Globals::pikachu->face_number << endl;
     for (int i = 0; i < Globals::pikachu->face_number; i++)
     {
@@ -310,7 +308,6 @@ void Window::displayNyarth(void){
                 glBindTexture(GL_TEXTURE_2D, Globals::nyarth->texture[Globals::nyarth->material_list[j]-1]);
                 // Make sure no bytes are padded:
                 glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-                
                 // Select GL_MODULATE to mix texture with polygon color for shading:
                 glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
                 
