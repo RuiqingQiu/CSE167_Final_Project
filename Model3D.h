@@ -14,7 +14,7 @@
 #include <vector>
 #include "Face.h"
 #include "Material.h"
-
+#include "Matrix4.h"
 using namespace std;
 
 class Model3D {
@@ -24,6 +24,8 @@ public:
     
     void draw();
     void print();
+    Matrix4 localpos;
+
     
     //virtual BoundingSphere* getBoundingSphere();
 private:
@@ -36,5 +38,6 @@ private:
     float radius;
     bool isCompiled;
     vector<Face*> faces;
+    
 };
 #endif /* defined(__CSE167_Final_Project__Model3D__) */

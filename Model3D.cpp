@@ -13,6 +13,7 @@
 using namespace std;
 
 Model3D::Model3D( const char* model ) {
+    localpos.identity();
     readModel(model);
     normalize();
     isCompiled = false;
@@ -62,17 +63,23 @@ void Model3D::readMaterial( const char* mat, vector<Material*> &materials ) {
         {
             char name[80];
             //char* pre = "Textures/";
-            strncpy( name, line + 8, strlen(line) - 9 );
-            name[ strlen(line) - 9 ] = '\0';
+            strncpy( name, line + 17, strlen(line) - 18 );
+            name[ strlen(line) - 19 ] = '\0';
             //printf("id: %s\n",strcat(pre,name));
-            printf("%s\n",name);
+            //fscanf(line,"p_Kd Textures\\%s", name);
+            char file_path[80];
+            strcpy (file_path,"/Users/Ennuma/Desktop/CSE167_Final_Project/");
+            strcat(file_path,name);
+            printf("%s\n",file_path);
+
+            
             GLuint tex_2d = SOIL_load_OGL_texture
             (
              //strcat(pre,name),
-             name,
+             file_path,
              SOIL_LOAD_AUTO,
              SOIL_CREATE_NEW_ID,
-             SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
+             SOIL_FLAG_INVERT_Y
              );
             
             /* check for an error during the load process */
@@ -82,6 +89,8 @@ void Model3D::readMaterial( const char* mat, vector<Material*> &materials ) {
             }
             
             printf("id: %i\n",tex_2d);
+            
+            currMaterial->texture = tex_2d;
             
         }else if( strstr( line, "Kd" )  ) {
             
@@ -107,6 +116,7 @@ void Model3D::readMaterial( const char* mat, vector<Material*> &materials ) {
             //currMaterial->dg =fval[1];
             //currMaterial->db =fval[2];
             //currMaterial->apply();
+            currMaterial->set_mat_diffuse(fval[0], fval[1], fval[2], 1);
         }else if( strstr( line, "Ka" )  ) {
             
             char values[80];
@@ -130,6 +140,8 @@ void Model3D::readMaterial( const char* mat, vector<Material*> &materials ) {
             //currMaterial->ar =fval[0];
             //currMaterial->ag =fval[1];
             //currMaterial->ab =fval[2];
+            currMaterial->set_mat_ambient(fval[0], fval[1], fval[2], 1);
+
         }else if( strstr( line, "Ks" )  ) {
             
             char values[80];
@@ -153,6 +165,8 @@ void Model3D::readMaterial( const char* mat, vector<Material*> &materials ) {
             //currMaterial->sr =fval[0];
             //currMaterial->sg =fval[1];
             //currMaterial->sb =fval[2];
+            currMaterial->set_mat_specular(fval[0], fval[1], fval[2], 1);
+
         }
     
     }
@@ -270,7 +284,7 @@ void Model3D::readModel( const char* model ) {
             int vI, tI, nI;
             sscanf( &line[1], "%s %s %s\n", s1, s2, s3);
             
-            Vector3 vertex, normal;
+            Vector3 vertex, normal,texture;
             
             // Indices for first vertex
             getIndices(s1, &vI, &tI, &nI);
@@ -287,6 +301,11 @@ void Model3D::readModel( const char* model ) {
             normal.setZ( n[ 3 * nI + 2 ] );
             face->addNormal( normal );
             
+            tI = tI-1;
+            texture.setX(t[2*tI]);
+            texture.setY(t[2*tI+1]);
+            face->addTexture(texture);
+            
             // Indices for second vertex
             getIndices(s2, &vI, &tI, &nI);
             
@@ -302,6 +321,11 @@ void Model3D::readModel( const char* model ) {
             normal.setZ( n[ 3 * nI + 2 ] );
             face->addNormal( normal );
             
+            tI = tI-1;
+            texture.setX(t[2*tI]);
+            texture.setY(t[2*tI+1]);
+            face->addTexture(texture);
+            
             // Indices for third vertex
             getIndices(s3, &vI, &tI, &nI);
             
@@ -316,6 +340,11 @@ void Model3D::readModel( const char* model ) {
             normal.setY( n[ 3 * nI + 1 ] );
             normal.setZ( n[ 3 * nI + 2 ] );
             face->addNormal( normal );
+            
+            tI = tI-1;
+            texture.setX(t[2*tI]);
+            texture.setY(t[2*tI+1]);
+            face->addTexture(texture);
             
             faces.push_back( face );
         }
