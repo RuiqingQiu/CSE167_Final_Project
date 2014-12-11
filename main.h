@@ -13,13 +13,12 @@
 #include "Window.h"
 #include "Model.h"
 #include "Camera.h"
+#include "Model3D.h"
 
 namespace Globals
 {
-    extern Model* pikachu;
     extern Camera* main_camera;
-    extern Model* nyarth;
+    extern Model3D *pika;
+
 };
-static void load_model_pikachu();
-static void load_model_nyarth();
 #endif /* defined(__CSE167_Final_Project__main__) */

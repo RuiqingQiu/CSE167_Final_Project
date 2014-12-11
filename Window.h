@@ -26,8 +26,6 @@ public:
     static void processNormalKeys(unsigned char key, int x, int y);
     static void displayPikachu(void);
     static void idlePikachu(void);
-    static void displayNyarth(void);
-    static void idleNyarth(void);
     
 };
 #endif /* defined(__CSE167_Final_Project__Window__) */

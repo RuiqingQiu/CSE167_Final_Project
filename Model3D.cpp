@@ -68,7 +68,10 @@ void Model3D::readMaterial( const char* mat, vector<Material*> &materials ) {
             //printf("id: %s\n",strcat(pre,name));
             //fscanf(line,"p_Kd Textures\\%s", name);
             char file_path[80];
-            strcpy (file_path,"/Users/Ennuma/Desktop/CSE167_Final_Project/");
+            //strcpy (file_path,"/Users/Ennuma/Desktop/CSE167_Final_Project/");
+            strcpy (file_path,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/");
+
+            
             strcat(file_path,name);
             printf("%s\n",file_path);
 
@@ -225,8 +228,11 @@ void Model3D::readModel( const char* model ) {
 #warning extract \r at the end, if not \r, error
             strncpy( file, line + 7, strlen( line ) - 9 );
             file[ strlen( line ) - 8 ] = '\0';
+            char file_path[80];
+            strcpy (file_path,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/");
             
-            readMaterial( file, materials );
+            strcat(file_path,file);
+            readMaterial( file_path, materials );
             
         } else if( strstr( line, "usemtl" ) != 0 ) {
             
