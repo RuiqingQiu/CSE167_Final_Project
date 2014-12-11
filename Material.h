@@ -15,12 +15,32 @@ class Material{
 public:
     GLfloat mat_specular[4] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat mat_diffuse[4] = {0.5, 0.5, 0.5, 1.0};
+    GLfloat mat_ambient[4] = {0.5, 0.5, 0.5, 1.0};
     GLfloat mat_shininess[1] = { 128 };
     
     
     void set_mat_specular(float x, float y, float z, float w);
     void set_mat_shininess(float x);
     void set_mat_diffuse(float x, float y, float z, float w);
+    
+    void apply();
+    
+    void setName( const char* );
+    char* getName();
+    
+    void setR( float );
+    float getR();
+    
+    void setG( float );
+    float getG();
+    
+    void setB( float );
+    float getB();
+
+    
+private:
+    char name[80];
+    float r, g, b;
     
 };
 #endif /* defined(__CSE167HW1__Material__) */

@@ -10,6 +10,43 @@
 #include <math.h>
 #include <iostream>
 using namespace std;
+
+double Vector3::getX()
+{
+    return x;
+}
+
+double Vector3::getY()
+{
+    return y;
+}
+
+double Vector3::getZ()
+{
+    return z;
+}
+
+void Vector3::setX(double mx)
+{
+    x = mx;
+}
+
+void Vector3::setY(double my)
+{
+    y = my;
+}
+
+void Vector3::setZ(double mz)
+{
+    z = mz;
+}
+
+Vector3::Vector3()
+{
+    this->x = 0;
+    this->y = 0;
+    this->z = 0;
+}
 Vector3::Vector3(double x, double y, double z){
     //constructor with three parameters for the vector coordinates
     this->x = x;
