@@ -12,7 +12,7 @@
 int Window::width  = 512;   // set window width in pixels here
 int Window::height = 512;   // set window height in pixels here
 float t = 0.0;//A time counter
-const float number_of_curves = 5;
+const float number_of_curves = 6;
 Matrix4 Window::world = Matrix4();
 /// a structure to hold a control point of the surface
 struct Point {
@@ -20,7 +20,7 @@ struct Point {
     float y;
     float z;
 };
-Point Points[5][4] ={
+Point Points[6][4] ={
     {
         {0,0,5},
         {0,5,5},
@@ -35,17 +35,23 @@ Point Points[5][4] ={
         { 0,0,5 }
     },
     {
-        { 10,0,-10 },
-        { 20,0,-5},
-        { 20,0,15 },
-        { 0,0,20 }
+        {10,0,5},
+        {4,0,7},
+        {2,0,13},
+        {0,0,20}
+    },
+    {
+        { 0,0,-25 },
+        { 2,0,-13},
+        { 4,0,-7 },
+        { 10,0,5 }
 
     },
     {
         {-5,0,-15},
         {0,0,-15},
         {5,0,-15},
-        {10, 0, -10}
+        {0,0,-25}
     },
     {
         {0,15,5},
