@@ -11,3 +11,7 @@ In order to run:
 Commands for showing the effects:
 
 '1' button: for switching between the first and second camera to show the camera moving around bezier curve effect
+
+Some sample images:
+
+![alt tag](https://qwzcse167blog.files.wordpress.com/2014/12/screen-shot-2014-12-11-at-2-30-20-am.png)
