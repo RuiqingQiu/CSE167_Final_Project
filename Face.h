@@ -21,6 +21,7 @@ public:
     
     void addVertex( Vector3& );
     void addNormal( Vector3& );
+    void addTexture( Vector3& );
     
     void setMaterial( Material& );
     
@@ -31,6 +32,7 @@ public:
 private:
     vector<Vector3*> normals;
     vector<Vector3*> vertices;
+    vector<Vector3*> textures;
     Material material;
 };
 #endif /* defined(__CSE167_Final_Project__Face__) */

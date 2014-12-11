@@ -13,6 +13,7 @@
 
 #include <GLUT/glut.h>
 #include "SOIL.h"
+#include "Model3D.h"
 
 using namespace std;
 
@@ -26,6 +27,46 @@ namespace Globals
 
 GLint loc;
 GLuint v,f,f2,p;
+Model3D *pika;
+
+void display(void)
+{
+    //Window::Point tt = Window::Calculate(t);
+    
+    //Globals::main_camera->e->x = tt.x;
+    //Globals::main_camera->e->y = tt.y;
+    //Globals::main_camera->e->z = tt.z;
+    
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // clear color and depth buffers
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    // Tell OpenGL what ModelView matrix to use:
+    Matrix4 glmatrix;
+    glmatrix.identity();
+    Matrix4 scale;
+    scale.makeScale(5, 5, 5);
+    glmatrix = glmatrix*scale;
+    Matrix4 pos = pika -> localpos;
+    Matrix4 rot = Matrix4();
+    rot.makeRotateY(1);
+    pika->localpos = pika->localpos*rot;
+    glmatrix = glmatrix*pos;
+    glmatrix.transpose();
+    Matrix4 camera = Globals::main_camera->getMatrix();
+    //Globals::main_camera->update();
+    //glmatrix =camera * glmatrix;
+    glLoadMatrixd(glmatrix.getPointer());
+    
+    pika->draw();
+    
+    glFlush();
+    glutSwapBuffers();
+}
+
+
+void idle(void)
+{
+    display();
+}
 
 int main(int argc, char *argv[])
 {
@@ -59,17 +100,20 @@ int main(int argc, char *argv[])
     glLightfv(GL_LIGHT0, GL_POSITION, position);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-    Globals::pikachu = new Model();
+    //Globals::pikachu = new Model();
     Globals::nyarth = new Model();
-    load_model_pikachu();
-    //load_model_nyarth();
+    //load_model_pikachu();
+    //load_model_nyarth();/Users/Ennuma/Desktop/CSE167_Final_Project/Pikachu.obj
+    pika = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Pikachu.obj");
     // Install callback functions:
     //glutDisplayFunc(Window::displayCallback);
     glutReshapeFunc(Window::reshapeCallback);
     //glutIdleFunc(Window::idleCallback);
-    
-    glutDisplayFunc(Window::displayPikachu);
-    glutIdleFunc(Window::idlePikachu);
+    glutDisplayFunc(display);
+    glutIdleFunc(idle);
+
+    //glutDisplayFunc(Window::displayPikachu);
+    //glutIdleFunc(Window::idlePikachu);
     
     //glutDisplayFunc(Window::displayNyarth);
     //glutIdleFunc(Window::idleNyarth);
@@ -106,8 +150,8 @@ void load_model_pikachu(){
     Globals::pikachu->material_list.clear();
     char texture_file_name[80];
     Globals::pikachu->texture_num = 0;
-    //Loading material file
-    fp = fopen("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Pikachu.mtl","r");
+    //Loading material file/Users/Ennuma/Desktop/CSE167_Final_Project/Pikachu.mtl
+    fp = fopen("/Users/Ennuma/Desktop/CSE167_Final_Project/Pikachu.mtl","r");
     if (fp==NULL) { cerr << "error loading file" << endl; exit(-1); }
     while(true){
         c1 = fgetc(fp);
@@ -120,8 +164,10 @@ void load_model_pikachu(){
             cout << texture_file_name << endl;
             
             char file_path[80];
-            strcpy (file_path,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/");
+            strcpy (file_path,"/Users/Ennuma/Desktop/CSE167_Final_Project/");
             strcat(file_path,texture_file_name);
+            
+            printf("filepath is : %s\n",file_path);
             Globals::pikachu->texture[Globals::pikachu->texture_num] = SOIL_load_OGL_texture
             (
              file_path
@@ -144,7 +190,7 @@ void load_model_pikachu(){
             break;
         }
     }
-    fp = fopen("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Pikachu.obj","r");
+    fp = fopen("/Users/Ennuma/Desktop/CSE167_Final_Project/Pikachu.obj","r");
     if (fp==NULL) { cerr << "error loading file" << endl; exit(-1); }
     while(true){
         c1 = fgetc(fp);

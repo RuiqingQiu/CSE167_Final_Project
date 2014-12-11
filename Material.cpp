@@ -16,6 +16,14 @@ void Material::set_mat_specular(float x, float y, float z, float w){
     mat_specular[2] = z;
     mat_specular[3] = w;
 }
+
+void Material::set_mat_ambient(float x, float y, float z, float w){
+    mat_ambient[0] = x;
+    mat_ambient[1] = y;
+    mat_ambient[2] = z;
+    mat_ambient[3] = w;
+}
+
 void Material::set_mat_shininess(float x){
     mat_shininess[0] = x;
 }
@@ -39,7 +47,7 @@ float Material::getG() { return g; }
 float Material::getB() { return b; }
 
 void Material::apply() {
-    glColor3f( 1, 1, 0 );
+    //glColor3f( 1, 1, 0 );
     //GLfloat mat_ambient[] = { ar, ag, ab, 1.0 };
     //GLfloat mat_diffuse[] = { dr, dg, db, 1.0 };
     //GLfloat mat_specular[] = { sr, sg, sb, 1.0 };
@@ -47,6 +55,17 @@ void Material::apply() {
     
     //printf("diffuse %f %f %f\n",dr,dg,db);
     //printf("ambient %f %f %f\n",ar,ag,ab);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glEnable(GL_TEXTURE_2D);
     
     glMaterialfv(GL_FRONT, GL_AMBIENT, mat_ambient);
     glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse);

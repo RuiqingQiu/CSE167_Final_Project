@@ -22,7 +22,8 @@ public:
     void set_mat_specular(float x, float y, float z, float w);
     void set_mat_shininess(float x);
     void set_mat_diffuse(float x, float y, float z, float w);
-    
+    void set_mat_ambient(float x, float y, float z, float w);
+
     void apply();
     
     void setName( const char* );
@@ -36,11 +37,13 @@ public:
     
     void setB( float );
     float getB();
-
+    
+    GLuint texture;
     
 private:
     char name[80];
     float r, g, b;
+    
     
 };
 #endif /* defined(__CSE167HW1__Material__) */

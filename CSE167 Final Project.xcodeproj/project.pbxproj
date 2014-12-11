@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BEF67541A396E0200DFA47E /* Face.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF67501A396E0200DFA47E /* Face.cpp */; };
+		5BEF67551A396E0200DFA47E /* Model3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF67521A396E0200DFA47E /* Model3D.cpp */; };
+		5BEF67561A396F3300DFA47E /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601F1A36A3090068BE80 /* Material.cpp */; };
 		AA0702CA1A38DD1500000E38 /* PikachuDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702C81A38DD1500000E38 /* PikachuDh.tga */; };
 		AA0702CB1A38DD1500000E38 /* PikachuEyeDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702C91A38DD1500000E38 /* PikachuEyeDh.tga */; };
 		AA0702CD1A38DD2600000E38 /* PikachuHohoDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702CC1A38DD2600000E38 /* PikachuHohoDh.tga */; };
@@ -35,7 +38,7 @@
 		AAAD8C3E1A3575B2007D8951 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			dstPath = /usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
 				AA0702E51A3930AE00000E38 /* mewtwo_0_0.tga in CopyFiles */,
@@ -49,6 +52,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5BEF67501A396E0200DFA47E /* Face.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Face.cpp; sourceTree = "<group>"; };
+		5BEF67511A396E0200DFA47E /* Face.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Face.h; sourceTree = "<group>"; };
+		5BEF67521A396E0200DFA47E /* Model3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model3D.cpp; sourceTree = "<group>"; };
+		5BEF67531A396E0200DFA47E /* Model3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model3D.h; sourceTree = "<group>"; };
+		5BEF67571A3975D100DFA47E /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		AA0702C31A38DCA200000E38 /* Pikachu.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pikachu.mtl; sourceTree = "<group>"; };
 		AA0702C81A38DD1500000E38 /* PikachuDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuDh.tga; sourceTree = "<group>"; };
 		AA0702C91A38DD1500000E38 /* PikachuEyeDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuEyeDh.tga; sourceTree = "<group>"; };
@@ -179,6 +187,7 @@
 				AA7428411A37D5BF00627741 /* Camera.h */,
 				AA12601D1A36A3090068BE80 /* Light.cpp */,
 				AA12601E1A36A3090068BE80 /* Light.h */,
+				5BEF67571A3975D100DFA47E /* Material.h */,
 				AA12601F1A36A3090068BE80 /* Material.cpp */,
 				AA0702EC1A3931E700000E38 /* Material.h */,
 				AA12601B1A36A0D30068BE80 /* Model.h */,
@@ -259,6 +268,7 @@
 				AAAD8C6A1A35771F007D8951 /* Vector3.cpp in Sources */,
 				AAAD8C521A3575F5007D8951 /* image_helper.c in Sources */,
 				AAAD8C5A1A35760E007D8951 /* SOIL.c in Sources */,
+				5BEF67551A396E0200DFA47E /* Model3D.cpp in Sources */,
 				AAAD8C5E1A357632007D8951 /* main.cpp in Sources */,
 				AA0702E81A39318100000E38 /* Model3D.cpp in Sources */,
 				AAAD8C5B1A35760E007D8951 /* stb_image_aug.c in Sources */,

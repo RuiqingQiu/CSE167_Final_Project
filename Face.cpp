@@ -17,6 +17,10 @@ void Face::addNormal( Vector3& v ) {
     normals.push_back( new Vector3( v ) );
 }
 
+void Face::addTexture( Vector3& v ) {
+    textures.push_back( new Vector3( v ) );
+}
+
 void Face::setMaterial( Material& m ) {
     //material.setR( m.getR() );
     //material.setG( m.getG() );
@@ -36,6 +40,7 @@ void Face::draw() {
         glBegin( GL_QUADS );
     }
     for( int i = 0; i < vertices.size(); i++ ) {
+        glTexCoord2f(textures[i]->x, textures[i]->y);
         glNormal3f( normals[i]->x, normals[i]->y, normals[i]->z );
         glVertex3f( vertices[i]->x, vertices[i]->y, vertices[i]->z );
     }
