@@ -18,6 +18,8 @@ namespace Globals
 {
     extern Model* pikachu;
     extern Camera* main_camera;
+    extern Model* nyarth;
 };
-void load_model();
+static void load_model_pikachu();
+static void load_model_nyarth();
 #endif /* defined(__CSE167_Final_Project__main__) */

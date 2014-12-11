@@ -13,11 +13,12 @@
 #include <GLUT/GLUT.h>
 #include "Matrix4.h"
 #include "main.h"
+#include "SOIL.h"
 class Window	  // OpenGL output window related routines
 {
 public:
     static int width, height; 	            // window size
-    
+    static Matrix4 world;
     static void idleCallback(void);
     static void reshapeCallback(int, int);
     static void displayCallback(void);
@@ -25,5 +26,8 @@ public:
     static void processNormalKeys(unsigned char key, int x, int y);
     static void displayPikachu(void);
     static void idlePikachu(void);
+    static void displayNyarth(void);
+    static void idleNyarth(void);
+    
 };
 #endif /* defined(__CSE167_Final_Project__Window__) */

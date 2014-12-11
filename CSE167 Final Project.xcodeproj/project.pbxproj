@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA0702CA1A38DD1500000E38 /* PikachuDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702C81A38DD1500000E38 /* PikachuDh.tga */; };
+		AA0702CB1A38DD1500000E38 /* PikachuEyeDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702C91A38DD1500000E38 /* PikachuEyeDh.tga */; };
+		AA0702CD1A38DD2600000E38 /* PikachuHohoDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702CC1A38DD2600000E38 /* PikachuHohoDh.tga */; };
+		AA0702CF1A38DD3200000E38 /* PikachuMouthDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702CE1A38DD3200000E38 /* PikachuMouthDh.tga */; };
 		AA12601C1A36A0D30068BE80 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601A1A36A0D30068BE80 /* Model.cpp */; };
 		AA1260211A36A3090068BE80 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601D1A36A3090068BE80 /* Light.cpp */; };
 		AA1260221A36A3090068BE80 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601F1A36A3090068BE80 /* Material.cpp */; };
@@ -31,12 +35,21 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
+				AA0702CF1A38DD3200000E38 /* PikachuMouthDh.tga in CopyFiles */,
+				AA0702CD1A38DD2600000E38 /* PikachuHohoDh.tga in CopyFiles */,
+				AA0702CA1A38DD1500000E38 /* PikachuDh.tga in CopyFiles */,
+				AA0702CB1A38DD1500000E38 /* PikachuEyeDh.tga in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA0702C31A38DCA200000E38 /* Pikachu.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pikachu.mtl; sourceTree = "<group>"; };
+		AA0702C81A38DD1500000E38 /* PikachuDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuDh.tga; sourceTree = "<group>"; };
+		AA0702C91A38DD1500000E38 /* PikachuEyeDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuEyeDh.tga; sourceTree = "<group>"; };
+		AA0702CC1A38DD2600000E38 /* PikachuHohoDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuHohoDh.tga; sourceTree = "<group>"; };
+		AA0702CE1A38DD3200000E38 /* PikachuMouthDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuMouthDh.tga; sourceTree = "<group>"; };
 		AA1260191A36A0AD0068BE80 /* Pikachu.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pikachu.obj; sourceTree = "<group>"; };
 		AA12601A1A36A0D30068BE80 /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Model.cpp; sourceTree = "<group>"; };
 		AA12601B1A36A0D30068BE80 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
@@ -46,6 +59,7 @@
 		AA1260201A36A3090068BE80 /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		AA7428401A37D5BF00627741 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		AA7428411A37D5BF00627741 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		AA74288C1A37E2BC00627741 /* cubeMap.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = cubeMap.obj; sourceTree = "<group>"; };
 		AAAD8C401A3575B2007D8951 /* CSE167 Final Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "CSE167 Final Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAAD8C4A1A3575C0007D8951 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		AAAD8C4C1A3575C7007D8951 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
@@ -84,9 +98,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA0702D01A38DD3B00000E38 /* Pikachu */ = {
+			isa = PBXGroup;
+			children = (
+				AA0702CE1A38DD3200000E38 /* PikachuMouthDh.tga */,
+				AA0702CC1A38DD2600000E38 /* PikachuHohoDh.tga */,
+				AA0702C81A38DD1500000E38 /* PikachuDh.tga */,
+				AA0702C91A38DD1500000E38 /* PikachuEyeDh.tga */,
+			);
+			name = Pikachu;
+			sourceTree = "<group>";
+		};
 		AAAD8C371A3575B2007D8951 = {
 			isa = PBXGroup;
 			children = (
+				AA0702D01A38DD3B00000E38 /* Pikachu */,
+				AA0702C31A38DCA200000E38 /* Pikachu.mtl */,
+				AA74288C1A37E2BC00627741 /* cubeMap.obj */,
 				AA1260191A36A0AD0068BE80 /* Pikachu.obj */,
 				AAAD8C621A35770D007D8951 /* Helper */,
 				AAAD8C5F1A3576CA007D8951 /* Window.cpp */,

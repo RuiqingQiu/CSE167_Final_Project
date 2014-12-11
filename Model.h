@@ -25,8 +25,19 @@ public:
     vector<Vector3> normal_list;
     vector<Vector3> color_list;
     vector<Vector3> image_vertices;
-    vector<Vector3> face_vertices;
-    vector<Vector3> face_normal;
+    vector<Vector4> face_vertices;
+    vector<Vector4> face_normal;
+    vector<Vector4> face_texture;
+    vector<Vector3> texture_coordinates;
+    vector<int> material_list;
+    vector<int> switch_position;
+    Matrix4 model2world;
+
+    
+    GLuint texture[10];
+    int texture_num = 0;
+    
+    
     Material material;
     Light light;
     Matrix4 light_m2w;
@@ -35,5 +46,19 @@ public:
     float x_min, x_max, y_min, y_max, z_min, z_max;
     Model();
     void update();
+    Matrix4& getMatrix();
+    void spin(double);      // spin cube [degrees]
+
+    void push();
+    void moveLeft();
+    void moveRight();
+    void moveIn();
+    void moveOut();
+    void moveDown();
+    void moveUp();
+    void reset();
+    void scaleUp();
+    void scaleDown();
+
 };
 #endif /* defined(__CSE167HW1__Model__) */
