@@ -24,7 +24,7 @@ Vec3f rotate(Vec3f v, Vec3f axis, float degrees) {
 
 //Returns the position of the particle, after rotating the camera
 Vec3f adjParticlePos(Vec3f pos) {
-    return rotate(pos, Vec3f(1, 0, 0), -30);
+    return rotate(pos, Vec3f(1, -1, 0), -30);
 }
 
 //Returns whether particle1 is in back of particle2
@@ -68,18 +68,18 @@ Vec3f ParticleEngine::curColor(){
 }
 
 Vec3f ParticleEngine::curVelocity() {
-    return Vec3f(2 * cos(angle), 2.0f, 2 * sin(angle));
+    return Vec3f(2 * cos(angle), -0.0f, 2 * sin(angle));
 }
 
 //Alters p to be a particle newly produced by the fountain.
 void ParticleEngine::createParticle(Particle* p) {
     p->pos = Vec3f(0, 0, 0);
-    p->velocity = curVelocity() + Vec3f(0.5f * randomFloat() - 0.25f,
+    p->velocity = curVelocity() + Vec3f(3.5f * randomFloat() - 0.25f,
                                         0.5f * randomFloat() - 0.25f,
-                                        0.5f * randomFloat() - 0.25f);
+                                        3.5f * randomFloat() - 0.25f);
     p->color = curColor();
     p->timeAlive = 0;
-    p->lifespan = randomFloat() + 1;
+    p->lifespan = randomFloat() + 2;
 }
 
 
@@ -90,10 +90,10 @@ void ParticleEngine::step() {
         colorTime -= 1;
     }
     
-    angle += 0.5f * STEP_TIME;
-    while (angle > 2 * PI) {
-        angle -= 2 * PI;
-    }
+//    angle += 0.5f * STEP_TIME;
+//    while (angle > 2 * PI) {
+//        angle -= 2 * PI;
+//    }
     
     for(int i = 0; i < NUM_PARTICLES; i++) {
         Particle* p = particles + i;
@@ -109,9 +109,10 @@ void ParticleEngine::step() {
 
 ParticleEngine::ParticleEngine(GLuint textureId1){
     textureId = textureId1;
+    cout << "texture id: " << textureId1 << endl;
     timeUntilNextStep = 0;
     colorTime = 0;
-    angle = 0;
+    angle = 0.5*PI;
     for(int i = 0; i < NUM_PARTICLES; i++) {
         createParticle(particles + i);
     }
@@ -139,8 +140,7 @@ void ParticleEngine::draw() {
     glBegin(GL_QUADS);
     for(unsigned int i = 0; i < ps.size(); i++) {
         Particle* p = ps[i];
-        glColor4f(p->color[0], p->color[1], p->color[2],
-                  (1 - p->timeAlive / p->lifespan));
+        glColor4f(p->color[0], p->color[1], p->color[2],(1 - p->timeAlive / p->lifespan));
         float size = PARTICLE_SIZE / 2;
         
         Vec3f pos = adjParticlePos(p->pos);
@@ -155,6 +155,7 @@ void ParticleEngine::draw() {
         glVertex3f(pos[0] + size, pos[1] - size, pos[2]);
     }
     glEnd();
+    glDisable(GL_TEXTURE_2D);
 }
 void ParticleEngine::advance(float dt) {
     while (dt > 0) {
@@ -214,8 +215,6 @@ GLuint loadAlphaTexture(Image* image, Image* alphaChannel) {
 
 
 GLuint ParticleEngine::initRendering() {
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     

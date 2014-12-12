@@ -124,7 +124,6 @@ void Window::processSpecialKeys(int key, int x, int y){
     }
     //Particle system
     else if(key == GLUT_KEY_F2){
-        srand((unsigned int)time(0)); //Seed the random number generator
 
         glutDisplayFunc(displayParticle);
         glutIdleFunc(nullptr);
@@ -141,7 +140,6 @@ void Window::displayParticle(void){
     scale.transpose();
     glLoadMatrixd(scale.getPointer());
     Globals::particle_engine->draw();
-    
     glutSwapBuffers();
 }
 void Window::displayPikachu(void){
@@ -151,6 +149,7 @@ void Window::displayPikachu(void){
     if(t > number_of_curves){
         t = 0;
     }
+
     Point tt = Calculate(t);
     Globals::main_camera->e->x = tt.x;
     Globals::main_camera->e->y = tt.y;
@@ -171,8 +170,9 @@ void Window::displayPikachu(void){
         Globals::second_camera->update();
         camera = Globals::second_camera->getMatrix();
     }
-
+    
   
+    glEnable(GL_LIGHTING);
     Matrix4 tmp;
     tmp.makeTranslate(tt.x, tt.y, tt.z);
     glmatrix = camera*glmatrix*tmp;
@@ -244,8 +244,20 @@ void Window::displayPikachu(void){
     glLoadMatrixd(glmatrix.getPointer());
     Globals::psyduck->draw();
     
+    Globals::particle_engine->advance(t*25 / 1000.0f);
+    glDisable(GL_LIGHTING);
+    glMatrixMode(GL_MODELVIEW);
+    trans = Matrix4();
+    trans.makeTranslate(0, 30, -15);
+    glmatrix.identity();
+    glmatrix = camera * glmatrix * trans *pos*scale ;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    Globals::particle_engine->draw();
     glFlush();
     glutSwapBuffers();
+    glColor4f(1, 1, 1, 1);
     clock_t endTime = clock();
     cout << float((endTime - startTime))/CLOCKS_PER_SEC << endl;
     cout << "frame rate: " << 1.0/(float((endTime - startTime))/CLOCKS_PER_SEC) << endl;
