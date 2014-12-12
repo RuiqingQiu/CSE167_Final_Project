@@ -199,12 +199,3 @@ Image* loadBMP(const char* filename) {
 	input.close();
 	return new Image(pixels2.release(), width, height);
 }
-
-
-
-
-
-
-
-
-
