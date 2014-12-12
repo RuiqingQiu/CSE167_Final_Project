@@ -171,3 +171,60 @@ void ParticleEngine::advance(float dt) {
 }
 
 
+GLuint _textureId;
+
+//Returns an array indicating pixel data for an RGBA image that is the same as
+//image, but with an alpha channel indicated by the grayscale image alphaChannel
+char* addAlphaChannel(Image* image, Image* alphaChannel) {
+    char* pixels = new char[image->width * image->height * 4];
+    for(int y = 0; y < image->height; y++) {
+        for(int x = 0; x < image->width; x++) {
+            for(int j = 0; j < 3; j++) {
+                pixels[4 * (y * image->width + x) + j] =
+                image->pixels[3 * (y * image->width + x) + j];
+            }
+            pixels[4 * (y * image->width + x) + 3] =
+            alphaChannel->pixels[3 * (y * image->width + x)];
+        }
+    }
+    
+    return pixels;
+}
+
+//Makes the image into a texture, using the specified grayscale image as an
+//alpha channel and returns the id of the texture
+GLuint loadAlphaTexture(Image* image, Image* alphaChannel) {
+    char* pixels = addAlphaChannel(image, alphaChannel);
+    
+    GLuint textureId;
+    glGenTextures(1, &textureId);
+    glBindTexture(GL_TEXTURE_2D, textureId);
+    glTexImage2D(GL_TEXTURE_2D,
+                 0,
+                 GL_RGBA,
+                 image->width, image->height,
+                 0,
+                 GL_RGBA,
+                 GL_UNSIGNED_BYTE,
+                 pixels);
+    
+    delete pixels;
+    return textureId;
+}
+
+
+GLuint ParticleEngine::initRendering() {
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_COLOR_MATERIAL);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+    Image* image = loadBMP("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/ParticleSystemGood/circle.bmp");
+    Image* alphaChannel = loadBMP("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/ParticleSystemGood/circlealpha.bmp");
+    _textureId = loadAlphaTexture(image, alphaChannel);
+    delete image;
+    delete alphaChannel;
+    return _textureId;
+}
+
+

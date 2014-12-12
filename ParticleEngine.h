@@ -67,5 +67,7 @@ public:
     void advance(float dt);
     //Draws the particle fountain.
     void draw();
+    static GLuint initRendering();
 };
+
 #endif /* defined(__CSE167_Final_Project__ParticleEngine__) */
