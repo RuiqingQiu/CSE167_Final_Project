@@ -183,7 +183,13 @@ void Window::displayPikachu(void){
     glutSolidSphere(0.5, 20, 20);
     glPopMatrix();
 
-    
+        glBegin(GL_QUADS);
+    glNormal3f(0, 1, 0);
+        glVertex3f(-2, -3.5, -2);
+        glVertex3f(2, -3.5, -2);
+        glVertex3f(2, -3.5, 2);
+        glVertex3f(-2, -3.5, 2);
+    glEnd();
     glmatrix.identity();
     Matrix4 pos = Globals::pika -> localpos;
     Globals::pika->localpos = Globals::pika->localpos;
@@ -191,6 +197,7 @@ void Window::displayPikachu(void){
     glmatrix.transpose();
     glLoadMatrixd(glmatrix.getPointer());
     Globals::pika->draw();
+
     
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
