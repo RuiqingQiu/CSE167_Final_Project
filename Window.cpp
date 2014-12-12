@@ -35,16 +35,16 @@ Point Points[6][4] ={
         { 0,0,5 }
     },
     {
-        {10,0,5},
-        {4,0,7},
-        {2,0,13},
+        {15,0,5},
+        {10,0,7},
+        {5,0,13},
         {0,0,20}
     },
     {
         { 0,0,-25 },
-        { 2,0,-13},
-        { 4,0,-7 },
-        { 10,0,5 }
+        { 5,0,-13},
+        { 10,0,-7 },
+        { 15,0,5 }
 
     },
     {
@@ -108,7 +108,13 @@ Point Calculate(float t) {
     return CalculateU(t,0);
 }
 
+const int TIMER_MS = 25; //The number of milliseconds to which the timer is set
 
+void Window::updateParticle(int value) {
+    Globals::particle_engine->advance(TIMER_MS / 1000.0f);
+    glutPostRedisplay();
+    glutTimerFunc(TIMER_MS, updateParticle, 0);
+}
 
 void Window::processSpecialKeys(int key, int x, int y){
     //Display ball mode
@@ -116,8 +122,27 @@ void Window::processSpecialKeys(int key, int x, int y){
         glutDisplayFunc(Window::displayPikachu);
         glutIdleFunc(Window::idlePikachu);
     }
+    //Particle system
     else if(key == GLUT_KEY_F2){
+        srand((unsigned int)time(0)); //Seed the random number generator
+
+        glutDisplayFunc(displayParticle);
+        glutIdleFunc(nullptr);
+        glutTimerFunc(TIMER_MS, updateParticle, 0);
+
     }
+}
+void Window::displayParticle(void){
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glDisable(GL_LIGHTING);
+    glMatrixMode(GL_MODELVIEW);
+    Matrix4 scale = Matrix4();
+    scale.makeScale(5,5,5);
+    scale.transpose();
+    glLoadMatrixd(scale.getPointer());
+    Globals::particle_engine->draw();
+    
+    glutSwapBuffers();
 }
 void Window::displayPikachu(void){
     clock_t startTime = clock();

@@ -24,6 +24,10 @@ public:
     static void displayCallback(void);
     static void processSpecialKeys(int key, int x, int y);
     static void processNormalKeys(unsigned char key, int x, int y);
+    
+    static void displayParticle(void);
+    static void updateParticle(int);
+    
     static void displayPikachu(void);
     static void idlePikachu(void);
     

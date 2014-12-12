@@ -14,6 +14,7 @@
 #include "Model.h"
 #include "Camera.h"
 #include "Model3D.h"
+#include "ParticleEngine.h"
 
 namespace Globals
 {
@@ -29,5 +30,8 @@ namespace Globals
     
     //These will be the flag we use for keyboard controls:
     extern bool secondCameraOn;
+    
+    //Particle System
+    extern ParticleEngine* particle_engine;
 };
 #endif /* defined(__CSE167_Final_Project__main__) */

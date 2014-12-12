@@ -19,6 +19,9 @@
 		AA07030B1A3A0F1D00000E38 /* Geode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0703041A3A0F1D00000E38 /* Geode.cpp */; };
 		AA07030C1A3A0F1D00000E38 /* Group.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0703061A3A0F1D00000E38 /* Group.cpp */; };
 		AA07030D1A3A0F1D00000E38 /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0703081A3A0F1D00000E38 /* Node.cpp */; };
+		AA0703291A3B831E00000E38 /* imageloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA0703271A3B831E00000E38 /* imageloader.cpp */; };
+		AA07032C1A3B832500000E38 /* vec3f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA07032A1A3B832500000E38 /* vec3f.cpp */; };
+		AA07032F1A3B835300000E38 /* ParticleEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA07032D1A3B835300000E38 /* ParticleEngine.cpp */; };
 		AA1260211A36A3090068BE80 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA12601D1A36A3090068BE80 /* Light.cpp */; };
 		AA7428421A37D5BF00627741 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA7428401A37D5BF00627741 /* Camera.cpp */; };
 		AAAD8C4B1A3575C0007D8951 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAD8C4A1A3575C0007D8951 /* OpenGL.framework */; };
@@ -93,6 +96,14 @@
 		AA0703201A3A120B00000E38 /* KoduckEyeDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = KoduckEyeDh.tga; sourceTree = "<group>"; };
 		AA0703211A3A120B00000E38 /* Psyduck.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Psyduck.obj; sourceTree = "<group>"; };
 		AA0703221A3A120B00000E38 /* Koduck.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Koduck.mtl; sourceTree = "<group>"; };
+		AA0703251A3B831E00000E38 /* circle.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = circle.bmp; sourceTree = "<group>"; };
+		AA0703261A3B831E00000E38 /* circlealpha.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = circlealpha.bmp; sourceTree = "<group>"; };
+		AA0703271A3B831E00000E38 /* imageloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imageloader.cpp; sourceTree = "<group>"; };
+		AA0703281A3B831E00000E38 /* imageloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imageloader.h; sourceTree = "<group>"; };
+		AA07032A1A3B832500000E38 /* vec3f.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vec3f.cpp; sourceTree = "<group>"; };
+		AA07032B1A3B832500000E38 /* vec3f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec3f.h; sourceTree = "<group>"; };
+		AA07032D1A3B835300000E38 /* ParticleEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleEngine.cpp; sourceTree = "<group>"; };
+		AA07032E1A3B835300000E38 /* ParticleEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleEngine.h; sourceTree = "<group>"; };
 		AA1260191A36A0AD0068BE80 /* Pikachu.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pikachu.obj; sourceTree = "<group>"; };
 		AA12601B1A36A0D30068BE80 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		AA12601D1A36A3090068BE80 /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
@@ -240,9 +251,25 @@
 			name = Psyduck;
 			sourceTree = "<group>";
 		};
+		AA0703301A3B88BC00000E38 /* ParticleSystem */ = {
+			isa = PBXGroup;
+			children = (
+				AA07032D1A3B835300000E38 /* ParticleEngine.cpp */,
+				AA07032E1A3B835300000E38 /* ParticleEngine.h */,
+				AA07032A1A3B832500000E38 /* vec3f.cpp */,
+				AA07032B1A3B832500000E38 /* vec3f.h */,
+				AA0703251A3B831E00000E38 /* circle.bmp */,
+				AA0703261A3B831E00000E38 /* circlealpha.bmp */,
+				AA0703271A3B831E00000E38 /* imageloader.cpp */,
+				AA0703281A3B831E00000E38 /* imageloader.h */,
+			);
+			name = ParticleSystem;
+			sourceTree = "<group>";
+		};
 		AAAD8C371A3575B2007D8951 = {
 			isa = PBXGroup;
 			children = (
+				AA0703301A3B88BC00000E38 /* ParticleSystem */,
 				AA0703241A3A121D00000E38 /* Psyduck */,
 				AA0703231A3A120D00000E38 /* Meowth */,
 				AA0703011A3A0F1100000E38 /* SceneGraph */,
@@ -361,11 +388,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA07030B1A3A0F1D00000E38 /* Geode.cpp in Sources */,
+				AA07032F1A3B835300000E38 /* ParticleEngine.cpp in Sources */,
 				AA07030C1A3A0F1D00000E38 /* Group.cpp in Sources */,
+				AA0703291A3B831E00000E38 /* imageloader.cpp in Sources */,
 				AA0702ED1A39322800000E38 /* Material.cpp in Sources */,
 				AA7428421A37D5BF00627741 /* Camera.cpp in Sources */,
 				AA1260211A36A3090068BE80 /* Light.cpp in Sources */,
 				AAAD8C511A3575F5007D8951 /* image_DXT.c in Sources */,
+				AA07032C1A3B832500000E38 /* vec3f.cpp in Sources */,
 				AA0702E11A392C3500000E38 /* Model.cpp in Sources */,
 				AA07030A1A3A0F1D00000E38 /* MatrixTransform.cpp in Sources */,
 				AAAD8C6B1A35771F007D8951 /* Vector4.cpp in Sources */,
