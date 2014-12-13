@@ -7,6 +7,8 @@
 //
 
 #include "Window.h"
+#include "Sound.h"
+
 #define PI 3.14159265f
 
 int Window::width  = 512;   // set window width in pixels here
@@ -142,7 +144,17 @@ void Window::displayParticle(void){
     Globals::particle_engine->draw();
     glutSwapBuffers();
 }
+
+Sound* sound1;
 void Window::displayPikachu(void){
+    cout << "here " << endl;
+//    //Globals::sound = Globals::sound->loadWAVE("/Users/margaretwm3/Dropbox/CSE167_Final_Project/BR_Pikachu.wav");
+//    //Globals::sound->play();
+//    //sound1 = sound1->loadWAVE("/Users/margaretwm3/Dropbox/CSE167_Final_Project/BR_Pikachu.wav");
+//    //sound1->play();
+//    Globals::sound = Globals::sound->loadWAVE("/Users/margaretwm3/Dropbox/CSE167_Final_Project/BR_Pikachu.wav");
+//    //Globals::sound->play();
+
     clock_t startTime = clock();
 
     t += 0.01;
@@ -270,7 +282,7 @@ void Window::displayPikachu(void){
     cout << "frame rate: " << 1.0/(float((endTime - startTime))/CLOCKS_PER_SEC) << endl;
 }
 void Window::idlePikachu(void){
-    displayPikachu();
+  displayPikachu();
 }
 
 /**
@@ -290,7 +302,10 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
 // Callback method called by GLUT when window readraw is necessary or when glutPostRedisplay() was called.
 void Window::displayCallback()
 {
-    t += 0.01;
+    cout << "here " << endl;
+    //Globals::sound = Globals::sound->loadWAVE("/Users/margaretwm3/Dropbox/CSE167_Final_Project/BR_Pikachu.wav");
+    
+   t += 0.01;
     if(t > number_of_curves){
         t = 0;
     }

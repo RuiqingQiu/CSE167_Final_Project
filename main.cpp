@@ -37,6 +37,7 @@ namespace Globals
     bool secondCameraOn = false;
     //Particle System
     ParticleEngine* particle_engine;
+    Sound* sound;
 };
 
 const int TIMER_MS = 25; //The number of milliseconds to which the timer is set
@@ -101,12 +102,16 @@ int main(int argc, char *argv[])
     //Create the particle engine
     Globals::particle_engine = new ParticleEngine(textureID);
     
+    Globals::sound = Globals::sound->loadWAVE("/Users/margaretwm3/Dropbox/CSE167_Final_Project/BR_Pikachu.wav");
+    Globals::sound->play();
+    
     //Shader
     //Globals::s = new Shader("","", true);
     //Globals::s->bind();
     //Globals::s->printLog("hello");
     
     
+    /*
     //openAL stuff
     ALCdevice *dev;
     ALCcontext *ctx;
@@ -128,9 +133,9 @@ int main(int argc, char *argv[])
     }
     ctx = alcCreateContext(dev,NULL);
     alcMakeContextCurrent(ctx);
+   */ 
     
-    
-    /*
+   /*
     
     // Check for EAX 2.0 support
     // g_bEAX = alIsExtensionPresent("EAX2.0");
@@ -192,5 +197,5 @@ int main(int argc, char *argv[])
      */
      
     glutMainLoop();
-    return 0;
+   return 0;
 }

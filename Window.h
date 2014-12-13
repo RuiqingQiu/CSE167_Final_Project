@@ -14,6 +14,7 @@
 #include "Matrix4.h"
 #include "main.h"
 #include "SOIL.h"
+
 class Window	  // OpenGL output window related routines
 {
 public:
