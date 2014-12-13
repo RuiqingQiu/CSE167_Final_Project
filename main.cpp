@@ -12,9 +12,15 @@
 #include <iostream>
 
 #include <GLUT/glut.h>
+#include <OpenAL/alc.h>
+#include <OpenAL/al.h>
+#include <CoreGraphics/CoreGraphics.h>
 #include "SOIL.h"
 
 using namespace std;
+
+#define NUM_BUFFERS 3
+#define BUFFER_SIZE 4096
 
 namespace Globals
 {
@@ -99,6 +105,92 @@ int main(int argc, char *argv[])
     //Globals::s = new Shader("","", true);
     //Globals::s->bind();
     //Globals::s->printLog("hello");
+    
+    
+    //openAL stuff
+    ALCdevice *dev;
+    ALCcontext *ctx;
+    //struct stat statbuf;
+    
+    ALuint buffer[NUM_BUFFERS];
+    //ALuint source[NUM_SOURCES];
+    
+    ALsizei size, freq;
+    ALenum format;
+    ALvoid *data;
+    
+    // Initialization
+    dev = alcOpenDevice(NULL); // select the "preferred dev"
+    
+    if(!dev){
+        cout << "Could not set up OpenAL devices " << endl;
+        return 1;
+    }
+    ctx = alcCreateContext(dev,NULL);
+    alcMakeContextCurrent(ctx);
+    
+    
+    /*
+    
+    // Check for EAX 2.0 support
+    // g_bEAX = alIsExtensionPresent("EAX2.0");
+    
+    // Generate Buffers
+    alGetError(); // clear error code
+    alGenBuffers(NUM_BUFFERS, buffer);
+    if ((error = alGetError()) != AL_NO_ERROR)
+    {
+        DisplayALError("alGenBuffers :", error);
+        return 1;
+    }
+    // Load test.wav
+    loadWAVFile("sample.wav", &format, &data, &size, &freq, &loop);
+    if ((error = alGetError()) != AL_NO_ERROR)
+    {
+        DisplayALError("LoadWAVFile sample.wav : ", error);
+        alDeleteBuffers(NUM_BUFFERS, buffer);
+        return 1;
+    }
+    
+    // Copy test.wav data into AL Buffer 0
+    alBufferData(buffer[0], format, data, size, freq);
+    if ((error = alGetError()) != AL_NO_ERROR)
+    {
+        DisplayALError("alBufferData buffer 0 : ", error);
+        alDeleteBuffers(NUM_BUFFERS, buffer);
+        return 1;
+    }
+    
+    // Unload test.wav
+    unloadWAV(format, data, size, freq);
+    if ((error = alGetError()) != AL_NO_ERROR)
+    {
+        DisplayALError("UnloadWAV : ", error);
+        alDeleteBuffers(NUM_BUFFERS, buffer);
+        return 1;
+    }
+    // Generate Sources
+    alGenSources(1, source);
+    if ((error = alGetError()) != AL_NO_ERROR)
+    {
+        DisplayALError("alGenSources 1 : ", error);
+        return 1;
+    }
+    // Attach buffer 0 to source
+    alSourcei(source[0], AL_BUFFER, buffer[0]);
+    if ((error = alGetError()) != AL_NO_ERROR)
+    {
+        DisplayALError("alSourcei AL_BUFFER 0 : ", error);
+    }
+    
+    // Exit
+    ctx = alcGetCurrentContext();
+    dev = alcGetContextsDevice(ctx);
+    alcMakeContextCurrent(NULL);
+    alcDestroyContext(ctx);
+    alcCloseDevice(dev);
+     */
+     
     glutMainLoop();
     return 0;
 }
