@@ -14,9 +14,12 @@
 #include "Model.h"
 #include "Camera.h"
 #include "Model3D.h"
+#include <OpenAL/alc.h>
+#include <OpenAL/al.h>
 #include "ParticleEngine.h"
 
 extern "C" int play(int, char **);
+
 
 namespace Globals
 {

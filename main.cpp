@@ -50,6 +50,7 @@ const int TIMER_MS = 25; //The number of milliseconds to which the timer is set
 
 int main(int argc, char *argv[])
 {
+    
     float specular[]  = {1.0, 1.0, 1.0, 1.0};
     float shininess[] = {100.0};
     
@@ -116,11 +117,7 @@ int main(int argc, char *argv[])
     //Globals::s->printLog("hello");
     
     play(argc, argv);
-   // Globals::sound = Globals::sound->loadWAVE("/Users/margaretwm3/Dropbox/CSE167_Final_Project/BR_Pikachu.wav");
-    //Globals::sound->play();
-    
-
-     
     glutMainLoop();
-   return 0;
+    
+    return 0;
 }

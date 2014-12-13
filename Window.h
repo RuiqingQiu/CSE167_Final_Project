@@ -15,6 +15,10 @@
 #include "main.h"
 #include "SOIL.h"
 
+extern "C" void stopPlaying();
+//extern "C" void replay();
+
+
 class Window	  // OpenGL output window related routines
 {
 public:

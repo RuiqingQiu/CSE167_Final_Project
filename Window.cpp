@@ -146,8 +146,6 @@ void Window::displayParticle(void){
 }
 
 void Window::displayPikachu(void){
-
-
     clock_t startTime = clock();
 
     t += 0.01;
@@ -289,6 +287,12 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     else if(key == '1'){
         Globals::secondCameraOn = !Globals::secondCameraOn;
         t = 0;
+    //stop playing the music
+    }else if(key == '2'){
+        stopPlaying();
+    }else if(key == '3'){
+        char *tmp[4];
+        play(0, tmp);
     }
 }
 //----------------------------------------------------------------------------
