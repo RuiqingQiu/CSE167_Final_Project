@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <stdbool.h>
 
+
 #ifdef LIBAUDIO
 #include <audio/wave.h>
 #endif
@@ -24,6 +25,7 @@ ALCdevice *device;
 ALCcontext *context;
 ALuint buffer, source;
 const ALCchar *devices;
+int stoped = 0;
 
 static void list_audio_devices(const ALCchar *devices)
 {
@@ -69,8 +71,9 @@ static inline ALenum to_al_format(short channels, short samples)
 }
 
 
-int play(int argc, char *argv[])
+int play(int argc, char *argv[],char* filePath)
 {
+    stoped = 0;
     ALboolean enumeration;
     ALvoid *data;
     char *bufferData;
@@ -141,7 +144,7 @@ int play(int argc, char *argv[])
     
 #ifdef LIBAUDIO
     /* load data */
-    wave = WaveOpenFileForReading("test.wav");
+    wave = WaveOpenFileForReading(filePath);
     if (!wave) {
         fprintf(stderr, "failed to read wave file\n");
         return -1;
@@ -171,7 +174,7 @@ int play(int argc, char *argv[])
 #else
     //alutLoadWAVFile("/Users/margaretwm3/Dropbox/CSE167_Final_Project/BR_Pikachu.wav", &format, &data, &size, &freq, &loop);
     //alutLoadWAVFile("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BR_Pikachu.wav", &format, &data, &size, &freq, &loop);
-    alutLoadWAVFile("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Superheroes.wav", &format, &data, &size, &freq, &loop);
+    alutLoadWAVFile(filePath, &format, &data, &size, &freq, &loop);
     TEST_ERROR("loading wav file");
     
     alBufferData(buffer, format, data, size, freq);
@@ -186,8 +189,6 @@ int play(int argc, char *argv[])
     
     alGetSourcei(source, AL_SOURCE_STATE, &source_state);
     TEST_ERROR("source state get");
-    
-   
     
 //    while (source_state == AL_PLAYING) {
 //        alGetSourcei(source, AL_SOURCE_STATE, &source_state);
@@ -206,12 +207,15 @@ int play(int argc, char *argv[])
 }
 
 void stopPlaying(){
-    alDeleteSources(1, &source);
-    alDeleteBuffers(1, &buffer);
-    device = alcGetContextsDevice(context);
-    alcMakeContextCurrent(NULL);
-    alcDestroyContext(context);
-    alcCloseDevice(device);
+    if(stoped == 0){
+        alDeleteSources(1, &source);
+        alDeleteBuffers(1, &buffer);
+        device = alcGetContextsDevice(context);
+        alcMakeContextCurrent(NULL);
+        alcDestroyContext(context);
+        alcCloseDevice(device);
+        stoped = !stoped;
+    }
 }
 //
 //int replay(){

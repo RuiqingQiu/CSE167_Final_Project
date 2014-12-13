@@ -291,8 +291,9 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     }else if(key == '2'){
         stopPlaying();
     }else if(key == '3'){
+        stopPlaying();
         char *tmp[4];
-        play(0, tmp);
+        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
     }
 }
 //----------------------------------------------------------------------------
