@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13DB6B631A3BA058004183D0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13DB6B621A3BA058004183D0 /* OpenAL.framework */; };
-		13DB6B661A3C0218004183D0 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 13DB6B641A3C0218004183D0 /* Sound.cpp */; };
+		13DB6B661A3C0218004183D0 /* Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 13DB6B641A3C0218004183D0 /* Sound.c */; };
 		AA0702CA1A38DD1500000E38 /* PikachuDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702C81A38DD1500000E38 /* PikachuDh.tga */; };
 		AA0702CB1A38DD1500000E38 /* PikachuEyeDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702C91A38DD1500000E38 /* PikachuEyeDh.tga */; };
 		AA0702CD1A38DD2600000E38 /* PikachuHohoDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702CC1A38DD2600000E38 /* PikachuHohoDh.tga */; };
@@ -57,7 +57,7 @@
 
 /* Begin PBXFileReference section */
 		13DB6B621A3BA058004183D0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
-		13DB6B641A3C0218004183D0 /* Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
+		13DB6B641A3C0218004183D0 /* Sound.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Sound.c; sourceTree = "<group>"; };
 		13DB6B651A3C0218004183D0 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
 		13DB6B671A3C05A2004183D0 /* BR_Pikachu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BR_Pikachu.wav; sourceTree = "<group>"; };
 		13DB6B681A3C07FB004183D0 /* a.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = a.wav; sourceTree = "<group>"; };
@@ -279,7 +279,7 @@
 			children = (
 				13DB6B681A3C07FB004183D0 /* a.wav */,
 				13DB6B671A3C05A2004183D0 /* BR_Pikachu.wav */,
-				13DB6B641A3C0218004183D0 /* Sound.cpp */,
+				13DB6B641A3C0218004183D0 /* Sound.c */,
 				13DB6B651A3C0218004183D0 /* Sound.h */,
 				13DB6B621A3BA058004183D0 /* OpenAL.framework */,
 				AA0703301A3B88BC00000E38 /* ParticleSystem */,
@@ -400,7 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13DB6B661A3C0218004183D0 /* Sound.cpp in Sources */,
+				13DB6B661A3C0218004183D0 /* Sound.c in Sources */,
 				AA07030B1A3A0F1D00000E38 /* Geode.cpp in Sources */,
 				AA07032F1A3B835300000E38 /* ParticleEngine.cpp in Sources */,
 				AA07030C1A3A0F1D00000E38 /* Group.cpp in Sources */,
@@ -506,6 +506,7 @@
 		AAAD8C481A3575B2007D8951 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"OTHER_LDFLAGS[arch=*]" = "-lstdc++";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;

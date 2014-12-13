@@ -17,26 +17,6 @@
 #include <OPengl/glu.h>
 #include <GLUT/GLUT.h>
 
-#define NUM_BUFFERS 1
-#define NUM_SOURCES 1
-#define NUM_ENVIRONMENTS 1
-
-class Sound{
-    public :
-     //ALuint buffers[NUM_BUFFERS];
-     //ALuint source[NUM_SOURCES];
-        ALuint bufferID;
-        ALuint sourceID;
-
-        void* data;
-        int format;
-        int sampleRate;
-        int size;
-    
-    Sound(int format,int sampleRate,void* data,int size);
-    static Sound* loadWAVE(const char* filename);
-    void play();
-
-};
+extern int play(int, char **);
 
 #endif /* defined(__CSE167_Final_Project__Sound__) */

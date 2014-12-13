@@ -15,7 +15,8 @@
 #include "Camera.h"
 #include "Model3D.h"
 #include "ParticleEngine.h"
-#include "Sound.h"
+
+extern "C" int play(int, char **);
 
 namespace Globals
 {
@@ -34,6 +35,5 @@ namespace Globals
     
     //Particle System
     extern ParticleEngine* particle_engine;
-    extern Sound* sound;
 };
 #endif /* defined(__CSE167_Final_Project__main__) */
