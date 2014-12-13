@@ -290,10 +290,23 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     //stop playing the music
     }else if(key == '2'){
         stopPlaying();
+    //playing justin biber baby
     }else if(key == '3'){
         stopPlaying();
         char *tmp[4];
         play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
+    }
+    //playing let it go
+    else if(key == '4'){
+        stopPlaying();
+        char *tmp[4];
+        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
+    }
+    //playing let it go
+    else if(key == '5'){
+        stopPlaying();
+        char *tmp[4];
+        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
     }
 }
 //----------------------------------------------------------------------------
