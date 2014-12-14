@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
     //Globals::s->bind();
     //Globals::s->printLog("hello");
     
-    play(argc, argv);
+    play(argc, argv,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Superheroes.wav");
     glutMainLoop();
     
     return 0;

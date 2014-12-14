@@ -18,7 +18,7 @@
 #include <OpenAL/al.h>
 #include "ParticleEngine.h"
 
-extern "C" int play(int, char **);
+extern "C" int play(int, char **,char* filePath);
 
 
 namespace Globals

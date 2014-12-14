@@ -59,9 +59,11 @@
 		13DB6B621A3BA058004183D0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		13DB6B641A3C0218004183D0 /* Sound.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Sound.c; sourceTree = "<group>"; };
 		13DB6B651A3C0218004183D0 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
-		13DB6B671A3C05A2004183D0 /* BR_Pikachu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BR_Pikachu.wav; sourceTree = "<group>"; };
 		13DB6B681A3C07FB004183D0 /* a.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = a.wav; sourceTree = "<group>"; };
 		13DB6B6C1A3C4F0D004183D0 /* Superheroes.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Superheroes.wav; sourceTree = "<group>"; };
+		13DB6B6D1A3D0349004183D0 /* BabyCutted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BabyCutted.wav; sourceTree = "<group>"; };
+		13DB6B6E1A3D05FB004183D0 /* LetItGoCutted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = LetItGoCutted.wav; sourceTree = "<group>"; };
+		13DB6B6F1A3D06F4004183D0 /* RoarCutted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RoarCutted.wav; sourceTree = "<group>"; };
 		5BEF67571A3975D100DFA47E /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		AA0702C31A38DCA200000E38 /* Pikachu.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pikachu.mtl; sourceTree = "<group>"; };
 		AA0702C81A38DD1500000E38 /* PikachuDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuDh.tga; sourceTree = "<group>"; };
@@ -288,9 +290,11 @@
 		AA07035E1A3CF46E00000E38 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				13DB6B6F1A3D06F4004183D0 /* RoarCutted.wav */,
+				13DB6B6E1A3D05FB004183D0 /* LetItGoCutted.wav */,
+				13DB6B6D1A3D0349004183D0 /* BabyCutted.wav */,
 				13DB6B6C1A3C4F0D004183D0 /* Superheroes.wav */,
 				13DB6B681A3C07FB004183D0 /* a.wav */,
-				13DB6B671A3C05A2004183D0 /* BR_Pikachu.wav */,
 				13DB6B641A3C0218004183D0 /* Sound.c */,
 				13DB6B651A3C0218004183D0 /* Sound.h */,
 			);

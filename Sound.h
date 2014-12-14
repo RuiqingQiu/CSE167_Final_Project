@@ -17,7 +17,7 @@
 #include <OPengl/glu.h>
 #include <GLUT/GLUT.h>
 
-extern int play(int, char **);
+extern int play(int, char **, char* filepath);
 extern void stopPlaying();
 //extern int replay();
 
