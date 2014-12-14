@@ -35,6 +35,8 @@ public:
     
     static void displayPikachu(void);
     static void idlePikachu(void);
+    static void shadow_set_up();
+
     
 };
 #endif /* defined(__CSE167_Final_Project__Window__) */

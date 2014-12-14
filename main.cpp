@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     float shininess[] = {100.0};
     
     glutInit(&argc, argv);      	      	      // initialize GLUT
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);   // open an OpenGL context with double buffering, RGB colors, and depth buffering
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH | GLUT_ALPHA);   // open an OpenGL context with double buffering, RGB colors, and depth buffering
     glutInitWindowSize(Window::width, Window::height);      // set initial window size
     glutCreateWindow("CSE 167 Final Project");    	      // open window and set window title
     //glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     glClear(GL_DEPTH_BUFFER_BIT);       	      // clear depth buffer
     glClearColor(0.0, 0.0, 0.0, 0.0);   	      // set clear color to black
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);  // set polygon drawing mode to fill front and back of each polygon
-    glDisable(GL_CULL_FACE);     // disable backface culling to render both sides of polygons
+    glDisable(GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);             	      // set shading to smooth
     glMatrixMode(GL_PROJECTION);
     
@@ -77,10 +77,6 @@ int main(int argc, char *argv[])
     
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_NORMALIZE);
-    
-    #if defined(_APPLE_) || defined(MACOSX)
-    CGSetLocalEventsSuppressionInterval(0);
-    #endif
     
     // Generate light source:
     float position[]  = {0.0, 10.0, 1.0, 0.0};	// lightsource position
@@ -106,11 +102,13 @@ int main(int argc, char *argv[])
     Globals::Eevee = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Eevee.obj");
     Globals::Snorlax = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Snorlax.obj");
     // Install callback functions:
-    //glutDisplayFunc(Window::displayCallback);
-    glutReshapeFunc(Window::reshapeCallback);
-    //glutIdleFunc(Window::idleCallback);
     glutDisplayFunc(Window::displayPikachu);
     glutIdleFunc(Window::idlePikachu);
+    glutReshapeFunc(Window::reshapeCallback);
+    
+    
+    //Window::shadow_set_up();//Uncomment this line if you want the screen effect for shadow mapping
+
     
     glutSpecialFunc(Window::processSpecialKeys);
     glutKeyboardFunc(Window::processNormalKeys);
@@ -123,10 +121,6 @@ int main(int argc, char *argv[])
     GLuint textureID = ParticleEngine::initRendering();
     //Create the particle engine
     Globals::particle_engine = new ParticleEngine(textureID);
-       //Shader
-    //Globals::s = new Shader("","", true);
-    //Globals::s->bind();
-    //Globals::s->printLog("hello");
     
     play(argc, argv,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Superheroes.wav");
     glutMainLoop();

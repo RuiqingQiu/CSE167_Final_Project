@@ -62,7 +62,6 @@ Point Points[6][4] ={
         {-5,0,-15}
     }
    };
-
 Point CalculateU(float t,int row) {
     
     // the final point
@@ -109,34 +108,9 @@ Point Calculate(float t) {
     // calculate each point on our final v curve
     return CalculateU(t,0);
 }
-//
-//const int TIMER_MS = 25; //The number of milliseconds to which the timer is set
-//
-//void Window::updateParticle(int value) {
-//    Globals::particle_engine->advance(TIMER_MS / 1000.0f);
-//    glutPostRedisplay();
-//    glutTimerFunc(TIMER_MS, updateParticle, 0);
-//}
 
-void Window::processSpecialKeys(int key, int x, int y){
-    //Display ball mode
-    if(key == GLUT_KEY_F1){
-        glutDisplayFunc(Window::displayPikachu);
-        glutIdleFunc(Window::idlePikachu);
-    }
-    //Particle system
-    else if(key == GLUT_KEY_F2){
-        Globals::particle_effect_on = !Globals::particle_effect_on;
-    }
-}
-void Window::displayPikachu(void){
-    clock_t startTime = clock();
 
-    t += 0.01;
-    if(t > number_of_curves){
-        t = 0;
-    }
-
+void draw_scene(){
     Point tt = Calculate(t);
     Globals::main_camera->e->x = tt.x;
     Globals::main_camera->e->y = tt.y;
@@ -145,7 +119,6 @@ void Window::displayPikachu(void){
     Matrix4 camera = Globals::main_camera->getMatrix();
     Matrix4 scale;
     scale.makeScale(10, 10, 10);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // clear color and depth buffers
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     Matrix4 glmatrix;
     glmatrix.identity();
@@ -158,7 +131,7 @@ void Window::displayPikachu(void){
         camera = Globals::second_camera->getMatrix();
     }
     
-  
+    
     glEnable(GL_LIGHTING);
     Matrix4 tmp;
     tmp.makeTranslate(tt.x, tt.y, tt.z);
@@ -169,7 +142,8 @@ void Window::displayPikachu(void){
     glLoadMatrixd(glmatrix.getPointer());
     glutSolidSphere(0.5, 20, 20);
     glPopMatrix();
-
+    
+    glDisable(GL_CULL_FACE);
     glBegin(GL_QUADS);
     glNormal3f(0, 1, 0);
     glVertex3f(-2, -3.5, -2);
@@ -177,6 +151,7 @@ void Window::displayPikachu(void){
     glVertex3f(2, -3.5, 2);
     glVertex3f(-2, -3.5, 2);
     glEnd();
+    glEnable(GL_CULL_FACE);
     glmatrix.identity();
     Matrix4 pos = Globals::pika -> localpos;
     Globals::pika->localpos = Globals::pika->localpos;
@@ -187,7 +162,7 @@ void Window::displayPikachu(void){
     glmatrix.transpose();
     glLoadMatrixd(glmatrix.getPointer());
     Globals::pika->draw();
-
+    
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans.makeTranslate(-10, -1, -10);
@@ -212,7 +187,6 @@ void Window::displayPikachu(void){
         Globals::bulbasaur->angle += 1.0;
     }
     
-
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
     glmatrix.transpose();
@@ -316,7 +290,7 @@ void Window::displayPikachu(void){
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
     Globals::Snorlax->draw();
-
+    
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
@@ -327,7 +301,7 @@ void Window::displayPikachu(void){
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
     Globals::psyduck->draw();
-
+    
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
@@ -339,7 +313,7 @@ void Window::displayPikachu(void){
     glLoadMatrixd(glmatrix.getPointer());
     Globals::vulpix->draw();
     
-
+    
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
     trans.makeTranslate(15, -1, -30);
@@ -349,7 +323,7 @@ void Window::displayPikachu(void){
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
     Globals::Eevee->draw();
-
+    
     
     
     //Particle effect
@@ -363,9 +337,21 @@ void Window::displayPikachu(void){
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
     if(Globals::particle_effect_on){
+        glDisable(GL_CULL_FACE);
         Globals::particle_engine->advance(t*25 / 1000.0f);
         Globals::particle_engine->draw();
     }
+
+}
+void Window::displayPikachu(void){
+    clock_t startTime = clock();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // clear color and depth buffers
+
+    t += 0.01;
+    if(t > number_of_curves){
+        t = 0;
+    }
+    draw_scene();
     glFlush();
     glutSwapBuffers();
     glColor4f(1, 1, 1, 1);
@@ -376,74 +362,7 @@ void Window::idlePikachu(void){
   displayPikachu();
 }
 
-/**
- * Method for process keyboard actions
- **/
-void Window::processNormalKeys(unsigned char key, int x, int y){
-    if (key == 27){
-        exit(0);
-    }
-    
-    //Music controller
-    //Key 1 for second camera look at bezier curve
-    else if(key == '1'){
-        Globals::secondCameraOn = !Globals::secondCameraOn;
-        t = 0;
-    //stop playing the music
-    }else if(key == '2'){
-        stopPlaying();
-    //playing justin biber baby
-    }else if(key == '3'){
-        stopPlaying();
-        char *tmp[4];
-        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
 
-    }
-    //playing let it go
-    else if(key == '4'){
-        stopPlaying();
-        char *tmp[4];
-        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
-
-    }
-    //playing let it go
-    else if(key == '5'){
-        stopPlaying();
-        char *tmp[4];
-        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
-
-    }
-    
-    //Motion controller
-    else if(key == 'q'){
-        Globals::bulbasaur->turned = true;
-        if(Globals::bulbasaur->angle == 180.0){
-            Globals::bulbasaur->turned = false;
-        }
-    }
-    else if (key =='w'){
-        Globals::charmander->turned = true;
-        if(Globals::charmander->angle == 180.0){
-            Globals::charmander->turned = false;
-        }
-    }
-    else if (key == 'e'){
-        Globals::meowth->turned = true;
-        if(Globals::meowth->angle == 180.0){
-            Globals::meowth->turned = false;
-        }
-    }
-    else if (key == 'r'){
-        Globals::Snorlax->turned = true;
-        if(Globals::Snorlax->angle == 180.0){
-            Globals::Snorlax->turned = false;
-        }
-        
-    }
-}
 
 //----------------------------------------------------------------------------
 // Callback method called by GLUT when graphics window is resized by the user
@@ -464,4 +383,92 @@ void Window::reshapeCallback(int w, int h)
         glTranslatef(0, 0, -20);    // move camera back 20 units so that it looks at the origin (or else it's in the origin)
     glMatrixMode(GL_MODELVIEW);
 }
+void Window::processSpecialKeys(int key, int x, int y){
+    //Display ball mode
+    if(key == GLUT_KEY_F1){
+        //glEnable(GL_CULL_FACE);
+        glutDisplayFunc(Window::displayPikachu);
+        glutIdleFunc(Window::idlePikachu);
+    }
+    //Particle system
+    else if(key == GLUT_KEY_F2){
+        Globals::particle_effect_on = !Globals::particle_effect_on;
+    }
+    else if (key == GLUT_KEY_F3){
+        //shadow_set_up();
+    }
+}
+/**
+ * Method for process keyboard actions
+ **/
+void Window::processNormalKeys(unsigned char key, int x, int y){
+    if (key == 27){
+        exit(0);
+    }
+    
+    //Music controller
+    //Key 1 for second camera look at bezier curve
+    else if(key == '1'){
+        Globals::secondCameraOn = !Globals::secondCameraOn;
+        t = 0;
+        //stop playing the music
+    }else if(key == '2'){
+        stopPlaying();
+        //playing justin biber baby
+    }else if(key == '3'){
+        stopPlaying();
+        char *tmp[4];
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
+        
+    }
+    //playing let it go
+    else if(key == '4'){
+        stopPlaying();
+        char *tmp[4];
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
+        
+    }
+    //playing let it go
+    else if(key == '5'){
+        stopPlaying();
+        char *tmp[4];
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
+        
+    }
+    
+    //Motion controller
+    else if(key == 'q'){
+        if(Globals::bulbasaur->angle == 0.0)
+            Globals::bulbasaur->turned = true;
+        if(Globals::bulbasaur->angle == 180.0){
+            Globals::bulbasaur->turned = false;
+        }
+    }
+    else if (key =='w'){
+        if(Globals::charmander->angle == 0.0)
+            Globals::charmander->turned = true;
+        if(Globals::charmander->angle == 180.0){
+            Globals::charmander->turned = false;
+        }
+    }
+    else if (key == 'e'){
+        if(Globals::meowth->angle == 0.0)
+            Globals::meowth->turned = true;
+        if(Globals::meowth->angle == 180.0){
+            Globals::meowth->turned = false;
+        }
+    }
+    else if (key == 'r'){
+        if(Globals::Snorlax->angle == 0.0)
+            Globals::Snorlax->turned = true;
+        if(Globals::Snorlax->angle == 180.0){
+            Globals::Snorlax->turned = false;
+        }
+        
+    }
+}
+
 
