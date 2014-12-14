@@ -32,6 +32,8 @@ namespace Globals
     extern Model3D* vulpix;
     extern Model3D* meowth;
     extern Model3D* psyduck;
+    extern Model3D* Eevee;
+    extern Model3D* Snorlax;
     
     //These will be the flag we use for keyboard controls:
     extern bool secondCameraOn;
