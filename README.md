@@ -14,7 +14,15 @@ Commands for showing the effects:
 
 '1' button: for switching between the first and second camera to show the camera moving around bezier curve effect
 
-'F2' button: for showing pure particle effect
+'2' button: for stopping the music
+
+'3' button: playing "Baby" sound
+
+'4' button: playing "let it go" sound
+
+'5' button: playing "roar" sound
+
+'F2' button: to trigger particle effect
 
 Some sample images:
 
