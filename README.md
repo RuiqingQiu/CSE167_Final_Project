@@ -22,6 +22,8 @@ Commands for showing the effects:
 
 '5' button: playing "roar" sound
 
+'q', 'w', 'e', 'r' button: turning pokemon
+
 'F2' button: to trigger particle effect
 
 Some sample images:
