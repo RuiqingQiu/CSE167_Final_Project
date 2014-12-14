@@ -19,14 +19,15 @@ using namespace std;
 
 class Model3D {
 public:
+    float angle = 0.0;
     Model3D( const char* );
     ~Model3D();
     
     void draw();
     void print();
     Matrix4 localpos;
-
-    
+    //For turn around
+    bool turned = false;
     //virtual BoundingSphere* getBoundingSphere();
 private:
     void readMaterial( const char*, vector<Material*>& );

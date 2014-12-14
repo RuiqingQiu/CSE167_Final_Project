@@ -44,6 +44,7 @@ namespace Globals
     Model3D* Eevee;
     Model3D* Snorlax;
     bool secondCameraOn = false;
+    bool particle_effect_on = false;
     //Particle System
     ParticleEngine* particle_engine;
 };

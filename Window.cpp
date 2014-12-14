@@ -126,7 +126,7 @@ void Window::processSpecialKeys(int key, int x, int y){
     }
     //Particle system
     else if(key == GLUT_KEY_F2){
-
+        Globals::particle_effect_on = !Globals::particle_effect_on;
     }
 }
 void Window::displayPikachu(void){
@@ -170,47 +170,80 @@ void Window::displayPikachu(void){
     glutSolidSphere(0.5, 20, 20);
     glPopMatrix();
 
-        glBegin(GL_QUADS);
+    glBegin(GL_QUADS);
     glNormal3f(0, 1, 0);
-        glVertex3f(-2, -3.5, -2);
-        glVertex3f(2, -3.5, -2);
-        glVertex3f(2, -3.5, 2);
-        glVertex3f(-2, -3.5, 2);
+    glVertex3f(-2, -3.5, -2);
+    glVertex3f(2, -3.5, -2);
+    glVertex3f(2, -3.5, 2);
+    glVertex3f(-2, -3.5, 2);
     glEnd();
     glmatrix.identity();
     Matrix4 pos = Globals::pika -> localpos;
     Globals::pika->localpos = Globals::pika->localpos;
-    glmatrix = camera*glmatrix*scale*pos;
+    Matrix4 trans = Matrix4();
+    trans.makeTranslate(0, 0, -30);
+    Matrix4 rot = Matrix4();
+    glmatrix = camera*glmatrix*trans*scale*pos;
     glmatrix.transpose();
     glLoadMatrixd(glmatrix.getPointer());
     Globals::pika->draw();
 
     
-    
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
-    Matrix4 trans = Matrix4();
-    trans.makeTranslate(-8, 0, 0);
+    trans.makeTranslate(-10, -1, -10);
+    //If it's equal to 180
+    if (Globals::bulbasaur->turned && Globals::bulbasaur->angle == 180.0){
+        rot.makeRotateY(Globals::bulbasaur->angle);
+        trans = trans * rot;
+    }
+    //Turn back
+    else if(!Globals::bulbasaur->turned && Globals::bulbasaur->angle >= 180.0){
+        rot.makeRotateY(Globals::bulbasaur->angle);
+        trans = trans * rot;
+        Globals::bulbasaur->angle += 1.0;
+        if(Globals::bulbasaur->angle == 360.0){
+            Globals::bulbasaur->angle = 0.0;
+        }
+    }
+    //Turn around
+    else if(Globals::bulbasaur->turned && Globals::bulbasaur->angle != 180.0){
+        rot.makeRotateY(Globals::bulbasaur->angle);
+        trans = trans * rot;
+        Globals::bulbasaur->angle += 1.0;
+    }
+    
+
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
     glmatrix.transpose();
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
     Globals::bulbasaur->draw();
-
+    
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
     trans.makeTranslate(0, 0, -10);
-    glmatrix.identity();
-    glmatrix = camera * glmatrix * trans *pos*scale ;
-    glmatrix.transpose();
-    glLoadIdentity();
-    glLoadMatrixd(glmatrix.getPointer());
-    Globals::vulpix->draw();
-    
-    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
-    trans = Matrix4();
-    trans.makeTranslate(8, 0, 0);
+    //If it's equal to 180
+    if (Globals::charmander->turned && Globals::charmander->angle == 180.0){
+        rot.makeRotateY(Globals::charmander->angle);
+        trans = trans * rot;
+    }
+    //Turn back
+    else if(!Globals::charmander->turned && Globals::charmander->angle >= 180.0){
+        rot.makeRotateY(Globals::charmander->angle);
+        trans = trans * rot;
+        Globals::charmander->angle += 1.0;
+        if(Globals::charmander->angle == 360.0){
+            Globals::charmander->angle = 0.0;
+        }
+    }
+    //Turn around
+    else if(Globals::charmander->turned && Globals::charmander->angle != 180.0){
+        rot.makeRotateY(Globals::charmander->angle);
+        trans = trans * rot;
+        Globals::charmander->angle += 1.0;
+    }
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
     glmatrix.transpose();
@@ -218,48 +251,108 @@ void Window::displayPikachu(void){
     glLoadMatrixd(glmatrix.getPointer());
     Globals::charmander->draw();
     
+    
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    
     trans = Matrix4();
     trans.makeTranslate(8, 0, -10);
+    //If it's equal to 180
+    if (Globals::meowth->turned && Globals::meowth->angle == 180.0){
+        rot.makeRotateY(Globals::meowth->angle);
+        trans = trans * rot;
+    }
+    //Turn back
+    else if(!Globals::meowth->turned && Globals::meowth->angle >= 180.0){
+        rot.makeRotateY(Globals::meowth->angle);
+        trans = trans * rot;
+        Globals::meowth->angle += 1.0;
+        if(Globals::meowth->angle == 360.0){
+            Globals::meowth->angle = 0.0;
+        }
+    }
+    //Turn around
+    else if(Globals::meowth->turned && Globals::meowth->angle != 180.0){
+        rot.makeRotateY(Globals::meowth->angle);
+        trans = trans * rot;
+        Globals::meowth->angle += 1.0;
+    }
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
     glmatrix.transpose();
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
+    
     Globals::meowth->draw();
     
-    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
-    trans = Matrix4();
-    trans.makeTranslate(-8, 0, -10);
-    glmatrix.identity();
-    glmatrix = camera * glmatrix * trans *pos*scale ;
-    glmatrix.transpose();
-    glLoadIdentity();
-    glLoadMatrixd(glmatrix.getPointer());
-    Globals::psyduck->draw();
+    
+    
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
-    trans.makeTranslate(-15, 0, -10);
-    glmatrix.identity();
-    glmatrix = camera * glmatrix * trans *pos*scale ;
-    glmatrix.transpose();
-    glLoadIdentity();
-    glLoadMatrixd(glmatrix.getPointer());
-    Globals::Eevee->draw();
-    
-    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
-    trans = Matrix4();
-    trans.makeTranslate(15, 0, -10);
+    trans.makeTranslate(15, -1, -9);
+    //If it's equal to 180
+    if (Globals::Snorlax->turned && Globals::Snorlax->angle == 180.0){
+        rot.makeRotateY(Globals::Snorlax->angle);
+        trans = trans * rot;
+    }
+    //Turn back
+    else if(!Globals::Snorlax->turned && Globals::Snorlax->angle >= 180.0){
+        rot.makeRotateY(Globals::Snorlax->angle);
+        trans = trans * rot;
+        Globals::Snorlax->angle += 1.0;
+        if(Globals::Snorlax->angle == 360.0){
+            Globals::Snorlax->angle = 0.0;
+        }
+    }
+    //Turn around
+    else if(Globals::Snorlax->turned && Globals::Snorlax->angle != 180.0){
+        rot.makeRotateY(Globals::Snorlax->angle);
+        trans = trans * rot;
+        Globals::Snorlax->angle += 1.0;
+    }
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
     glmatrix.transpose();
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
     Globals::Snorlax->draw();
+
+    
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    trans = Matrix4();
+    trans.makeTranslate(-8, 0, -30);
+    glmatrix.identity();
+    glmatrix = camera * glmatrix * trans *pos*scale ;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    Globals::psyduck->draw();
+
+    
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    trans = Matrix4();
+    trans.makeTranslate(8, -1, -30);
+    glmatrix.identity();
+    glmatrix = camera * glmatrix * trans *pos*scale ;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    Globals::vulpix->draw();
+    
+
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    trans = Matrix4();
+    trans.makeTranslate(15, -1, -30);
+    glmatrix.identity();
+    glmatrix = camera * glmatrix * trans *pos*scale ;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    Globals::Eevee->draw();
+
     
     
-    Globals::particle_engine->advance(t*25 / 1000.0f);
+    //Particle effect
     glDisable(GL_LIGHTING);
     glMatrixMode(GL_MODELVIEW);
     trans = Matrix4();
@@ -269,13 +362,15 @@ void Window::displayPikachu(void){
     glmatrix.transpose();
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
-    Globals::particle_engine->draw();
+    if(Globals::particle_effect_on){
+        Globals::particle_engine->advance(t*25 / 1000.0f);
+        Globals::particle_engine->draw();
+    }
     glFlush();
     glutSwapBuffers();
     glColor4f(1, 1, 1, 1);
     clock_t endTime = clock();
-    cout << float((endTime - startTime))/CLOCKS_PER_SEC << endl;
-    cout << "frame rate: " << 1.0/(float((endTime - startTime))/CLOCKS_PER_SEC) << endl;
+    //cout << "frame rate: " << 1.0/(float((endTime - startTime))/CLOCKS_PER_SEC) << endl;
 }
 void Window::idlePikachu(void){
   displayPikachu();
@@ -288,6 +383,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     if (key == 27){
         exit(0);
     }
+    
+    //Music controller
     //Key 1 for second camera look at bezier curve
     else if(key == '1'){
         Globals::secondCameraOn = !Globals::secondCameraOn;
@@ -299,121 +396,53 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     }else if(key == '3'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
+
     }
     //playing let it go
     else if(key == '4'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
+
     }
     //playing let it go
     else if(key == '5'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
+
     }
-}
-//----------------------------------------------------------------------------
-// Callback method called by GLUT when window readraw is necessary or when glutPostRedisplay() was called.
-void Window::displayCallback()
-{
-
-   t += 0.01;
-    if(t > number_of_curves){
-        t = 0;
+    
+    //Motion controller
+    else if(key == 'q'){
+        Globals::bulbasaur->turned = true;
+        if(Globals::bulbasaur->angle == 180.0){
+            Globals::bulbasaur->turned = false;
+        }
     }
-    //cout << "t is " << t << endl;
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // clear color and depth buffers
-    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
-        // Tell OpenGL what ModelView matrix to use:
-    Point tmp = Calculate(t);
-    //cout << tmp.x << " " << tmp.y << " " << tmp.z << endl;
-    //Put a point at the camera position
-    glPushMatrix();
-    glDisable(GL_LIGHTING);
-    glColor3f(1, 0, 0);
-    Matrix4 translate = Matrix4();
-    translate.makeTranslate(tmp.x, tmp.y, tmp.z);
-    translate = Globals::main_camera->getMatrix() * translate;
-    translate.transpose();
-    glLoadMatrixd(translate.getPointer());
-    glutSolidSphere(1,20,20);
-    
-    glPopMatrix();
-    
-    glPushMatrix();
-    glEnable(GL_LIGHTING);
-
-    Globals::main_camera->e->x = tmp.x;
-    Globals::main_camera->e->y = tmp.y;
-    Globals::main_camera->e->z = tmp.z;
-    Globals::main_camera->update();
-    Matrix4 glmatrix = Globals::main_camera->getMatrix();
-    glmatrix.transpose();
-    glLoadMatrixd(glmatrix.getPointer());
-    //gluLookAt( tmp.x, tmp.y, tmp.z, 0, 0, 0, 0, 1, 0);
-    //gluLookAt(0, -10, 5, 0, 0, 0, 0, 1, 0);
-    
-        // Draw all six faces of the cube:
-        glBegin(GL_QUADS);
-        glColor3f(0.0, 1.0, 0.0);		// This makes the cube green; the parameters are for red, green and blue.
-        // To change the color of the other faces you will need to repeat this call before each face is drawn.
-        // Draw front face:
-        glNormal3f(0.0, 0.0, 1.0);
-        glVertex3f(-5.0,  5.0,  5.0);
-        glVertex3f( 5.0,  5.0,  5.0);
-        glVertex3f( 5.0, -5.0,  5.0);
-        glVertex3f(-5.0, -5.0,  5.0);
+    else if (key =='w'){
+        Globals::charmander->turned = true;
+        if(Globals::charmander->angle == 180.0){
+            Globals::charmander->turned = false;
+        }
+    }
+    else if (key == 'e'){
+        Globals::meowth->turned = true;
+        if(Globals::meowth->angle == 180.0){
+            Globals::meowth->turned = false;
+        }
+    }
+    else if (key == 'r'){
+        Globals::Snorlax->turned = true;
+        if(Globals::Snorlax->angle == 180.0){
+            Globals::Snorlax->turned = false;
+        }
         
-        // Draw left side:
-        glColor3f(1.0, 1.0, 0.0);		// This makes the cube green; the parameters are for red, green and blue.
-
-        glNormal3f(-1.0, 0.0, 0.0);
-        glVertex3f(-5.0,  5.0,  5.0);
-        glVertex3f(-5.0,  5.0, -5.0);
-        glVertex3f(-5.0, -5.0, -5.0);
-        glVertex3f(-5.0, -5.0,  5.0);
-        
-        // Draw right side:
-        glColor3f(1.0, 0.0, 1.0);		// This makes the cube green; the parameters are for red, green and blue.
-
-        glNormal3f(1.0, 0.0, 0.0);
-        glVertex3f( 5.0,  5.0,  5.0);
-        glVertex3f( 5.0,  5.0, -5.0);
-        glVertex3f( 5.0, -5.0, -5.0);
-        glVertex3f( 5.0, -5.0,  5.0);
-        
-        // Draw back face:
-        glColor3f(1.0, 0.0, 0.0);		// This makes the cube green; the parameters are for red, green and blue.
-
-        glNormal3f(0.0, 0.0, -1.0);
-        glVertex3f(-5.0,  5.0, -5.0);
-        glVertex3f( 5.0,  5.0, -5.0);
-        glVertex3f( 5.0, -5.0, -5.0);
-        glVertex3f(-5.0, -5.0, -5.0);
-        
-        // Draw top side:
-        glColor3f(0.0, 0.0, 1.0);		// This makes the cube green; the parameters are for red, green and blue.
-
-        glNormal3f(0.0, 1.0, 0.0);
-        glVertex3f(-5.0,  5.0,  5.0);
-        glVertex3f( 5.0,  5.0,  5.0);
-        glVertex3f( 5.0,  5.0, -5.0);
-        glVertex3f(-5.0,  5.0, -5.0);
-        
-        // Draw bottom side:
-        glColor3f(0.0, 1.0, 1.0);		// This makes the cube green; the parameters are for red, green and blue.
-
-        glNormal3f(0.0, -1.0, 0.0);
-        glVertex3f(-5.0, -5.0, -5.0);
-        glVertex3f( 5.0, -5.0, -5.0);
-        glVertex3f( 5.0, -5.0,  5.0);
-        glVertex3f(-5.0, -5.0,  5.0);
-        glEnd();
-        glFlush();
-    glPopMatrix();
-        glutSwapBuffers();
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -434,12 +463,5 @@ void Window::reshapeCallback(int w, int h)
         //}
         glTranslatef(0, 0, -20);    // move camera back 20 units so that it looks at the origin (or else it's in the origin)
     glMatrixMode(GL_MODELVIEW);
-}
-
-//----------------------------------------------------------------------------
-// Callback method called when system is idle.
-void Window::idleCallback()
-{
-   displayCallback();
 }
 

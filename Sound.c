@@ -173,7 +173,9 @@ int play(int argc, char *argv[],char* filePath)
     TEST_ERROR("failed to load buffer data");
 #else
     //alutLoadWAVFile("/Users/margaretwm3/Dropbox/CSE167_Final_Project/BR_Pikachu.wav", &format, &data, &size, &freq, &loop);
-    alutLoadWAVFile("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Superheroes.wav", &format, &data, &size, &freq, &loop);
+    //alutLoadWAVFile("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BR_Pikachu.wav", &format, &data, &size, &freq, &loop);
+    alutLoadWAVFile(filePath, &format, &data, &size, &freq, &loop);
+    //alutLoadWAVFile("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Superheroes.wav", &format, &data, &size, &freq, &loop);
     //alutLoadWAVFile("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Superheroes.wav", &format, &data, &size, &freq, &loop);
     TEST_ERROR("loading wav file");
     
