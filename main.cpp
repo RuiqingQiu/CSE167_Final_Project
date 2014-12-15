@@ -23,7 +23,6 @@
 #include <OpenAL/al.h>
 #include "SOIL.h"
 
-
 using namespace std;
 
 #define NUM_BUFFERS 3
@@ -47,6 +46,8 @@ namespace Globals
     bool particle_effect_on = false;
     //Particle System
     ParticleEngine* particle_engine;
+    //Terrain
+    Terrain1* terrain;
 };
 
 const int TIMER_MS = 25; //The number of milliseconds to which the timer is set
@@ -79,7 +80,7 @@ int main(int argc, char *argv[])
     glEnable(GL_NORMALIZE);
     
     // Generate light source:
-    float position[]  = {0.0, 10.0, 1.0, 0.0};	// lightsource position
+    float position[]  = {0.0, 10.0, 0.0, 0.0};	// lightsource position
     glLightfv(GL_LIGHT0, GL_POSITION, position);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
@@ -93,14 +94,23 @@ int main(int argc, char *argv[])
 //    Globals::meowth = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Meowth.obj");
 //    Globals::psyduck = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Psyduck.obj");
     
-    Globals::pika = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Pikachu.obj");
-    Globals::bulbasaur = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Bulbasaur.obj");
-    Globals::charmander= new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Charmander.obj");
-    Globals::vulpix= new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Vulpix.obj");
-    Globals::meowth = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Meowth.obj");
-    Globals::psyduck = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Psyduck.obj");
-    Globals::Eevee = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Eevee.obj");
-    Globals::Snorlax = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Snorlax.obj");
+//    Globals::pika = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Pikachu.obj");
+//    Globals::bulbasaur = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Bulbasaur.obj");
+//    Globals::charmander= new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Charmander.obj");
+//    Globals::vulpix= new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Vulpix.obj");
+//    Globals::meowth = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Meowth.obj");
+//    Globals::psyduck = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Psyduck.obj");
+//    Globals::Eevee = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Eevee.obj");
+//    Globals::Snorlax = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Snorlax.obj");
+    Globals::pika = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Pikachu.obj");
+        Globals::bulbasaur = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Bulbasaur.obj");
+        Globals::charmander= new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Charmander.obj");
+        Globals::vulpix= new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Vulpix.obj");
+        Globals::meowth = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Meowth.obj");
+        Globals::psyduck = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Psyduck.obj");
+        Globals::Eevee = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Eevee.obj");
+        Globals::Snorlax = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Snorlax.obj");
+
     // Install callback functions:
     glutDisplayFunc(Window::displayPikachu);
     glutIdleFunc(Window::idlePikachu);
@@ -123,6 +133,17 @@ int main(int argc, char *argv[])
     Globals::particle_engine = new ParticleEngine(textureID);
     
     play(argc, argv,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Superheroes.wav");
+    
+    //Gen Terrain
+    Globals::terrain = new Terrain1(200);
+    int seed = 100;
+    
+#warning param is seed, displace, roughness, smooth(0-1)
+    Globals::terrain->generate(seed, 100, 2, 0.3);
+    
+    //printf("height is %f\n", Globals::terrain->getData(0, 0));
+    //printf("height is %f\n", Globals::terrain->getHeightMap()[0]);
+
     glutMainLoop();
     
     return 0;

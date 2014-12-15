@@ -131,6 +131,7 @@ void draw_scene(){
         camera = Globals::second_camera->getMatrix();
     }
     
+    //camera.identity();
     
     glEnable(GL_LIGHTING);
     Matrix4 tmp;
@@ -144,13 +145,57 @@ void draw_scene(){
     glPopMatrix();
     
     glDisable(GL_CULL_FACE);
-    glBegin(GL_QUADS);
+    glEnable(GL_LIGHTING);
+
+    //glBegin(GL_QUADS);
+    glPushMatrix();
+    glmatrix.identity();
+    Matrix4 trans2;
+    trans2.makeTranslate(-150, -5, -100);
+    Matrix4 scale2;
+    scale2.makeScale(0.2, 0.2, 0.2);
+    scale2.identity();
+    glmatrix = camera * glmatrix * scale2*trans2;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    glBegin( GL_QUADS );
+    //glColor3b(1,1,1);
+    for (int i = 0;  i < Globals::terrain->getWidth()-1 ; i++) {
+        for (int j = 0 ; j < Globals::terrain->getWidth()-1; j++) {
+            float h1 =Globals::terrain->getData(i, j);
+            float h2 =Globals::terrain->getData(i+1, j);
+            float h3 =Globals::terrain->getData(i+1, j+1);
+            float h4 =Globals::terrain->getData(i, j+1);
+            Vector3 v1 = Vector3(i,j,h1);
+            Vector3 v2 = Vector3(i+1,j,h2);
+            Vector3 v3 = Vector3(i,j+1,h4);
+            Vector3 n1 = v2-v1;
+            Vector3 n2 = v3 -v1;
+            Vector3 n = n1.cross(n1, n2);
+            
+            glNormal3f( -n.x,-n.y,-n.z );
+            glVertex3f(i, h1, j);
+            //glNormal3f( 0,0,1 );
+            glVertex3f((i+1),h2, j);
+            //glNormal3f( 0,0,1 );
+            glVertex3f((i+1),h3, (j+1));
+            //glNormal3f( 0,0,1 );
+            glVertex3f(i, h4,(j+1));
+            
+            //printf("x %i,y %i, height %f\n",i,j,h1);
+        }
+    }
+    /**
     glNormal3f(0, 1, 0);
     glVertex3f(-2, -3.5, -2);
     glVertex3f(2, -3.5, -2);
     glVertex3f(2, -3.5, 2);
     glVertex3f(-2, -3.5, 2);
+     **/
     glEnd();
+    glPopMatrix();
+    
     glEnable(GL_CULL_FACE);
     glmatrix.identity();
     Matrix4 pos = Globals::pika -> localpos;
@@ -341,7 +386,8 @@ void draw_scene(){
         Globals::particle_engine->advance(t*25 / 1000.0f);
         Globals::particle_engine->draw();
     }
-
+    
+    
 }
 void Window::displayPikachu(void){
     clock_t startTime = clock();
@@ -419,24 +465,26 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         stopPlaying();
         char *tmp[4];
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
-        
+//        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
+        play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/BabyCutted.wav");
     }
     //playing let it go
     else if(key == '4'){
         stopPlaying();
         char *tmp[4];
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
-        
+        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
+        play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/LetItGoCutted.wav");
+
     }
     //playing let it go
     else if(key == '5'){
         stopPlaying();
         char *tmp[4];
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
-        
+        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
+        play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
+
     }
     
     //Motion controller
