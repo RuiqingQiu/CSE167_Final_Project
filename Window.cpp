@@ -174,6 +174,7 @@ void draw_scene(){
             Vector3 n2 = v3 -v1;
             Vector3 n = n1.cross(n1, n2);
             
+            glColor3f(1-h2/3, 1, 1-h2/3);
             glNormal3f( -n.x,-n.y,-n.z );
             glVertex3f(i, h1, j);
             //glNormal3f( 0,0,1 );
@@ -186,6 +187,8 @@ void draw_scene(){
             //printf("x %i,y %i, height %f\n",i,j,h1);
         }
     }
+    glColor3f(1, 1, 1);
+
     /**
     glNormal3f(0, 1, 0);
     glVertex3f(-2, -3.5, -2);
