@@ -17,6 +17,8 @@ public:
     
     int getWidth();
     
+    void draw();
+    
 private:
     float *heightMap;
     int width;
@@ -27,6 +29,8 @@ private:
     void smooth();
     
     float genDisp( float );
+    
+    int grassTex;
     
     void setData( int, int, float );
 };

@@ -10,6 +10,7 @@
 		13DB6B631A3BA058004183D0 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13DB6B621A3BA058004183D0 /* OpenAL.framework */; };
 		13DB6B661A3C0218004183D0 /* Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 13DB6B641A3C0218004183D0 /* Sound.c */; };
 		5B41FA7A1A3E6B5300A1FB17 /* Terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B41FA781A3E6B5300A1FB17 /* Terrain.cpp */; };
+		5B82604F1A40E5A700D88369 /* grass.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B82604E1A40E59800D88369 /* grass.jpg */; };
 		AA0702CA1A38DD1500000E38 /* PikachuDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702C81A38DD1500000E38 /* PikachuDh.tga */; };
 		AA0702CB1A38DD1500000E38 /* PikachuEyeDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702C91A38DD1500000E38 /* PikachuEyeDh.tga */; };
 		AA0702CD1A38DD2600000E38 /* PikachuHohoDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702CC1A38DD2600000E38 /* PikachuHohoDh.tga */; };
@@ -48,6 +49,7 @@
 			dstPath = /usr/share/man/man1;
 			dstSubfolderSpec = 0;
 			files = (
+				5B82604F1A40E5A700D88369 /* grass.jpg in CopyFiles */,
 				AA0702CF1A38DD3200000E38 /* PikachuMouthDh.tga in CopyFiles */,
 				AA0702CD1A38DD2600000E38 /* PikachuHohoDh.tga in CopyFiles */,
 				AA0702CA1A38DD1500000E38 /* PikachuDh.tga in CopyFiles */,
@@ -68,6 +70,7 @@
 		13DB6B6F1A3D06F4004183D0 /* RoarCutted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RoarCutted.wav; sourceTree = "<group>"; };
 		5B41FA781A3E6B5300A1FB17 /* Terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Terrain.cpp; sourceTree = "<group>"; };
 		5B41FA791A3E6B5300A1FB17 /* Terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terrain.h; sourceTree = "<group>"; };
+		5B82604E1A40E59800D88369 /* grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grass.jpg; sourceTree = "<group>"; };
 		5BEF67571A3975D100DFA47E /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		AA0702C31A38DCA200000E38 /* Pikachu.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pikachu.mtl; sourceTree = "<group>"; };
 		AA0702C81A38DD1500000E38 /* PikachuDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuDh.tga; sourceTree = "<group>"; };
@@ -178,6 +181,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B82604D1A40E58A00D88369 /* Terrain */ = {
+			isa = PBXGroup;
+			children = (
+				5B82604E1A40E59800D88369 /* grass.jpg */,
+				5B41FA781A3E6B5300A1FB17 /* Terrain.cpp */,
+				5B41FA791A3E6B5300A1FB17 /* Terrain.h */,
+			);
+			name = Terrain;
+			sourceTree = "<group>";
+		};
 		AA0702D01A38DD3B00000E38 /* Pikachu */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,14 +360,13 @@
 		AAAD8C371A3575B2007D8951 = {
 			isa = PBXGroup;
 			children = (
+				5B82604D1A40E58A00D88369 /* Terrain */,
 				AA0703731A3E3B5400000E38 /* Shader */,
 				AA07035E1A3CF46E00000E38 /* Sound */,
 				AA0703301A3B88BC00000E38 /* ParticleSystem */,
 				AA0703011A3A0F1100000E38 /* SceneGraph */,
 				AAAD8C621A35770D007D8951 /* Helper */,
 				AAAD8C5F1A3576CA007D8951 /* Window.cpp */,
-				5B41FA781A3E6B5300A1FB17 /* Terrain.cpp */,
-				5B41FA791A3E6B5300A1FB17 /* Terrain.h */,
 				AAAD8C601A3576CA007D8951 /* Window.h */,
 				AAAD8C5C1A357632007D8951 /* main.cpp */,
 				AAAD8C5D1A357632007D8951 /* main.h */,
