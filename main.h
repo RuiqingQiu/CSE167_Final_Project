@@ -18,6 +18,7 @@
 #include <OpenAL/al.h>
 #include "ParticleEngine.h"
 #include "Terrain.h"
+#include "L_System.h"
 extern "C" int play(int, char **,char* filePath);
 
 
@@ -44,5 +45,7 @@ namespace Globals
     
     //Terrain
     extern Terrain1* terrain;
+    
+    extern L_System* l_system;
 };
 #endif /* defined(__CSE167_Final_Project__main__) */

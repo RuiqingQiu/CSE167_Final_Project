@@ -44,22 +44,22 @@ Point Points[6][4] ={
     },
     {
         { 0,0,-25 },
-        { 5,0,-13},
-        { 10,0,-7 },
+        { 5,0,-15},
+        { 10,0,-10 },
         { 15,0,5 }
 
     },
     {
+        {-15,0,5},
+        {-10,0,-10},
         {-5,0,-15},
-        {0,0,-15},
-        {5,0,-15},
         {0,0,-25}
     },
     {
         {0,15,5},
-        {0,10,0},
-        {0,5,-10},
-        {-5,0,-15}
+        {-5,10,5},
+        {-10,5,5},
+        {-15,0,5}
     }
    };
 Point CalculateU(float t,int row) {
@@ -364,7 +364,11 @@ void Window::displayPikachu(void){
     if(t > number_of_curves){
         t = 0;
     }
-    draw_scene();
+    //draw_scene();
+    glPushMatrix();
+    glLoadIdentity();
+    Globals::l_system->draw();
+    glPopMatrix();
     glFlush();
     glutSwapBuffers();
     glColor4f(1, 1, 1, 1);
@@ -431,16 +435,16 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     }else if(key == '3'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
-//        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/BabyCutted.wav");
     }
     //playing let it go
     else if(key == '4'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
-        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/LetItGoCutted.wav");
 
     }
@@ -448,8 +452,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     else if(key == '5'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
-        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
 
     }

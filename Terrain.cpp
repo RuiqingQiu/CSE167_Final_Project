@@ -28,7 +28,8 @@ Terrain1::Terrain1( int size ) {
     grassTex = SOIL_load_OGL_texture
     (
      //strcat(pre,name),
-     "/Users/Ennuma/Desktop/CSE167_Final_Project/grass.jpg",
+     //"/Users/Ennuma/Desktop/CSE167_Final_Project/grass.jpg",
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/grass.jpg",
      SOIL_LOAD_AUTO,
      SOIL_CREATE_NEW_ID,
      SOIL_FLAG_INVERT_Y
@@ -46,7 +47,7 @@ Terrain1::~Terrain1() {
     free( heightMap );
 }
 
-void Terrain1::generate( int seed, float displacement, float r, float s ) {
+void Terrain1::generate(int seed, float displacement, float r, float s ) {
     srand( seed );
     roughness = r;
     k = s;
