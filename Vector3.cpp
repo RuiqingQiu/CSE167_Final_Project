@@ -59,13 +59,13 @@ Vector3 Vector3::operator+(const Vector3& v){
     double x = this->x + v.x;
     double y = this->y + v.y;
     double z = this->z + v.z;
-    return *new Vector3(x,y,z);
+    return Vector3(x,y,z);
 }
 Vector3 Vector3::operator-(const Vector3& v){
     double x = this->x - v.x;
     double y = this->y - v.y;
     double z = this->z - v.z;
-    return *new Vector3(x,y,z);
+    return Vector3(x,y,z);
 }//overload operator '-' for subtraction
 
 void Vector3::negate(){
@@ -92,7 +92,7 @@ Vector3 Vector3::cross(const Vector3& v1, const Vector3& v2){
     double x = v1.y*v2.z - v1.z*v2.y;
     double y = v1.z*v2.x - v1.x*v2.z;
     double z = v1.x*v2.y - v1.y*v2.x;
-    return *new Vector3(x, y, z);
+    return Vector3(x, y, z);
 }//cross product, returns result and puts it in calling vector
 
 double Vector3::length(){

@@ -168,8 +168,49 @@ void draw_scene(){
     Matrix4 pos = Globals::pika -> localpos;
     Globals::pika->localpos = Globals::pika->localpos;
     Matrix4 trans = Matrix4();
-    trans.makeTranslate(0, 0, -30);
+    trans.makeTranslate(-5, 0, -40);
     Matrix4 rot = Matrix4();
+    rot.makeRotateY(180);
+    trans = trans * rot;
+    
+    //If it's equal to 180 (which means it's turned around completely)
+    if (Globals::pika->turned && Globals::pika->angle == 180.0){
+        rot.makeRotateY(Globals::pika->angle);
+        Matrix4 tmp = Matrix4();
+        if(Globals::pika->distance < 8){
+            tmp.makeTranslate(0, 0, -Globals::pika->distance);
+            Globals::pika->distance+=0.5;
+        }
+        else{
+            tmp.makeTranslate(0, 0, -Globals::pika->distance);
+        }
+        trans = trans * tmp* rot;
+        
+    }
+    //Turn back
+    else if(!Globals::pika->turned && Globals::pika->angle >= 180.0){
+        Matrix4 tmp = Matrix4();
+        tmp.makeTranslate(0, 0, -Globals::pika->distance);
+        rot.makeRotateY(Globals::pika->angle);
+        trans = trans * tmp * rot;
+        Globals::pika->angle += 5.0;
+        if(Globals::pika->angle == 360.0){
+            Globals::pika->angle = 0.0;
+        }
+    }
+    //Turn around
+    else if(Globals::pika->turned && Globals::pika->angle != 180.0){
+        rot.makeRotateY(Globals::pika->angle);
+        trans = trans * rot;
+        Globals::pika->angle += 5.0;
+    }
+    else if(!Globals::pika->turned && Globals::pika->distance > 0){
+        Matrix4 tmp = Matrix4();
+        tmp.makeTranslate(0, 0, -Globals::pika->distance);
+        Globals::pika->distance-=0.5;
+        trans = trans * tmp;
+    }
+    
     glmatrix = camera*glmatrix*trans*scale*pos;
     glmatrix.transpose();
     glLoadMatrixd(glmatrix.getPointer());
@@ -177,7 +218,7 @@ void draw_scene(){
     
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
-    trans.makeTranslate(-10, -1, -10);
+    trans.makeTranslate(-15, -1, -10);
     //If it's equal to 180
     if (Globals::bulbasaur->turned && Globals::bulbasaur->angle == 180.0){
         rot.makeRotateY(Globals::bulbasaur->angle);
@@ -187,7 +228,7 @@ void draw_scene(){
     else if(!Globals::bulbasaur->turned && Globals::bulbasaur->angle >= 180.0){
         rot.makeRotateY(Globals::bulbasaur->angle);
         trans = trans * rot;
-        Globals::bulbasaur->angle += 1.0;
+        Globals::bulbasaur->angle += 5.0;
         if(Globals::bulbasaur->angle == 360.0){
             Globals::bulbasaur->angle = 0.0;
         }
@@ -196,7 +237,7 @@ void draw_scene(){
     else if(Globals::bulbasaur->turned && Globals::bulbasaur->angle != 180.0){
         rot.makeRotateY(Globals::bulbasaur->angle);
         trans = trans * rot;
-        Globals::bulbasaur->angle += 1.0;
+        Globals::bulbasaur->angle += 5.0;
     }
     
     glmatrix.identity();
@@ -209,7 +250,7 @@ void draw_scene(){
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
-    trans.makeTranslate(0, 0, -10);
+    trans.makeTranslate(-5, 0, -10);
     //If it's equal to 180
     if (Globals::charmander->turned && Globals::charmander->angle == 180.0){
         rot.makeRotateY(Globals::charmander->angle);
@@ -219,7 +260,7 @@ void draw_scene(){
     else if(!Globals::charmander->turned && Globals::charmander->angle >= 180.0){
         rot.makeRotateY(Globals::charmander->angle);
         trans = trans * rot;
-        Globals::charmander->angle += 1.0;
+        Globals::charmander->angle += 5.0;
         if(Globals::charmander->angle == 360.0){
             Globals::charmander->angle = 0.0;
         }
@@ -228,7 +269,7 @@ void draw_scene(){
     else if(Globals::charmander->turned && Globals::charmander->angle != 180.0){
         rot.makeRotateY(Globals::charmander->angle);
         trans = trans * rot;
-        Globals::charmander->angle += 1.0;
+        Globals::charmander->angle += 5.0;
     }
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
@@ -241,7 +282,7 @@ void draw_scene(){
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     
     trans = Matrix4();
-    trans.makeTranslate(8, 0, -10);
+    trans.makeTranslate(5, 0, -10);
     //If it's equal to 180
     if (Globals::meowth->turned && Globals::meowth->angle == 180.0){
         rot.makeRotateY(Globals::meowth->angle);
@@ -251,7 +292,7 @@ void draw_scene(){
     else if(!Globals::meowth->turned && Globals::meowth->angle >= 180.0){
         rot.makeRotateY(Globals::meowth->angle);
         trans = trans * rot;
-        Globals::meowth->angle += 1.0;
+        Globals::meowth->angle += 5.0;
         if(Globals::meowth->angle == 360.0){
             Globals::meowth->angle = 0.0;
         }
@@ -260,7 +301,7 @@ void draw_scene(){
     else if(Globals::meowth->turned && Globals::meowth->angle != 180.0){
         rot.makeRotateY(Globals::meowth->angle);
         trans = trans * rot;
-        Globals::meowth->angle += 1.0;
+        Globals::meowth->angle += 5.0;
     }
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
@@ -285,7 +326,7 @@ void draw_scene(){
     else if(!Globals::Snorlax->turned && Globals::Snorlax->angle >= 180.0){
         rot.makeRotateY(Globals::Snorlax->angle);
         trans = trans * rot;
-        Globals::Snorlax->angle += 1.0;
+        Globals::Snorlax->angle += 5.0;
         if(Globals::Snorlax->angle == 360.0){
             Globals::Snorlax->angle = 0.0;
         }
@@ -294,7 +335,7 @@ void draw_scene(){
     else if(Globals::Snorlax->turned && Globals::Snorlax->angle != 180.0){
         rot.makeRotateY(Globals::Snorlax->angle);
         trans = trans * rot;
-        Globals::Snorlax->angle += 1.0;
+        Globals::Snorlax->angle += 5.0;
     }
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
@@ -306,7 +347,49 @@ void draw_scene(){
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
-    trans.makeTranslate(-8, 0, -30);
+    trans.makeTranslate(-15, 0, -40);
+    rot.makeRotateY(180);
+    trans = trans * rot;
+    //If it's equal to 180 (which means it's turned around completely)
+    if (Globals::psyduck->turned && Globals::psyduck->angle == 180.0){
+        rot.makeRotateY(Globals::psyduck->angle);
+        Matrix4 tmp = Matrix4();
+        if(Globals::psyduck->distance < 8){
+            tmp.makeTranslate(0, 0, -Globals::psyduck->distance);
+            Globals::psyduck->distance+=0.5;
+        }
+        else{
+            tmp.makeTranslate(0, 0, -Globals::psyduck->distance);
+        }
+        trans = trans * tmp* rot;
+        
+    }
+    //Turn back
+    else if(!Globals::psyduck->turned && Globals::psyduck->angle >= 180.0){
+        Matrix4 tmp = Matrix4();
+        tmp.makeTranslate(0, 0, -Globals::psyduck->distance);
+        rot.makeRotateY(Globals::psyduck->angle);
+        trans = trans * tmp * rot;
+        Globals::psyduck->angle += 5.0;
+        if(Globals::psyduck->angle == 360.0){
+            Globals::psyduck->angle = 0.0;
+        }
+    }
+    //Turn around
+    else if(Globals::psyduck->turned && Globals::psyduck->angle != 180.0){
+        rot.makeRotateY(Globals::psyduck->angle);
+        trans = trans * rot;
+        Globals::psyduck->angle += 5.0;
+    }
+    else if(!Globals::psyduck->turned && Globals::psyduck->distance > 0){
+        Matrix4 tmp = Matrix4();
+        tmp.makeTranslate(0, 0, -Globals::psyduck->distance);
+        Globals::psyduck->distance-=0.5;
+        trans = trans * tmp;
+    }
+    
+
+    
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
     glmatrix.transpose();
@@ -317,8 +400,48 @@ void draw_scene(){
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
-    trans.makeTranslate(8, -1, -30);
+    trans.makeTranslate(5, -1, -40);
+    rot.makeRotateY(180);
     glmatrix.identity();
+    trans = trans * rot;
+    //If it's equal to 180 (which means it's turned around completely)
+    if (Globals::vulpix->turned && Globals::vulpix->angle == 180.0){
+        rot.makeRotateY(Globals::vulpix->angle);
+        Matrix4 tmp = Matrix4();
+        if(Globals::vulpix->distance < 8){
+            tmp.makeTranslate(0, 0, -Globals::vulpix->distance);
+            Globals::vulpix->distance+=0.5;
+        }
+        else{
+            tmp.makeTranslate(0, 0, -Globals::vulpix->distance);
+        }
+        trans = trans * tmp* rot;
+        
+    }
+    //Turn back
+    else if(!Globals::vulpix->turned && Globals::vulpix->angle >= 180.0){
+        Matrix4 tmp = Matrix4();
+        tmp.makeTranslate(0, 0, -Globals::vulpix->distance);
+        rot.makeRotateY(Globals::vulpix->angle);
+        trans = trans * tmp * rot;
+        Globals::vulpix->angle += 5.0;
+        if(Globals::vulpix->angle == 360.0){
+            Globals::vulpix->angle = 0.0;
+        }
+    }
+    //Turn around
+    else if(Globals::vulpix->turned && Globals::vulpix->angle != 180.0){
+        rot.makeRotateY(Globals::vulpix->angle);
+        trans = trans * rot;
+        Globals::vulpix->angle += 5.0;
+    }
+    else if(!Globals::vulpix->turned && Globals::vulpix->distance > 0){
+        Matrix4 tmp = Matrix4();
+        tmp.makeTranslate(0, 0, -Globals::vulpix->distance);
+        Globals::vulpix->distance-=0.5;
+        trans = trans * tmp;
+    }
+    
     glmatrix = camera * glmatrix * trans *pos*scale ;
     glmatrix.transpose();
     glLoadIdentity();
@@ -328,7 +451,48 @@ void draw_scene(){
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
-    trans.makeTranslate(15, -1, -30);
+    trans.makeTranslate(15, -1, -40);
+    rot.makeRotateY(180);
+    
+    trans = trans * rot;
+    //If it's equal to 180 (which means it's turned around completely)
+    if (Globals::Eevee->turned && Globals::Eevee->angle == 180.0){
+        rot.makeRotateY(Globals::Eevee->angle);
+        Matrix4 tmp = Matrix4();
+        if(Globals::Eevee->distance < 8){
+            tmp.makeTranslate(0, 0, -Globals::Eevee->distance);
+            Globals::Eevee->distance+=0.5;
+        }
+        else{
+            tmp.makeTranslate(0, 0, -Globals::Eevee->distance);
+        }
+        trans = trans * tmp* rot;
+        
+    }
+    //Turn back
+    else if(!Globals::Eevee->turned && Globals::Eevee->angle >= 180.0){
+        Matrix4 tmp = Matrix4();
+        tmp.makeTranslate(0, 0, -Globals::Eevee->distance);
+        rot.makeRotateY(Globals::Eevee->angle);
+        trans = trans * tmp * rot;
+        Globals::Eevee->angle += 5.0;
+        if(Globals::Eevee->angle == 360.0){
+            Globals::Eevee->angle = 0.0;
+        }
+    }
+    //Turn around
+    else if(Globals::Eevee->turned && Globals::Eevee->angle != 180.0){
+        rot.makeRotateY(Globals::Eevee->angle);
+        trans = trans * rot;
+        Globals::Eevee->angle += 5.0;
+    }
+    else if(!Globals::Eevee->turned && Globals::Eevee->distance > 0){
+        Matrix4 tmp = Matrix4();
+        tmp.makeTranslate(0, 0, -Globals::Eevee->distance);
+        Globals::Eevee->distance-=0.5;
+        trans = trans * tmp;
+    }
+    
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
     glmatrix.transpose();
@@ -336,13 +500,39 @@ void draw_scene(){
     glLoadMatrixd(glmatrix.getPointer());
     Globals::Eevee->draw();
     
+    glEnable(GL_LIGHTING);
+    glColor3f(1, 1, 1);
+    //This part is for drawing L-system
+    scale.makeScale(3, 3, 3);
     
+    for(int i = 0; i < 4; i++){
+        trans.makeTranslate(-20+i*10, -5, -40);
+        glmatrix = camera * trans * scale;
+        glmatrix.transpose();
+        glLoadMatrixd(glmatrix.getPointer());
+        Globals::l_system->draw();
+    }
     
+    for(int j = 1; j < 4; j++){
+        trans.makeTranslate(-20, -5, -60 + j * 15);
+        glmatrix = camera * trans * scale;
+        glmatrix.transpose();
+        glLoadMatrixd(glmatrix.getPointer());
+        Globals::l_system->draw();
+    }
+    for(int j = 1; j < 4; j++){
+        trans.makeTranslate(20, -5, -60 + j * 15);
+        glmatrix = camera * trans * scale;
+        glmatrix.transpose();
+        glLoadMatrixd(glmatrix.getPointer());
+        Globals::l_system->draw();
+    }
+
     //Particle effect
     glDisable(GL_LIGHTING);
     glMatrixMode(GL_MODELVIEW);
     trans = Matrix4();
-    trans.makeTranslate(0, 30, -15);
+    trans.makeTranslate(0, 30, -40);
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
     glmatrix.transpose();
@@ -354,31 +544,8 @@ void draw_scene(){
         Globals::particle_engine->draw();
     }
     
-    //This part is for drawing L-system
-    scale.makeScale(3, 3, 3);
     
-    for(int i = 0; i < 4; i++){
-        trans.makeTranslate(-20+i*10, -5, -40);
-        glmatrix = camera * trans * scale;
-        glmatrix.transpose();
-        glLoadMatrixd(glmatrix.getPointer());
-        Globals::l_system->draw();
-    }
 
-    for(int j = 1; j < 4; j++){
-        trans.makeTranslate(-20, -5, -40 + j * 10);
-        glmatrix = camera * trans * scale;
-        glmatrix.transpose();
-        glLoadMatrixd(glmatrix.getPointer());
-        Globals::l_system->draw();
-    }
-    for(int j = 1; j < 4; j++){
-        trans.makeTranslate(20, -5, -40 + j * 10);
-        glmatrix = camera * trans * scale;
-        glmatrix.transpose();
-        glLoadMatrixd(glmatrix.getPointer());
-        Globals::l_system->draw();
-    }
 
 }
 void Window::displayPikachu(void){
@@ -504,7 +671,34 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::Snorlax->angle == 180.0){
             Globals::Snorlax->turned = false;
         }
-        
+    }
+    else if (key == 'a'){
+        if(Globals::psyduck->angle == 0.0)
+            Globals::psyduck->turned = true;
+        if(Globals::psyduck->angle == 180.0){
+            Globals::psyduck->turned = false;
+        }
+    }
+    else if (key == 's'){
+        if(Globals::pika->angle == 0.0)
+            Globals::pika->turned = true;
+        if(Globals::pika->angle == 180.0){
+            Globals::pika->turned = false;
+        }
+    }
+    else if (key == 'd'){
+        if(Globals::vulpix->angle == 0.0)
+            Globals::vulpix->turned = true;
+        if(Globals::vulpix->angle == 180.0){
+            Globals::vulpix->turned = false;
+        }
+    }
+    else if (key == 'f'){
+        if(Globals::Eevee->angle == 0.0)
+            Globals::Eevee->turned = true;
+        if(Globals::Eevee->angle == 180.0){
+            Globals::Eevee->turned = false;
+        }
     }
 }
 
