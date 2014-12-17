@@ -20,6 +20,7 @@ using namespace std;
 class Model3D {
 public:
     float angle = 0.0;
+    float distance = 0.0;
     Model3D( const char* );
     ~Model3D();
     

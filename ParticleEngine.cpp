@@ -74,9 +74,9 @@ Vec3f ParticleEngine::curVelocity() {
 //Alters p to be a particle newly produced by the fountain.
 void ParticleEngine::createParticle(Particle* p) {
     p->pos = Vec3f(0, 0, 0);
-    p->velocity = curVelocity() + Vec3f(3.5f * randomFloat() - 0.25f,
+    p->velocity = curVelocity() + Vec3f(5.5f * randomFloat() - 0.25f,
                                         0.5f * randomFloat() - 0.25f,
-                                        3.5f * randomFloat() - 0.25f);
+                                        5.5f * randomFloat() - 0.25f);
     p->color = curColor();
     p->timeAlive = 0;
     p->lifespan = randomFloat() + 2;
@@ -89,11 +89,6 @@ void ParticleEngine::step() {
     while (colorTime >= 1) {
         colorTime -= 1;
     }
-    
-//    angle += 0.5f * STEP_TIME;
-//    while (angle > 2 * PI) {
-//        angle -= 2 * PI;
-//    }
     
     for(int i = 0; i < NUM_PARTICLES; i++) {
         Particle* p = particles + i;

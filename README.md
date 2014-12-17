@@ -10,6 +10,8 @@ In order to run:
   
   Step 4. Change the sound path to the correct .wav file in the Sound.c file
   
+  Step 5. Change the texture path in Terrain.cpp
+  
 Commands for showing the effects:
 
 '1' button: for switching between the first and second camera to show the camera moving around bezier curve effect
@@ -24,8 +26,12 @@ Commands for showing the effects:
 
 'q', 'w', 'e', 'r' button: turning pokemon
 
+'a', 's', 'd', 'f' button: turning the singer pokemon on the backrole
+
 'F2' button: to trigger particle effect
 
 Some sample images:
 
 ![alt tag](https://qwzcse167blog.files.wordpress.com/2014/12/screen-shot-2014-12-11-at-2-30-20-am.png)
+
+![alt tag](https://qwzcse167blog.files.wordpress.com/2014/12/update.jpg)

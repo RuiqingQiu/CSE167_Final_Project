@@ -133,6 +133,7 @@ void Terrain1::draw()
     }
     //glColor3f(1, 1, 1);
     glEnd();
+    glDisable(GL_TEXTURE_2D);
 
 }
 
