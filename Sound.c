@@ -73,8 +73,6 @@ static inline ALenum to_al_format(short channels, short samples)
 
 int play(int argc, char *argv[],char* filePath)
 {
-    printf("%s","stop before play ");
-    printf("%d",stoped);
     stoped = 0;
     ALboolean enumeration;
     ALvoid *data;
@@ -221,8 +219,6 @@ void stopPlaying(){
         alcCloseDevice(device);
         stoped = !stoped;
     }
-    printf("%s","stop after stop playing ");
-    printf("%d",stoped);
 }
 
 
