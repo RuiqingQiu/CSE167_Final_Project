@@ -61,6 +61,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		13D688521A417EEE00FFCE8D /* Applause_clipped.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Applause_clipped.wav; sourceTree = "<group>"; };
 		13DB6B621A3BA058004183D0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		13DB6B641A3C0218004183D0 /* Sound.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Sound.c; sourceTree = "<group>"; };
 		13DB6B651A3C0218004183D0 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
@@ -315,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				13DB6B6F1A3D06F4004183D0 /* RoarCutted.wav */,
+				13D688521A417EEE00FFCE8D /* Applause_clipped.wav */,
 				13DB6B6E1A3D05FB004183D0 /* LetItGoCutted.wav */,
 				13DB6B6D1A3D0349004183D0 /* BabyCutted.wav */,
 				13DB6B6C1A3C4F0D004183D0 /* Superheroes.wav */,

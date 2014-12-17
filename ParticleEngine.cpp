@@ -218,12 +218,13 @@ GLuint ParticleEngine::initRendering() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
-    Image* image = loadBMP("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/ParticleSystemGood/circle.bmp");
-    Image* alphaChannel = loadBMP("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/ParticleSystemGood/circlealpha.bmp");
+//    Image* image = loadBMP("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/ParticleSystemGood/circle.bmp");
+//    Image* alphaChannel = loadBMP("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/ParticleSystemGood/circlealpha.bmp");
     
     
-    //Image* image = loadBMP("/Users/margaretwm3/Dropbox/CSE167_Final_Project/circlealpha.bmp");
-    //Image* alphaChannel = loadBMP("/Users/margaretwm3/Dropbox/CSE167_Final_Project/circlealpha.bmp");
+    Image* image = loadBMP("/Users/margaretwm3/Dropbox/CSE167_Final_Project/circlealpha.bmp");
+    Image* alphaChannel = loadBMP("/Users/margaretwm3/Dropbox/CSE167_Final_Project/circlealpha.bmp");
+    
     //Image* image = loadBMP("/Users/Ennuma/Desktop/CSE167_Final_Project/circle.bmp");
     //Image* alphaChannel = loadBMP("/Users/Ennuma/Desktop/CSE167_Final_Project/circlealpha.bmp");
 
