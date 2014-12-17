@@ -14,52 +14,47 @@
 int Window::width  = 512;   // set window width in pixels here
 int Window::height = 512;   // set window height in pixels here
 float t = 0.0;//A time counter
-const float number_of_curves = 6;
+const float number_of_curves = 5;
 Matrix4 Window::world = Matrix4();
+float distance_to_camera = 20;
 /// a structure to hold a control point of the surface
 struct Point {
     float x;
     float y;
     float z;
 };
-Point Points[6][4] ={
+Point Points[5][4] ={
     {
-        {0,0,5},
-        {0,5,5},
-        {0,10,5},
-        {0,15,5}
+        {0,2,25},
+        {0,2,30},
+        {0,2,35},
+        {0,2,40}
     }
 ,
     {
-        { 0,0,20 },
-        { 0,0,15},
-        { 0,0,10 },
-        { 0,0,5 }
+        { 0,3.5,25 },
+        { 0,3,25},
+        { 0,2.5,25 },
+        { 0,2,25 }
     },
     {
-        {15,0,5},
-        {10,0,7},
-        {5,0,13},
-        {0,0,20}
+        {20,3.5,-30},
+        {40,3.5,-20},
+        {20,3.5,-10},
+        {0,3.5,25}
     },
     {
-        { 0,0,-25 },
-        { 5,0,-15},
-        { 10,0,-10 },
-        { 15,0,5 }
+        { -40,3.5,0 },
+        { -20,3.5,-50},
+        { 0,3.5,-40 },
+        { 20,3.5,-30 }
 
     },
     {
-        {-15,0,5},
-        {-10,0,-10},
-        {-5,0,-15},
-        {0,0,-25}
-    },
-    {
-        {0,15,5},
-        {-5,10,5},
-        {-10,5,5},
-        {-15,0,5}
+        {0,3.5,25},
+        {-10,3.5,10},
+        {-20,3.5,5},
+        {-40,3.5,0}
     }
    };
 Point CalculateU(float t,int row) {
@@ -111,6 +106,19 @@ Point Calculate(float t) {
 
 
 void draw_scene(){
+    //cout << "here" << endl;
+    glColor3f(1.0, 1.0, 1.0);
+    glPointSize(5.0);
+    glBegin(GL_POINTS);
+    for(int i = 0; i < 5; i++){
+        for(int j = 1; j < 500; j++){
+            Point tt = Calculate(1.0/500*j+i);
+            glVertex3f(tt.x,tt.y,tt.z);
+            //cout << tt.x << " " << tt.y << " " << tt.z << endl;
+            //cout << "entered" << endl;
+        }
+    }
+    glEnd();
     Point tt = Calculate(t);
     Globals::main_camera->e->x = tt.x;
     Globals::main_camera->e->y = tt.y;
@@ -124,9 +132,9 @@ void draw_scene(){
     glmatrix.identity();
     // Tell OpenGL what ModelView matrix to use:
     if(Globals::secondCameraOn){
-        Globals::second_camera->e->x = 5;
-        Globals::second_camera->e->y = 5;
-        Globals::second_camera->e->z = 10;
+        Globals::second_camera->e->x = 0;
+        Globals::second_camera->e->y = 100;
+        Globals::second_camera->e->z = 100;
         Globals::second_camera->update();
         camera = Globals::second_camera->getMatrix();
     }
@@ -168,7 +176,7 @@ void draw_scene(){
     Matrix4 pos = Globals::pika -> localpos;
     Globals::pika->localpos = Globals::pika->localpos;
     Matrix4 trans = Matrix4();
-    trans.makeTranslate(-5, 0, -40);
+    trans.makeTranslate(-5, 0, -40+distance_to_camera);
     Matrix4 rot = Matrix4();
     rot.makeRotateY(180);
     trans = trans * rot;
@@ -218,7 +226,7 @@ void draw_scene(){
     
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
-    trans.makeTranslate(-15, -1, -10);
+    trans.makeTranslate(-15, -1, -10+distance_to_camera);
     //If it's equal to 180
     if (Globals::bulbasaur->turned && Globals::bulbasaur->angle == 180.0){
         rot.makeRotateY(Globals::bulbasaur->angle);
@@ -250,7 +258,7 @@ void draw_scene(){
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
-    trans.makeTranslate(-5, 0, -10);
+    trans.makeTranslate(-5, 0, -10+distance_to_camera);
     //If it's equal to 180
     if (Globals::charmander->turned && Globals::charmander->angle == 180.0){
         rot.makeRotateY(Globals::charmander->angle);
@@ -282,7 +290,7 @@ void draw_scene(){
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     
     trans = Matrix4();
-    trans.makeTranslate(5, 0, -10);
+    trans.makeTranslate(5, 0, -10+distance_to_camera);
     //If it's equal to 180
     if (Globals::meowth->turned && Globals::meowth->angle == 180.0){
         rot.makeRotateY(Globals::meowth->angle);
@@ -316,7 +324,7 @@ void draw_scene(){
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
-    trans.makeTranslate(15, -1, -9);
+    trans.makeTranslate(15, -1, -9+distance_to_camera);
     //If it's equal to 180
     if (Globals::Snorlax->turned && Globals::Snorlax->angle == 180.0){
         rot.makeRotateY(Globals::Snorlax->angle);
@@ -347,7 +355,7 @@ void draw_scene(){
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
-    trans.makeTranslate(-15, 0, -40);
+    trans.makeTranslate(-15, 0, -40+distance_to_camera);
     rot.makeRotateY(180);
     trans = trans * rot;
     //If it's equal to 180 (which means it's turned around completely)
@@ -400,7 +408,7 @@ void draw_scene(){
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
-    trans.makeTranslate(5, -1, -40);
+    trans.makeTranslate(5, -1, -40+distance_to_camera);
     rot.makeRotateY(180);
     glmatrix.identity();
     trans = trans * rot;
@@ -451,7 +459,7 @@ void draw_scene(){
     
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
     trans = Matrix4();
-    trans.makeTranslate(15, -1, -40);
+    trans.makeTranslate(15, -1, -40+distance_to_camera);
     rot.makeRotateY(180);
     
     trans = trans * rot;
@@ -506,7 +514,7 @@ void draw_scene(){
     scale.makeScale(3, 3, 3);
     
     for(int i = 0; i < 4; i++){
-        trans.makeTranslate(-20+i*10, -5, -40);
+        trans.makeTranslate(-20+i*10, -5, -60+distance_to_camera);
         glmatrix = camera * trans * scale;
         glmatrix.transpose();
         glLoadMatrixd(glmatrix.getPointer());
@@ -514,14 +522,14 @@ void draw_scene(){
     }
     
     for(int j = 1; j < 4; j++){
-        trans.makeTranslate(-20, -5, -60 + j * 15);
+        trans.makeTranslate(-20, -5, -60 + j * 15+distance_to_camera);
         glmatrix = camera * trans * scale;
         glmatrix.transpose();
         glLoadMatrixd(glmatrix.getPointer());
         Globals::l_system->draw();
     }
     for(int j = 1; j < 4; j++){
-        trans.makeTranslate(20, -5, -60 + j * 15);
+        trans.makeTranslate(20, -5, -60 + j * 15+distance_to_camera);
         glmatrix = camera * trans * scale;
         glmatrix.transpose();
         glLoadMatrixd(glmatrix.getPointer());
@@ -532,7 +540,7 @@ void draw_scene(){
     glDisable(GL_LIGHTING);
     glMatrixMode(GL_MODELVIEW);
     trans = Matrix4();
-    trans.makeTranslate(0, 30, -40);
+    trans.makeTranslate(0, 30, -40+distance_to_camera);
     glmatrix.identity();
     glmatrix = camera * glmatrix * trans *pos*scale ;
     glmatrix.transpose();
@@ -554,7 +562,7 @@ void Window::displayPikachu(void){
 
     t += 0.01;
     if(t > number_of_curves){
-        t = 0;
+        t = 1;
     }
     draw_scene();
     
