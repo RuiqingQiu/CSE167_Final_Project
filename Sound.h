@@ -18,7 +18,8 @@
 #include <GLUT/GLUT.h>
 
 extern int play(int, char **, char* filepath);
+extern int playApplause(int, char **, char* filepath);
 extern void stopPlaying();
-//extern int replay();
+
 
 #endif /* defined(__CSE167_Final_Project__Sound__) */

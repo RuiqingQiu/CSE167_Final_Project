@@ -20,6 +20,7 @@
 #include "Terrain.h"
 #include "L_System.h"
 extern "C" int play(int, char **,char* filePath);
+extern "C" int playApplause(int, char **,char* filePath);
 
 
 namespace Globals
