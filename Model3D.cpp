@@ -69,8 +69,8 @@ void Model3D::readMaterial( const char* mat, vector<Material*> &materials ) {
             //fscanf(line,"p_Kd Textures\\%s", name);
             char file_path[80];
             //strcpy (file_path,"/Users/Ennuma/Desktop/CSE167_Final_Project/");
-            //strcpy (file_path,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/");
-            strcpy (file_path,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/");
+            strcpy (file_path,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/");
+            //strcpy (file_path,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/");
 
             
             strcat(file_path,name);
@@ -230,8 +230,8 @@ void Model3D::readModel( const char* model ) {
             strncpy( file, line + 7, strlen( line ) - 9 );
             file[ strlen( line ) - 8 ] = '\0';
             char file_path[80];
-            //strcpy (file_path,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/");
-            strcpy (file_path,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/");
+            strcpy (file_path,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/");
+            //strcpy (file_path,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/");
             //strcpy (file_path,"/Users/Ennuma/Desktop/CSE167_Final_Project/");
 
             strcat(file_path,file);

@@ -26,9 +26,9 @@ struct Point {
 Point Points[5][4] ={
     {
         {0,2,25},
-        {0,2,30},
         {0,2,35},
-        {0,2,40}
+        {0,2,45},
+        {0,2,60}
     }
 ,
     {
@@ -108,11 +108,10 @@ Point Calculate(float t) {
 void draw_scene(){
     //cout << "here" << endl;
     glColor3f(1.0, 1.0, 1.0);
-    glPointSize(5.0);
     glBegin(GL_POINTS);
     for(int i = 0; i < 5; i++){
-        for(int j = 1; j < 500; j++){
-            Point tt = Calculate(1.0/500*j+i);
+        for(int j = 1; j < 300; j++){
+            Point tt = Calculate(1.0/300*j+i);
             glVertex3f(tt.x,tt.y,tt.z);
             //cout << tt.x << " " << tt.y << " " << tt.z << endl;
             //cout << "entered" << endl;
@@ -628,16 +627,16 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     }else if(key == '3'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
-        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/BabyCutted.wav");
     }
     //playing let it go
     else if(key == '4'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
-        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/LetItGoCutted.wav");
 
     }
@@ -645,8 +644,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     else if(key == '5'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
-        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
 
     }
@@ -654,9 +653,9 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     else if(key == '6'){
         //stopPlaying();
         char *tmp[4];
-        playApplause(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Applause_clipped.wav");
-        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
-        //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
+        //playApplause(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Applause_clipped.wav");
+        playApplause(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Applause_clipped.wav");
+       
         
     }
     
