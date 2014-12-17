@@ -21,13 +21,13 @@ using namespace std;
 
 class L_System{
 public:
-    const float PI = 3.14, DEPTH = 4;
+    const float PI = 3.14, DEPTH = 3;
     // Angle of branches, and depth of tree
-    float ANGLE = 10, depth = 4;
+    float ANGLE = 10, depth = 3;
     float length = 0.25;
 
     vector<string> *trees = new vector<string>();
-    float lineWidth = 0.1;
+    float lineWidth = 1;
     // L-System
     string str = "X";
     void push();

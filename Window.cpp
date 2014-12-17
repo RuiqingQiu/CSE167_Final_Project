@@ -354,7 +354,32 @@ void draw_scene(){
         Globals::particle_engine->draw();
     }
     
+    //This part is for drawing L-system
+    scale.makeScale(3, 3, 3);
     
+    for(int i = 0; i < 4; i++){
+        trans.makeTranslate(-20+i*10, -5, -40);
+        glmatrix = camera * trans * scale;
+        glmatrix.transpose();
+        glLoadMatrixd(glmatrix.getPointer());
+        Globals::l_system->draw();
+    }
+
+    for(int j = 1; j < 4; j++){
+        trans.makeTranslate(-20, -5, -40 + j * 10);
+        glmatrix = camera * trans * scale;
+        glmatrix.transpose();
+        glLoadMatrixd(glmatrix.getPointer());
+        Globals::l_system->draw();
+    }
+    for(int j = 1; j < 4; j++){
+        trans.makeTranslate(20, -5, -40 + j * 10);
+        glmatrix = camera * trans * scale;
+        glmatrix.transpose();
+        glLoadMatrixd(glmatrix.getPointer());
+        Globals::l_system->draw();
+    }
+
 }
 void Window::displayPikachu(void){
     clock_t startTime = clock();
@@ -364,16 +389,13 @@ void Window::displayPikachu(void){
     if(t > number_of_curves){
         t = 0;
     }
-    //draw_scene();
-    glPushMatrix();
-    glLoadIdentity();
-    Globals::l_system->draw();
-    glPopMatrix();
+    draw_scene();
+    
     glFlush();
     glutSwapBuffers();
     glColor4f(1, 1, 1, 1);
     clock_t endTime = clock();
-    //cout << "frame rate: " << 1.0/(float((endTime - startTime))/CLOCKS_PER_SEC) << endl;
+    cout << "frame rate: " << 1.0/(float((endTime - startTime))/CLOCKS_PER_SEC) << endl;
 }
 void Window::idlePikachu(void){
   displayPikachu();
@@ -386,18 +408,14 @@ void Window::idlePikachu(void){
 void Window::reshapeCallback(int w, int h)
 {
     cout << w << ", " << h << endl;
-        cerr << "Window::reshapeCallback called" << endl;
-        width = w;
-        height = h;
-        //static bool first = true;
-        glViewport(0, 0, w, h);  // set new viewport size
-        //if(first){
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-        gluPerspective(60.0, double(width)/(double)height, 1.0, 1000.0);// set perspective projection viewing frustum
-        //first = false;
-        //}
-        glTranslatef(0, 0, -20);    // move camera back 20 units so that it looks at the origin (or else it's in the origin)
+    cerr << "Window::reshapeCallback called" << endl;
+    width = w;
+    height = h;
+    glViewport(0, 0, w, h);  // set new viewport size
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(60.0, double(width)/(double)height, 1.0, 1000.0);// set perspective projection viewing frustum
+    glTranslatef(0, 0, -20);    // move camera back 20 units so that it looks at the origin (or else it's in the origin)
     glMatrixMode(GL_MODELVIEW);
 }
 void Window::processSpecialKeys(int key, int x, int y){
