@@ -49,6 +49,7 @@ namespace Globals
     //Terrain
     Terrain1* terrain;
     L_System* l_system;
+    Text* text;
 
 };
 
@@ -152,8 +153,12 @@ int main(int argc, char *argv[])
     for(int i = 0; i <= Globals::l_system->DEPTH; i++){
         Globals::l_system->expand(0);
     }
+    Globals::text = new Text();
     //printf("height is %f\n", Globals::terrain->getData(0, 0));
     //printf("height is %f\n", Globals::terrain->getHeightMap()[0]);
+    Globals::text->initRendering();
+    
+    Globals::text->_scale = Globals::text->computeScale(Globals::text->STRS);
 
     glutMainLoop();
     

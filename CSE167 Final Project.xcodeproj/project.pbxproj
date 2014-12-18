@@ -41,6 +41,8 @@
 		AAAD8C6A1A35771F007D8951 /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAD8C651A35771F007D8951 /* Vector3.cpp */; };
 		AAAD8C6B1A35771F007D8951 /* Vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAAD8C671A35771F007D8951 /* Vector4.cpp */; };
 		AAE38E421A41177500171505 /* L_System.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE38E401A41177500171505 /* L_System.cpp */; };
+		AAE38EDB1A424A3F00171505 /* text3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE38EDA1A424A3F00171505 /* text3d.cpp */; };
+		AAE38EDF1A424A6700171505 /* Text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAE38EDD1A424A6700171505 /* Text.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -169,6 +171,11 @@
 		AAAD8C681A35771F007D8951 /* Vector4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector4.h; sourceTree = "<group>"; };
 		AAE38E401A41177500171505 /* L_System.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = L_System.cpp; sourceTree = "<group>"; };
 		AAE38E411A41177500171505 /* L_System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = L_System.h; sourceTree = "<group>"; };
+		AAE38ED81A424A3900171505 /* charset */ = {isa = PBXFileReference; lastKnownFileType = file; path = charset; sourceTree = "<group>"; };
+		AAE38ED91A424A3900171505 /* text3d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = text3d.h; sourceTree = "<group>"; };
+		AAE38EDA1A424A3F00171505 /* text3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text3d.cpp; sourceTree = "<group>"; };
+		AAE38EDD1A424A6700171505 /* Text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Text.cpp; sourceTree = "<group>"; };
+		AAE38EDE1A424A6700171505 /* Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Text.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,8 +372,12 @@
 		AAAD8C371A3575B2007D8951 = {
 			isa = PBXGroup;
 			children = (
-				AAE38E401A41177500171505 /* L_System.cpp */,
-				AAE38E411A41177500171505 /* L_System.h */,
+				AAE38EDD1A424A6700171505 /* Text.cpp */,
+				AAE38EDE1A424A6700171505 /* Text.h */,
+				AAE38EDA1A424A3F00171505 /* text3d.cpp */,
+				AAE38ED81A424A3900171505 /* charset */,
+				AAE38ED91A424A3900171505 /* text3d.h */,
+				AAE38EDC1A424A4400171505 /* L_System */,
 				5B82604D1A40E58A00D88369 /* Terrain */,
 				AA0703731A3E3B5400000E38 /* Shader */,
 				AA07035E1A3CF46E00000E38 /* Sound */,
@@ -433,6 +444,15 @@
 				AAAD8C681A35771F007D8951 /* Vector4.h */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		AAE38EDC1A424A4400171505 /* L_System */ = {
+			isa = PBXGroup;
+			children = (
+				AAE38E401A41177500171505 /* L_System.cpp */,
+				AAE38E411A41177500171505 /* L_System.h */,
+			);
+			name = L_System;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -504,10 +524,12 @@
 				AA0702E11A392C3500000E38 /* Model.cpp in Sources */,
 				5B41FA7A1A3E6B5300A1FB17 /* Terrain.cpp in Sources */,
 				AA07030A1A3A0F1D00000E38 /* MatrixTransform.cpp in Sources */,
+				AAE38EDB1A424A3F00171505 /* text3d.cpp in Sources */,
 				AAAD8C6B1A35771F007D8951 /* Vector4.cpp in Sources */,
 				AAAD8C611A3576CA007D8951 /* Window.cpp in Sources */,
 				AA0702EB1A39318800000E38 /* Face.cpp in Sources */,
 				AA07030D1A3A0F1D00000E38 /* Node.cpp in Sources */,
+				AAE38EDF1A424A6700171505 /* Text.cpp in Sources */,
 				AAAD8C6A1A35771F007D8951 /* Vector3.cpp in Sources */,
 				AAAD8C521A3575F5007D8951 /* image_helper.c in Sources */,
 				AA07037C1A3E3BB700000E38 /* shader.cpp in Sources */,
