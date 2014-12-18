@@ -62,8 +62,10 @@ GLuint texture[5];
 int Window::LoadGLTextures(){
     texture[0] = SOIL_load_OGL_texture
     (
-     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_north.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_north.bmp"
      //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airFT.tga"
+     "/Users/Ennuma/Desktop/CSE167_Final_Project/nightsky_north.bmp"
+
      ,
      SOIL_LOAD_AUTO,
      SOIL_CREATE_NEW_ID,
@@ -76,8 +78,10 @@ int Window::LoadGLTextures(){
     }
     texture[1] = SOIL_load_OGL_texture
     (
-     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_south.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_south.bmp"
      //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airBK.tga"
+     "/Users/Ennuma/Desktop/CSE167_Final_Project/nightsky_south.bmp"
+
      ,
      SOIL_LOAD_AUTO,
      SOIL_CREATE_NEW_ID,
@@ -91,8 +95,11 @@ int Window::LoadGLTextures(){
     
     texture[2] = SOIL_load_OGL_texture
     (
-     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_west.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_west.bmp"
+     
      //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airRT.tga"
+     "/Users/Ennuma/Desktop/CSE167_Final_Project/nightsky_west.bmp"
+
      ,
      SOIL_LOAD_AUTO,
      SOIL_CREATE_NEW_ID,
@@ -106,8 +113,10 @@ int Window::LoadGLTextures(){
     
     texture[3] = SOIL_load_OGL_texture
     (
-     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_east.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_east.bmp"
      //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airLT.tga"
+     "/Users/Ennuma/Desktop/CSE167_Final_Project/nightsky_east.bmp"
+
      ,
      SOIL_LOAD_AUTO,
      SOIL_CREATE_NEW_ID,
@@ -118,10 +127,11 @@ int Window::LoadGLTextures(){
         printf("SOIL loading error: '%s'\n", SOIL_last_result());
         return false;
     }
-    
     texture[4] = SOIL_load_OGL_texture
     (
-     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airUP.tga"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airUP.tga"
+     "/Users/Ennuma/Desktop/CSE167_Final_Project/nightsky_up.bmp"
+
      ,
      SOIL_LOAD_AUTO,
      SOIL_CREATE_NEW_ID,
@@ -887,8 +897,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         stopPlaying();
         char *tmp[4];
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
-        //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/LetItGoCutted.wav");
+        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
+        play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/LetItGoCutted.wav");
 
     }
     //playing let it go
@@ -896,8 +906,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         stopPlaying();
         char *tmp[4];
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
-        //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
+        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
+        play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
 
     }
     //playing applause
@@ -905,16 +915,16 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         //stopPlaying();
         char *tmp[4];
         //playApplause(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Applause_clipped.wav");
-        playApplause(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Applause_clipped.wav");
-        //playApplause(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/Applause_clipped.wav");
+        //playApplause(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Applause_clipped.wav");
+        playApplause(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/Applause_clipped.wav");
        }
     //playing boo
     else if(key == '7'){
         //stopPlaying();
         char *tmp[4];
         //playBoo(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/boo.wav");
-        playBoo(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/boo.wav");
-
+        //playBoo(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/boo.wav");
+        playBoo(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/boo.wav");
        
     }
     //Motion controller
@@ -923,7 +933,7 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
             Globals::bulbasaur->turned = true;
             char *tmp[4];
             //playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
-            playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
+            //playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
 
         }
         if(Globals::bulbasaur->angle == 180.0){
@@ -935,7 +945,7 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
             Globals::charmander->turned = true;
             char *tmp[4];
             //playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
-            playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
+            //playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
         }
         if(Globals::charmander->angle == 180.0){
             Globals::charmander->turned = false;
@@ -946,7 +956,7 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
             Globals::meowth->turned = true;
             char *tmp[4];
             //playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
-            playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
+            //playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
         }
         if(Globals::meowth->angle == 180.0){
             Globals::meowth->turned = false;
@@ -957,7 +967,7 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
             Globals::Snorlax->turned = true;
             char *tmp[4];
             //playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
-            playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
+            //playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
         }
         if(Globals::Snorlax->angle == 180.0){
             Globals::Snorlax->turned = false;

@@ -273,8 +273,8 @@ GLuint ParticleEngine::initRendering() {
     //Image* image = loadBMP("/Users/margaretwm3/Dropbox/CSE167_Final_Project/circlealpha.bmp");
     //Image* alphaChannel = loadBMP("/Users/margaretwm3/Dropbox/CSE167_Final_Project/circlealpha.bmp");
     
-    //Image* image = loadBMP("/Users/Ennuma/Desktop/CSE167_Final_Project/circle.bmp");
-    //Image* alphaChannel = loadBMP("/Users/Ennuma/Desktop/CSE167_Final_Project/circlealpha.bmp");
+    Image* image = loadBMP("/Users/Ennuma/Desktop/CSE167_Final_Project/circle.bmp");
+    Image* alphaChannel = loadBMP("/Users/Ennuma/Desktop/CSE167_Final_Project/circlealpha.bmp");
 
     _textureId = loadAlphaTexture(image, alphaChannel);
     delete image;
