@@ -44,16 +44,41 @@ void SpotLight::apply()
     ////////////////////////////////////////////////
     
     
-    glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 30.0);// set cutoff angle
+    glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 5.0);// set cutoff angle
     glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, direction);
-    glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 0.1); // set focusing strength
+    glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 0.01); // set focusing strength
     
 }
 
 void SpotLight::draw()
 {
+    if(target == 0)
+    {
+        dir = Vector3(-0.2, -1, 0);
+    }
+    if(target == 1)
+    {
+        dir = Vector3(-0.1, -1, 0);
+
+    }
+    if (target == 2) {
+        dir = Vector3(0.1, -1, 0);
+
+    }
+    if (target==3) {
+        dir = Vector3(0.2, -1, 0);
+
+    }
+    if(target==4)
+    {
+        dir = Vector3(0, 0, 0);
+    }
     GLfloat  direction[] = { (float)dir.x, (float)dir.y, (float)dir.z, 0.0f};
+    float spotposition[]  = {(float)position.x, (float)position.y, (float)position.z, 1.0};	// lightsource position
+
     glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, direction);
+    glLightfv(GL_LIGHT2, GL_POSITION, spotposition);
+
 
 }
 

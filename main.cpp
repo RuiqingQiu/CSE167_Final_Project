@@ -122,11 +122,13 @@ int main(int argc, char *argv[])
     
     
     Globals::spotlight = new SpotLight();
-    Globals::spotlight->position = Vector3(0, 10, 0);
-    Globals::spotlight->dir = Vector3(0,-1,0);
+    Globals::spotlight->position = Vector3(0, 10, 20);
+    Globals::spotlight->dir = Vector3(0,1,0);
     Globals::spotlight->diffuse = Vector3(1.0f,0.0f, 0.0f);
     Globals::spotlight->specular = Vector3(1, 1, 1);
     Globals::spotlight->ambient = Vector3(0.1, 0.1, 0.1);
+    Globals::spotlight->target= 4;
+
     
     Globals::spotlight->apply();
     Globals::spotlight->enable();

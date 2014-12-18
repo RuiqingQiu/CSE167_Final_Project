@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include "Vector3.h"
 #include "Model3D.h"
+
 using namespace std;
 class SpotLight{
 public:
@@ -26,7 +27,7 @@ public:
     Vector3 specular;
     Vector3 diffuse;
     Vector3 dir;
-    Model3D* target;
+    int target; //0柯达鸭 1皮卡 2无名 3伊布 4 NONE
     
     void apply();
     void enable();

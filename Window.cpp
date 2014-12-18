@@ -565,7 +565,8 @@ void draw_scene(){
     glLoadMatrixd(glmatrix.getPointer());
     Globals::text->drawScene();
     
-    Globals::spotlight->dir = Vector3(0, -10, -Globals::meowth->distance);
+    
+    //Globals::spotlight->dir = Vector3(0, -10, -Globals::meowth->distance);
     Globals::spotlight->draw();
     //Globals::spotlight->enable();
 }
@@ -708,6 +709,7 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::psyduck->angle == 180.0){
             Globals::psyduck->turned = false;
         }
+        Globals::spotlight->target =0 ;
     }
     else if (key == 's'){
         if(Globals::pika->angle == 0.0)
@@ -715,6 +717,7 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::pika->angle == 180.0){
             Globals::pika->turned = false;
         }
+        Globals::spotlight->target =1;
     }
     else if (key == 'd'){
         if(Globals::vulpix->angle == 0.0)
@@ -722,6 +725,7 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::vulpix->angle == 180.0){
             Globals::vulpix->turned = false;
         }
+        Globals::spotlight->target = 2;
     }
     else if (key == 'f'){
         if(Globals::Eevee->angle == 0.0)
@@ -729,6 +733,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::Eevee->angle == 180.0){
             Globals::Eevee->turned = false;
         }
+        Globals::spotlight->target = 3;
+
     }
     else if(key == 'l')
     {
