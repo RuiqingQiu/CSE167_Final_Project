@@ -52,6 +52,7 @@ namespace Globals
     Text* text;
 
     SpotLight* spotlight;
+    float tree[50];
 };
 
 const int TIMER_MS = 25; //The number of milliseconds to which the timer is set
@@ -208,6 +209,9 @@ int main(int argc, char *argv[])
     Globals::text->_scale = Globals::text->computeScale(Globals::text->title);
     Window::LoadGLTextures();
 
+    for (int i = 0; i<sizeof(Globals::tree)/sizeof(float);  i++) {
+        Globals::tree[i] = (float)rand() / ((float)RAND_MAX + 1);
+    }
     glutMainLoop();
     
     return 0;

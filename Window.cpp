@@ -8,7 +8,9 @@
 
 #include "Window.h"
 #include "Sound.h"
+#include <stdlib.h>
 
+#include <math.h>
 #define PI 3.14159265f
 
 int Window::width  = 512;   // set window width in pixels here
@@ -783,7 +785,16 @@ void draw_scene(){
         glLoadMatrixd(glmatrix.getPointer());
         Globals::l_system->draw();
     }
-    
+
+    for(int i = 0; i < sizeof(Globals::tree)/sizeof(float); i+=2){
+        float randx = Globals::tree[i];
+        float randy = Globals::tree[i+1];
+        trans.makeTranslate(randx*200-100, -5, randy*200-100);
+        glmatrix = camera * trans * scale;
+        glmatrix.transpose();
+        glLoadMatrixd(glmatrix.getPointer());
+        Globals::l_system->draw();
+    }
 
     if(Globals::particle_effect_on){
         //Particle effect

@@ -127,7 +127,7 @@ void Terrain1::draw()
             //glNormal3f( 0,0,1 );
             glTexCoord2f(i%100/100.0,(j+1)%100/100.0);
             glVertex3f(i, h4,(j+1));
-            
+
             //printf("x %i,y %i, height %f\n",i,j,h1);
         }
     }

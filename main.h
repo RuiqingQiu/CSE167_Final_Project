@@ -57,5 +57,7 @@ namespace Globals
     extern Text* text;
     
     extern SpotLight* spotlight;
+    
+    extern float tree[50];
 };
 #endif /* defined(__CSE167_Final_Project__main__) */

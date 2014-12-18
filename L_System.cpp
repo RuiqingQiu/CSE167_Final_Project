@@ -38,8 +38,6 @@ void L_System::drawLine(){
 //    GLfloat ambient[4] = {0, 1, 0};    // ambient reflection
 //    GLfloat specular[4] = {0.15, 1, 0.27};   // specular reflection
 //    GLfloat diffuse[4] = {0.15, 1, 0.27};   // diffuse reflection
-//    
-//    
 //    // set the ambient reflection for the object
 //    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
 //    // set the diffuse reflection for the object
@@ -56,6 +54,8 @@ void L_System::drawLine(){
     glTranslatef(0, length, 0);
     //glPopAttrib();
 }
+
+
 
 void L_System::draw(){
     
