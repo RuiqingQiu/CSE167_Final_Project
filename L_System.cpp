@@ -43,6 +43,8 @@ void L_System::drawLine(){
     glTranslatef(0, length, 0);
 }
 
+
+
 void L_System::draw(){
     
     string ch = "";

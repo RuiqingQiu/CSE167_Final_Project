@@ -8,6 +8,11 @@
 
 #include "SpotLight.h"
 #include <GLUT/GLUT.h>
+//#include "ParticleEngine.cpp"
+float randomFloat2() {
+    return (float)rand() / ((float)RAND_MAX + 1);
+}
+
 SpotLight::SpotLight()
 {
     position = Vector3(0, 0, 0);
@@ -69,14 +74,55 @@ void SpotLight::draw()
         dir = Vector3(0.2, -1, 0);
 
     }
+
+    if(!on)
+    {
+        float rand = randomFloat2();
+        if (rand<0.25) {
+            dir = Vector3(-0.2, -1, 0);
+        }else if(rand<0.5)
+        {
+            dir = Vector3(-0.1, -1, 0);
+
+        }else if(rand < 0.75)
+        {
+            dir = Vector3(0.1, -1, 0);
+
+        }else if(rand < 1)
+        {
+            dir = Vector3(0.2, -1, 0);
+
+        }
+        
+        
+        rand = randomFloat2();
+        if (rand<0.25) {
+            GLfloat diffuseLight[] ={ (1.0f, 0.0f, 0.0f, 1.0f)};
+            glLightfv(GL_LIGHT2, GL_DIFFUSE, diffuseLight);
+        }else if(rand<0.5)
+        {
+            GLfloat diffuseLight[] ={ (0.0f, 1.0f, 0.0f, 1.0f)};
+            glLightfv(GL_LIGHT2, GL_DIFFUSE, diffuseLight);
+            
+        }else if(rand < 0.75)
+        {
+            GLfloat diffuseLight[] ={ (0.0f, 0.0f, 1.0f, 1.0f)};
+            glLightfv(GL_LIGHT2, GL_DIFFUSE, diffuseLight);
+            
+        }else if(rand < 1)
+        {
+            GLfloat diffuseLight[] ={ (1.0f, 1.0f, 0.0f, 1.0f)};
+            glLightfv(GL_LIGHT2, GL_DIFFUSE, diffuseLight);
+            
+        }
+
+    }
+    
     if(target==4)
     {
         dir = Vector3(0, 0, 0);
     }
-    if(!on)
-    {
-        dir = Vector3(0,0,0);
-    }
+    
     GLfloat  direction[] = { (float)dir.x, (float)dir.y, (float)dir.z, 0.0f};
     float spotposition[]  = {(float)position.x, (float)position.y, (float)position.z, 1.0};	// lightsource position
 
