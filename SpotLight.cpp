@@ -73,6 +73,10 @@ void SpotLight::draw()
     {
         dir = Vector3(0, 0, 0);
     }
+    if(!on)
+    {
+        dir = Vector3(0,0,0);
+    }
     GLfloat  direction[] = { (float)dir.x, (float)dir.y, (float)dir.z, 0.0f};
     float spotposition[]  = {(float)position.x, (float)position.y, (float)position.z, 1.0};	// lightsource position
 

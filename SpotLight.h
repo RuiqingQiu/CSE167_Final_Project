@@ -28,6 +28,7 @@ public:
     Vector3 diffuse;
     Vector3 dir;
     int target; //0柯达鸭 1皮卡 2无名 3伊布 4 NONE
+    int on = 0;
     
     void apply();
     void enable();

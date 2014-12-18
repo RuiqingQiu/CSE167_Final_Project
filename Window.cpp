@@ -202,6 +202,11 @@ void draw_scene(){
         }
         else{
             tmp.makeTranslate(0, 0, -Globals::pika->distance);
+            if (Globals::spotlight->target==1) {
+                Globals::spotlight->on =1 ;
+            }else{
+                //Globals::spotlight->on =0 ;
+            }
         }
         trans = trans * tmp* rot;
         
@@ -379,6 +384,12 @@ void draw_scene(){
         }
         else{
             tmp.makeTranslate(0, 0, -Globals::psyduck->distance);
+            if (Globals::spotlight->target==0) {
+                Globals::spotlight->on =1 ;
+            }else{
+                //Globals::spotlight->on =0 ;
+            }
+
         }
         trans = trans * tmp* rot;
         
@@ -433,7 +444,11 @@ void draw_scene(){
         }
         else{
             tmp.makeTranslate(0, 0, -Globals::vulpix->distance);
-        }
+            if (Globals::spotlight->target==2) {
+                Globals::spotlight->on =1 ;
+            }else{
+                //Globals::spotlight->on =0 ;
+            }        }
         trans = trans * tmp* rot;
         
     }
@@ -484,6 +499,11 @@ void draw_scene(){
         }
         else{
             tmp.makeTranslate(0, 0, -Globals::Eevee->distance);
+            if (Globals::spotlight->target==3) {
+                Globals::spotlight->on =1 ;
+            }else{
+                //Globals::spotlight->on =0 ;
+            }
         }
         trans = trans * tmp* rot;
         
@@ -575,8 +595,7 @@ void draw_scene(){
     glmatrix.transpose();
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
-    Globals::text->drawScene();
-    
+    Globals::text->drawTitle();
     
     //Globals::spotlight->dir = Vector3(0, -10, -Globals::meowth->distance);
     Globals::spotlight->draw();
@@ -721,6 +740,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::psyduck->angle == 180.0){
             Globals::psyduck->turned = false;
         }
+        Globals::spotlight->on = 0;
+
         Globals::spotlight->target =0 ;
     }
     else if (key == 's'){
@@ -729,6 +750,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::pika->angle == 180.0){
             Globals::pika->turned = false;
         }
+        Globals::spotlight->on = 0;
+
         Globals::spotlight->target =1;
     }
     else if (key == 'd'){
@@ -737,6 +760,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::vulpix->angle == 180.0){
             Globals::vulpix->turned = false;
         }
+        Globals::spotlight->on = 0;
+
         Globals::spotlight->target = 2;
     }
     else if (key == 'f'){
@@ -745,6 +770,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::Eevee->angle == 180.0){
             Globals::Eevee->turned = false;
         }
+        Globals::spotlight->on = 0;
+
         Globals::spotlight->target = 3;
 
     }
@@ -752,10 +779,6 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     {
         glDisable(GL_LIGHT0);
         glDisable(GL_LIGHT1);
-    }
-    else if (key == 't'){
-        int seed = time(0);
-        Globals::terrain->generate(seed, 100, 2, 0.3);
     }
 }
 
