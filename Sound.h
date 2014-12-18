@@ -19,6 +19,7 @@
 
 extern int play(int, char **, char* filepath);
 extern int playApplause(int, char **, char* filepath);
+extern int playTurnback(int, char **, char* filepath);
 extern void stopPlaying();
 extern int playBoo(int, char **, char* filepath);
 
