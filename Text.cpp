@@ -27,7 +27,7 @@ void Text::initRendering() {
     t3dInit();
 }
 
-void Text::drawScene() {
+void Text::drawTitle() {
     
     GLfloat ambientColor[] = {0.4f, 0.4f, 0.4f, 1.0f};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
@@ -41,21 +41,21 @@ void Text::drawScene() {
     glColor3f(0.3f, 1.0f, 1.0f);
     glPushMatrix();
     glTranslatef(-5, 0, 1.5f / _scale);
-    t3dDraw3D(STRS[0], 0, 0, 0.2f);
+    t3dDraw3D(title[0], 0, 0, 0.2f);
     glPopMatrix();
     
     glPushMatrix();
     glTranslatef(-2, 0, 1.5f / _scale);
-    t3dDraw3D(STRS[1], 0, 0, 0.2f);
+    t3dDraw3D(title[1], 0, 0, 0.2f);
     glPopMatrix();
     
     glPushMatrix();
     glTranslatef(2, 0, 1.5f / _scale);
-    t3dDraw3D(STRS[2], 0, 0, 0.2f);
+    t3dDraw3D(title[2], 0, 0, 0.2f);
     glPopMatrix();
     glPushMatrix();
     glTranslatef(9, 0, 1.5f / _scale);
-    t3dDraw3D(STRS[3], 0, 0, 0.2f);
+    t3dDraw3D(title[3], 0, 0, 0.2f);
     glPopMatrix();    
 }
 

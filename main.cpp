@@ -205,7 +205,7 @@ int main(int argc, char *argv[])
     //printf("height is %f\n", Globals::terrain->getHeightMap()[0]);
     Globals::text->initRendering();
     
-    Globals::text->_scale = Globals::text->computeScale(Globals::text->STRS);
+    Globals::text->_scale = Globals::text->computeScale(Globals::text->title);
 
     glutMainLoop();
     

@@ -20,7 +20,14 @@ class Text{
 public:
     float _scale;
     //The four strings that are drawn
-    const char* STRS[4] = {"Voice", "Of", "Pokemon", "Competition"};
+    const char* title[4] = {"Voice", "Of", "Pokemon", "Competition"};
+    const char* song1[4] = {"Superheroes", "By", "The", "Script"};
+    const char* song2[4] = {"Baby", "By", "Justin", "Bieber"};
+    const char* song3[5] = {"Let", "It", "Go", "From", "Frozen"};
+    const char* song4[4] = {"Roar", "By", "Katy", "Perry"};
+
+    
+
     //Computes a scaling value so that the strings
     float computeScale(const char* strs[4]);
     
@@ -28,6 +35,6 @@ public:
     
     void initRendering();
     
-    void drawScene();
+    void drawTitle();
 };
 #endif /* defined(__CSE167_Final_Project__Text__) */
