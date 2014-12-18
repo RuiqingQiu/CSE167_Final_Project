@@ -73,8 +73,6 @@ static inline ALenum to_al_format(short channels, short samples)
 
 int play(int argc, char *argv[],char* filePath)
 {
-    printf("%s","stop before play ");
-    printf("%d",stoped);
     stoped = 0;
     ALboolean enumeration;
     ALvoid *data;
@@ -221,8 +219,6 @@ void stopPlaying(){
         alcCloseDevice(device);
         stoped = !stoped;
     }
-    printf("%s","stop after stop playing ");
-    printf("%d",stoped);
 }
 
 
@@ -230,6 +226,7 @@ ALint source_state1;
 ALCdevice *device1;
 ALCcontext *context1;
 ALuint buffer1, source1;
+
 int playApplause(int argc, char *argv[],char* filePath)
 {
     ALboolean enumeration;
@@ -331,11 +328,8 @@ int playApplause(int argc, char *argv[],char* filePath)
                  bufferData, wave->dataSize, wave->sampleRate);
     TEST_ERROR("failed to load buffer data");
 #else
-    //alutLoadWAVFile("/Users/margaretwm3/Dropbox/CSE167_Final_Project/BR_Pikachu.wav", &format, &data, &size, &freq, &loop);
-    //alutLoadWAVFile("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BR_Pikachu.wav", &format, &data, &size, &freq, &loop);
+   
     alutLoadWAVFile(filePath, &format, &data, &size, &freq, &loop);
-    //alutLoadWAVFile("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Superheroes.wav", &format, &data, &size, &freq, &loop);
-    //alutLoadWAVFile("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Superheroes.wav", &format, &data, &size, &freq, &loop);
     TEST_ERROR("loading wav file");
     
     alBufferData(buffer1, format, data, size, freq);
@@ -368,118 +362,143 @@ int playApplause(int argc, char *argv[],char* filePath)
     return 0;
 }
 
-//
-//int replay(){
-//    ALboolean enumeration;
-//    ALvoid *data;
-//    char *bufferData;
-//    const ALCchar *defaultDeviceName = argv[1];
-//    ALsizei size, freq;
-//    ALenum format;
-//    int ret;
-//#ifdef LIBAUDIO
-//    WaveInfo *wave;
-//#endif
-//    ALfloat listenerOri[] = { 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f };
-//    ALboolean loop = AL_FALSE;
-//    ALCenum error;
-//    
-//    
-//    enumeration = alcIsExtensionPresent(NULL, "ALC_ENUMERATION_EXT");
-//    if (enumeration == AL_FALSE)
-//        fprintf(stderr, "enumeration extension not available\n");
-//    
-//    list_audio_devices(alcGetString(NULL, ALC_DEVICE_SPECIFIER));
-//    
-//    if (!defaultDeviceName)
-//        defaultDeviceName = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
-//    
-//    device = alcOpenDevice(defaultDeviceName);
-//    if (!device) {
-//        fprintf(stderr, "unable to open default device\n");
-//        return -1;
-//    }
-//    
-//    fprintf(stdout, "Device: %s\n", alcGetString(device, ALC_DEVICE_SPECIFIER));
-//    
-//    alGetError();
-//    
-//    context = alcCreateContext(device, NULL);
-//    if (!alcMakeContextCurrent(context)) {
-//        fprintf(stderr, "failed to make default context\n");
-//        return -1;
-//    }
-//    TEST_ERROR("make default context");
-//    
-//    /* set orientation */
-//    alListener3f(AL_POSITION, 0, 0, 1.0f);
-//    TEST_ERROR("listener position");
-//    alListener3f(AL_VELOCITY, 0, 0, 0);
-//    TEST_ERROR("listener velocity");
-//    alListenerfv(AL_ORIENTATION, listenerOri);
-//    TEST_ERROR("listener orientation");
-//    
-//    alGenSources((ALuint)1, &source);
-//    TEST_ERROR("source generation");
-//    
-//    alSourcef(source, AL_PITCH, 1);
-//    TEST_ERROR("source pitch");
-//    alSourcef(source, AL_GAIN, 1);
-//    TEST_ERROR("source gain");
-//    alSource3f(source, AL_POSITION, 0, 0, 0);
-//    TEST_ERROR("source position");
-//    alSource3f(source, AL_VELOCITY, 0, 0, 0);
-//    TEST_ERROR("source velocity");
-//    alSourcei(source, AL_LOOPING, AL_FALSE);
-//    TEST_ERROR("source looping");
-//    
-//    alGenBuffers(1, &buffer);
-//    TEST_ERROR("buffer generation");
-//    
-//#ifdef LIBAUDIO
-//    /* load data */
-//    wave = WaveOpenFileForReading("test.wav");
-//    if (!wave) {
-//        fprintf(stderr, "failed to read wave file\n");
-//        return -1;
-//    }
-//    
-//    ret = WaveSeekFile(0, wave);
-//    if (ret) {
-//        fprintf(stderr, "failed to seek wave file\n");
-//        return -1;
-//    }
-//    
-//    bufferData = malloc(wave->dataSize);
-//    if (!bufferData) {
-//        perror("malloc");
-//        return -1;
-//    }
-//    
-//    ret = WaveReadFile(bufferData, wave->dataSize, wave);
-//    if (ret != wave->dataSize) {
-//        fprintf(stderr, "short read: %d, want: %d\n", ret, wave->dataSize);
-//        return -1;
-//    }
-//    
-//    alBufferData(buffer, to_al_format(wave->channels, wave->bitsPerSample),
-//                 bufferData, wave->dataSize, wave->sampleRate);
-//    TEST_ERROR("failed to load buffer data");
-//#else
-//    alutLoadWAVFile("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Superheroes.wav", &format, &data, &size, &freq, &loop);
-//    TEST_ERROR("loading wav file");
-//    
-//    alBufferData(buffer, format, data, size, freq);
-//    TEST_ERROR("buffer copy");
-//#endif
-//    
-//    alSourcei(source, AL_BUFFER, buffer);
-//    TEST_ERROR("buffer binding");
-//    
-//    alSourcePlay(source);
-//    TEST_ERROR("source playing");
-//    
-//    alGetSourcei(source, AL_SOURCE_STATE, &source_state);
-//    TEST_ERROR("source state get");
-//  
-//}
+ALint source_state2;
+ALCdevice *device2;
+ALCcontext *context2;
+ALuint buffer2, source2;
+int playBoo(int argc, char *argv[],char* filePath)
+{
+    printf("entering playBoo ");
+    ALboolean enumeration;
+    ALvoid *data;
+    char *bufferData;
+    const ALCchar *defaultDeviceName = "alsa";
+    printf("here here ");
+    printf("%s",  defaultDeviceName);
+    ALsizei size, freq;
+    ALenum format;
+    int ret;
+#ifdef LIBAUDIO
+    WaveInfo *wave;
+#endif
+    ALfloat listenerOri[] = { 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f };
+    ALboolean loop = AL_FALSE;
+    ALCenum error;
+    
+    
+    enumeration = alcIsExtensionPresent(NULL, "ALC_ENUMERATION_EXT");
+    if (enumeration == AL_FALSE)
+        fprintf(stderr, "enumeration extension not available\n");
+    
+    list_audio_devices(alcGetString(NULL, ALC_DEVICE_SPECIFIER));
+    
+    /*
+     if (!defaultDeviceName)
+     defaultDeviceName = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
+     */
+    device2 = alcOpenDevice(defaultDeviceName);
+    if (!device2) {
+        fprintf(stderr, "unable to open default device\n");
+        return -1;
+    }
+    
+    fprintf(stdout, "Device: %s\n", alcGetString(device2, ALC_DEVICE_SPECIFIER));
+    
+    alGetError();
+    
+    context2 = alcCreateContext(device2, NULL);
+    if (!alcMakeContextCurrent(context2)) {
+        fprintf(stderr, "failed to make default context\n");
+        return -1;
+    }
+    TEST_ERROR("make default context");
+    
+    /* set orientation */
+    alListener3f(AL_POSITION, 0, 0, 1.0f);
+    TEST_ERROR("listener position");
+    alListener3f(AL_VELOCITY, 0, 0, 0);
+    TEST_ERROR("listener velocity");
+    alListenerfv(AL_ORIENTATION, listenerOri);
+    TEST_ERROR("listener orientation");
+    
+    alGenSources((ALuint)1, &source2);
+    TEST_ERROR("source generation");
+    
+    alSourcef(source2, AL_PITCH, 1);
+    TEST_ERROR("source pitch");
+    alSourcef(source2, AL_GAIN, 1);
+    TEST_ERROR("source gain");
+    alSource3f(source2, AL_POSITION, 0, 0, 0);
+    TEST_ERROR("source position");
+    alSource3f(source2, AL_VELOCITY, 0, 0, 0);
+    TEST_ERROR("source velocity");
+    alSourcei(source2, AL_LOOPING, AL_FALSE);
+    TEST_ERROR("source looping");
+    
+    alGenBuffers(1, &buffer2);
+    TEST_ERROR("buffer generation");
+    
+#ifdef LIBAUDIO
+    /* load data */
+    wave = WaveOpenFileForReading(filePath);
+    if (!wave) {
+        fprintf(stderr, "failed to read wave file\n");
+        return -1;
+    }
+    
+    ret = WaveSeekFile(0, wave);
+    if (ret) {
+        fprintf(stderr, "failed to seek wave file\n");
+        return -1;
+    }
+    
+    bufferData = malloc(wave->dataSize);
+    if (!bufferData) {
+        perror("malloc");
+        return -1;
+    }
+    
+    ret = WaveReadFile(bufferData, wave->dataSize, wave);
+    if (ret != wave->dataSize) {
+        fprintf(stderr, "short read: %d, want: %d\n", ret, wave->dataSize);
+        return -1;
+    }
+    
+    alBufferData(buffer, to_al_format(wave->channels, wave->bitsPerSample),
+                 bufferData, wave->dataSize, wave->sampleRate);
+    TEST_ERROR("failed to load buffer data");
+#else
+       alutLoadWAVFile(filePath, &format, &data, &size, &freq, &loop);
+    TEST_ERROR("loading wav file");
+    
+    alBufferData(buffer2, format, data, size, freq);
+    TEST_ERROR("buffer copy");
+#endif
+    
+    alSourcei(source2, AL_BUFFER, buffer2);
+    TEST_ERROR("buffer binding");
+    
+    alSourcePlay(source2);
+    TEST_ERROR("source playing");
+    
+    alGetSourcei(source2, AL_SOURCE_STATE, &source_state2);
+    TEST_ERROR("source state get");
+    
+    //    while (source_state == AL_PLAYING) {
+    //        alGetSourcei(source, AL_SOURCE_STATE, &source_state);
+    //        TEST_ERROR("source state get");
+    //    }
+    //
+    
+    //        /* exit context */
+    //        alDeleteSources(1, &source1);
+    //        alDeleteBuffers(1, &buffer1);
+    //        device = alcGetContextsDevice(context1);
+    //        alcMakeContextCurrent(NULL);
+    //        alcDestroyContext(context1);
+    //        alcCloseDevice(device1);
+    //    
+    return 0;
+}
+
+

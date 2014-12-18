@@ -20,6 +20,9 @@
 extern int play(int, char **, char* filepath);
 extern int playApplause(int, char **, char* filepath);
 extern void stopPlaying();
+extern int playBoo(int, char **, char* filepath);
+
+
 
 
 #endif /* defined(__CSE167_Final_Project__Sound__) */
