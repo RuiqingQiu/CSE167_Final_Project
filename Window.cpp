@@ -141,6 +141,7 @@ void draw_scene(){
     //camera.identity();
     
     glEnable(GL_LIGHTING);
+    glDisable(GL_LIGHT1);
     Matrix4 tmp;
     tmp.makeTranslate(tt.x, tt.y, tt.z);
     glmatrix = camera*glmatrix*tmp;
@@ -152,8 +153,6 @@ void draw_scene(){
     glPopMatrix();
     
     glDisable(GL_CULL_FACE);
-    glEnable(GL_LIGHTING);
-
     //glBegin(GL_QUADS);
     glPushMatrix();
     glmatrix.identity();
@@ -169,7 +168,8 @@ void draw_scene(){
     
     Globals::terrain->draw();
     glPopMatrix();
-    
+
+
     glEnable(GL_CULL_FACE);
     glmatrix.identity();
     Matrix4 pos = Globals::pika -> localpos;
@@ -508,7 +508,7 @@ void draw_scene(){
     Globals::Eevee->draw();
     
     glEnable(GL_LIGHTING);
-    glColor3f(1, 1, 1);
+    glColor4f(1, 1, 1,1);
     //This part is for drawing L-system
     scale.makeScale(3, 3, 3);
     
@@ -534,25 +534,36 @@ void draw_scene(){
         glLoadMatrixd(glmatrix.getPointer());
         Globals::l_system->draw();
     }
+    
 
-    //Particle effect
-    glDisable(GL_LIGHTING);
-    glMatrixMode(GL_MODELVIEW);
-    trans = Matrix4();
-    trans.makeTranslate(0, 30, -40+distance_to_camera);
-    glmatrix.identity();
-    glmatrix = camera * glmatrix * trans *pos*scale ;
-    glmatrix.transpose();
-    glLoadIdentity();
-    glLoadMatrixd(glmatrix.getPointer());
+  
     if(Globals::particle_effect_on){
+        //Particle effect
+        glDisable(GL_LIGHTING);
+        glMatrixMode(GL_MODELVIEW);
+        trans = Matrix4();
+        trans.makeTranslate(0, 30, -40+distance_to_camera);
+        glmatrix.identity();
+        glmatrix = camera * glmatrix * trans *pos*scale ;
+        glmatrix.transpose();
+        glLoadIdentity();
+        glLoadMatrixd(glmatrix.getPointer());
         glDisable(GL_CULL_FACE);
         Globals::particle_engine->advance(t*25 / 1000.0f);
         Globals::particle_engine->draw();
     }
-    
-    
+    glEnable(GL_LIGHT1);
 
+    glColor4f(1, 1, 1, 1);
+    glMatrixMode(GL_MODELVIEW);
+    trans2.makeTranslate(0, 30, -80);
+    glmatrix.identity();
+    scale.makeScale(10, 10, 10);
+    glmatrix = camera * glmatrix * trans2*scale ;
+    glmatrix.transpose();
+    glLoadIdentity();
+    glLoadMatrixd(glmatrix.getPointer());
+    Globals::text->drawScene();
 
 }
 void Window::displayPikachu(void){
@@ -564,7 +575,6 @@ void Window::displayPikachu(void){
         t = 1;
     }
     draw_scene();
-    
     glFlush();
     glutSwapBuffers();
     glColor4f(1, 1, 1, 1);

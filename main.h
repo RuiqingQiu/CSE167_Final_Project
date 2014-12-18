@@ -19,6 +19,7 @@
 #include "ParticleEngine.h"
 #include "Terrain.h"
 #include "L_System.h"
+#include "Text.h"
 extern "C" int play(int, char **,char* filePath);
 extern "C" int playApplause(int, char **,char* filePath);
 
@@ -48,5 +49,7 @@ namespace Globals
     extern Terrain1* terrain;
     
     extern L_System* l_system;
+    
+    extern Text* text;
 };
 #endif /* defined(__CSE167_Final_Project__main__) */
