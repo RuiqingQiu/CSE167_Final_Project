@@ -822,7 +822,7 @@ void draw_scene(){
     glmatrix.transpose();
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
-    Globals::text->drawTitle();
+    Globals::text->draw();
     
     //Globals::spotlight->dir = Vector3(0, -10, -Globals::meowth->distance);
     Globals::spotlight->draw();
@@ -895,6 +895,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         //stop playing the music
     }else if(key == '2'){
         stopPlaying();
+        Globals::text->song = 0;
+
         //playing justin biber baby
     }else if(key == '3'){
         stopPlaying();
@@ -902,6 +904,11 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
         play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/BabyCutted.wav");
+        //Globals::text->cleanup();
+        //Globals::text->initRendering();
+        Globals::text->computeScale(Globals::text->song1);
+        Globals::text->song = 1;
+        //Globals::text->drawTitle();
     }
     //playing let it go
     else if(key == '4'){
@@ -919,7 +926,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
         //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
         play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
-
+        Globals::text->computeScale(Globals::text->song3);
+        Globals::text->song = 3;
     }
     //playing applause
     else if(key == '6'){
