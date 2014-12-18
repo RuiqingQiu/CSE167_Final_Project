@@ -142,7 +142,6 @@ int Window::LoadGLTextures(){
 }
 
 Point CalculateU(float t,int row) {
-    
     // the final point
     Point p;
     float tmp = t;
@@ -158,7 +157,7 @@ Point CalculateU(float t,int row) {
     float b1 = 3*t*t*it;
     float b2 = 3*t*it*it;
     float b3 =  it*it*it;
-    row = int(tmp);
+    row = int(tmp)%5;
     // sum the effects of the Points and their respective blending functions
     p.x = b0*Points[row][0].x +
 		  b1*Points[row][1].x +
@@ -766,14 +765,24 @@ void draw_scene(){
         glLoadMatrixd(glmatrix.getPointer());
         Globals::l_system->draw();
     }
+    
+    scale.makeScale(0.4, 0.4, 0.4);
     for(int j = 1; j < 4; j++){
         trans.makeTranslate(20, -5, -60 + j * 15+distance_to_camera);
         glmatrix = camera * trans * scale;
         glmatrix.transpose();
         glLoadMatrixd(glmatrix.getPointer());
-        Globals::l_system->draw();
+        Globals::l_system1->draw();
     }
     
+    scale.makeScale(0.7, 0.7, 0.7);
+    for(int j = 1; j < 4; j++){
+        trans.makeTranslate(30, -5, -60 + j * 15+distance_to_camera);
+        glmatrix = camera * trans * scale;
+        glmatrix.transpose();
+        glLoadMatrixd(glmatrix.getPointer());
+        Globals::l_system2->draw();
+    }
 
     if(Globals::particle_effect_on){
         //Particle effect
@@ -812,8 +821,8 @@ void Window::displayPikachu(void){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // clear color and depth buffers
 
     t += 0.01;
-    if(t > number_of_curves){
-        t = 1;
+    if(t >= number_of_curves){
+        t = 1.01;
     }
     draw_scene();
     glFlush();

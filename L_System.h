@@ -21,13 +21,14 @@ using namespace std;
 
 class L_System{
 public:
-    const float PI = 3.14, DEPTH = 3;
+    float PI = 3.14, DEPTH = 3;
     // Angle of branches, and depth of tree
     float ANGLE = 10, depth = 3;
     float length = 0.25;
 
     vector<string> *trees = new vector<string>();
     float lineWidth = 1;
+    float incr = 1;
     // L-System
     string str = "X";
     void push();
@@ -37,6 +38,8 @@ public:
     void drawLine();
     void draw();    //(X → F-[[X]+X]+F[+FX]-X), (F → FF)
     void expand(float num);
+    void expand1(float num);
+    void expand2(float num);
     
 };
 #endif /* defined(__CSE167_Final_Project__L_System__) */

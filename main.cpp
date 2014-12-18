@@ -49,6 +49,8 @@ namespace Globals
     //Terrain
     Terrain1* terrain;
     L_System* l_system;
+    L_System* l_system1;
+    L_System* l_system2;
     Text* text;
 
     SpotLight* spotlight;
@@ -200,6 +202,31 @@ int main(int argc, char *argv[])
     for(int i = 0; i <= Globals::l_system->DEPTH; i++){
         Globals::l_system->expand(0);
     }
+    
+    Globals::l_system1 = new L_System();
+    Globals::l_system1->DEPTH = 6;
+    Globals::l_system1->depth = 6;
+    Globals::l_system1->lineWidth = 0.1;
+    Globals::l_system1->incr = 0.01;
+
+
+    Globals::l_system1->trees = new vector<string>();
+    for(int i = 0; i <= Globals::l_system1->DEPTH; i++){
+        Globals::l_system1->expand1((float)rand()/RAND_MAX);
+    }
+    
+    Globals::l_system2 = new L_System();
+    Globals::l_system2->DEPTH = 5;
+    Globals::l_system2->depth = 5;
+    Globals::l_system2->lineWidth = 0.1;
+    Globals::l_system2->incr = 0.01;
+    
+    
+    Globals::l_system2->trees = new vector<string>();
+    for(int i = 0; i <= Globals::l_system2->DEPTH; i++){
+        Globals::l_system2->expand2((float)rand()/RAND_MAX);
+    }
+
     Globals::text = new Text();
     //printf("height is %f\n", Globals::terrain->getData(0, 0));
     //printf("height is %f\n", Globals::terrain->getHeightMap()[0]);

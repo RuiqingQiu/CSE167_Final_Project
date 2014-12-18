@@ -10,13 +10,13 @@
 void L_System::push(){
     glPushMatrix();
     if (lineWidth > 0)
-        lineWidth -= 1;
+        lineWidth -= incr;
     
 }
 
 void L_System::pop(){
     glPopMatrix();
-    lineWidth += 1;
+    lineWidth += incr;
     
 }
 
@@ -31,21 +31,8 @@ void L_System::rotR(){
     glRotatef(-ANGLE, 0, 0, 1);
 }
 void L_System::drawLine(){
-    //glPushAttrib(GL_LIGHTING_BIT);//saves current lighting stuff
-    
     
     glColor3f(0.15, 1, 0.27);
-//    GLfloat ambient[4] = {0, 1, 0};    // ambient reflection
-//    GLfloat specular[4] = {0.15, 1, 0.27};   // specular reflection
-//    GLfloat diffuse[4] = {0.15, 1, 0.27};   // diffuse reflection
-//    
-//    
-//    // set the ambient reflection for the object
-//    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
-//    // set the diffuse reflection for the object
-//    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
-//    //set the specular reflection for the object
-//    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
     glLineWidth(lineWidth);
     
     glBegin(GL_LINES);
@@ -54,7 +41,6 @@ void L_System::drawLine(){
     glEnd();
     
     glTranslatef(0, length, 0);
-    //glPopAttrib();
 }
 
 void L_System::draw(){
@@ -82,6 +68,7 @@ void L_System::draw(){
         }
     }
 }
+
 void L_System::expand(float num)
 {
     string ch = "";
@@ -90,15 +77,57 @@ void L_System::expand(float num)
         ch = str.at(i);
         
         if (ch.compare("F") == 0){
-            //            str.replace(i, 1, "FF");
-            //            i = i + 1;
-            str.replace(i,1,"FF-[-F+F+F]+[+F-F-F]");
-            i = i + 19;
+            if(num < 0.5){
+                str.replace(i,1,"FF-[-F+F+F]+[+F-F-F]");
+                i = i + 19;
+            }
+            else{
+                str.replace(i,1,"FF+[+F-F-F]-[-F+F+F]");
+                i = i + 19;
+            }
         }
         else if (ch.compare("X") == 0){
-            //str.replace(i,1,"F-[[X]+X]+F[+FX]-X");
             str.replace(i,1,"F");
             i = i + 1;
+        }
+        
+    }
+    trees->push_back(str);
+}
+
+
+void L_System::expand1(float num){
+    string ch = "";
+    
+    for (int i = 0; i < str.length(); i++){
+        ch = str.at(i);
+        //X→F[+X][-X]FX  F→FF
+        if (ch.compare("F") == 0){
+            str.replace(i,1,"FF");
+            i = i + 1;
+        }
+        else if (ch.compare("X") == 0){
+            str.replace(i,1,"F[+X][-X]FX");
+            i = i + 10;
+        }
+        
+    }
+    trees->push_back(str);
+}
+//X→F-[[X]+X]+F[+FX]-X F→FF
+void L_System::expand2(float num){
+    string ch = "";
+    
+    for (int i = 0; i < str.length(); i++){
+        ch = str.at(i);
+        //X→F[+X][-X]FX  F→FF
+        if (ch.compare("F") == 0){
+            str.replace(i,1,"FF");
+            i = i + 1;
+        }
+        else if (ch.compare("X") == 0){
+            str.replace(i,1,"F[+X]F[-X]+X");
+            i = i + 11;
         }
         
     }

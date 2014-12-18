@@ -53,6 +53,9 @@ namespace Globals
     extern Terrain1* terrain;
     
     extern L_System* l_system;
+    extern L_System* l_system1;
+    extern L_System* l_system2;
+
     
     extern Text* text;
     
