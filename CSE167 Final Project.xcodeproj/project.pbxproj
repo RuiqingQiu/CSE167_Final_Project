@@ -181,6 +181,18 @@
 		AAE38EDD1A424A6700171505 /* Text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Text.cpp; sourceTree = "<group>"; };
 		AAE38EDE1A424A6700171505 /* Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Text.h; sourceTree = "<group>"; };
 		AAE38EE01A42B5E000171505 /* 002.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 002.WAV; sourceTree = "<group>"; };
+		AAE38EE11A42B81900171505 /* ()airBK.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = "()airBK.tga"; sourceTree = "<group>"; };
+		AAE38EE21A42B81900171505 /* ()airDN.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = "()airDN.tga"; sourceTree = "<group>"; };
+		AAE38EE31A42B81900171505 /* ()airFT.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = "()airFT.tga"; sourceTree = "<group>"; };
+		AAE38EE41A42B81900171505 /* ()airLT.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = "()airLT.tga"; sourceTree = "<group>"; };
+		AAE38EE51A42B81900171505 /* ()airRT.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = "()airRT.tga"; sourceTree = "<group>"; };
+		AAE38EE61A42B81900171505 /* ()airUP.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = "()airUP.tga"; sourceTree = "<group>"; };
+		AAE38EE71A42B8FF00171505 /* nightsky_down.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = nightsky_down.bmp; sourceTree = "<group>"; };
+		AAE38EE81A42B8FF00171505 /* nightsky_east.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = nightsky_east.bmp; sourceTree = "<group>"; };
+		AAE38EE91A42B8FF00171505 /* nightsky_north.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = nightsky_north.bmp; sourceTree = "<group>"; };
+		AAE38EEA1A42B8FF00171505 /* nightsky_south.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = nightsky_south.bmp; sourceTree = "<group>"; };
+		AAE38EEB1A42B8FF00171505 /* nightsky_up.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = nightsky_up.bmp; sourceTree = "<group>"; };
+		AAE38EEC1A42B8FF00171505 /* nightsky_west.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = nightsky_west.bmp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,6 +400,7 @@
 		AAAD8C371A3575B2007D8951 = {
 			isa = PBXGroup;
 			children = (
+				AAE38EED1A42BC5500171505 /* skybox */,
 				5B8260501A4259B200D88369 /* Light */,
 				AAE38EDD1A424A6700171505 /* Text.cpp */,
 				AAE38EDE1A424A6700171505 /* Text.h */,
@@ -470,6 +483,25 @@
 				AAE38E411A41177500171505 /* L_System.h */,
 			);
 			name = L_System;
+			sourceTree = "<group>";
+		};
+		AAE38EED1A42BC5500171505 /* skybox */ = {
+			isa = PBXGroup;
+			children = (
+				AAE38EE71A42B8FF00171505 /* nightsky_down.bmp */,
+				AAE38EE81A42B8FF00171505 /* nightsky_east.bmp */,
+				AAE38EE91A42B8FF00171505 /* nightsky_north.bmp */,
+				AAE38EEA1A42B8FF00171505 /* nightsky_south.bmp */,
+				AAE38EEB1A42B8FF00171505 /* nightsky_up.bmp */,
+				AAE38EEC1A42B8FF00171505 /* nightsky_west.bmp */,
+				AAE38EE11A42B81900171505 /* ()airBK.tga */,
+				AAE38EE21A42B81900171505 /* ()airDN.tga */,
+				AAE38EE31A42B81900171505 /* ()airFT.tga */,
+				AAE38EE41A42B81900171505 /* ()airLT.tga */,
+				AAE38EE51A42B81900171505 /* ()airRT.tga */,
+				AAE38EE61A42B81900171505 /* ()airUP.tga */,
+			);
+			name = skybox;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

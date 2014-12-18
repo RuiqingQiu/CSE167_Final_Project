@@ -44,6 +44,7 @@ namespace Globals
     //These will be the flag we use for keyboard controls:
     extern bool secondCameraOn;
     extern bool particle_effect_on;
+    extern bool camera_line_on;
     
     //Particle System
     extern ParticleEngine* particle_engine;

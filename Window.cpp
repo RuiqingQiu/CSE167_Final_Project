@@ -57,6 +57,90 @@ Point Points[5][4] ={
         {-30,2,-5}
     }
    };
+GLuint texture[5];
+
+int Window::LoadGLTextures(){
+    texture[0] = SOIL_load_OGL_texture
+    (
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_north.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airFT.tga"
+     ,
+     SOIL_LOAD_AUTO,
+     SOIL_CREATE_NEW_ID,
+     SOIL_FLAG_INVERT_Y
+     );
+    if(texture[0] == 0)
+    {
+        printf("SOIL loading error: '%s'\n", SOIL_last_result());
+        return false;
+    }
+    texture[1] = SOIL_load_OGL_texture
+    (
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_south.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airBK.tga"
+     ,
+     SOIL_LOAD_AUTO,
+     SOIL_CREATE_NEW_ID,
+     SOIL_FLAG_INVERT_Y
+     );
+    if(texture[1] == 0)
+    {
+        printf("SOIL loading error: '%s'\n", SOIL_last_result());
+        return false;
+    }
+    
+    texture[2] = SOIL_load_OGL_texture
+    (
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_west.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airRT.tga"
+     ,
+     SOIL_LOAD_AUTO,
+     SOIL_CREATE_NEW_ID,
+     SOIL_FLAG_INVERT_Y
+     );
+    if(texture[2] == 0)
+    {
+        printf("SOIL loading error: '%s'\n", SOIL_last_result());
+        return false;
+    }
+    
+    texture[3] = SOIL_load_OGL_texture
+    (
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_east.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airLT.tga"
+     ,
+     SOIL_LOAD_AUTO,
+     SOIL_CREATE_NEW_ID,
+     SOIL_FLAG_INVERT_Y
+     );
+    if(texture[3] == 0)
+    {
+        printf("SOIL loading error: '%s'\n", SOIL_last_result());
+        return false;
+    }
+    
+    texture[4] = SOIL_load_OGL_texture
+    (
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airUP.tga"
+     ,
+     SOIL_LOAD_AUTO,
+     SOIL_CREATE_NEW_ID,
+     SOIL_FLAG_INVERT_Y
+     );
+    if(texture[4] == 0)
+    {
+        printf("SOIL loading error: '%s'\n", SOIL_last_result());
+        return false;
+    }
+    
+    /*
+     glBindTexture(GL_TEXTURE_2D, texture[0]);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+     */
+    return true;
+}
+
 Point CalculateU(float t,int row) {
     
     // the final point
@@ -120,16 +204,17 @@ void draw_scene(){
         camera.transpose();
         glLoadMatrixd(camera.getPointer());
     }
-    glBegin(GL_POINTS);
-    for(int i = 0; i < 5; i++){
-        for(int j = 1; j < 300; j++){
-            Point tt = Calculate(1.0/300*j+i);
-            glVertex3f(tt.x,tt.y,tt.z);
-            //cout << tt.x << " " << tt.y << " " << tt.z << endl;
-            //cout << "entered" << endl;
+    if(Globals::camera_line_on){
+        glBegin(GL_POINTS);
+        for(int i = 0; i < 5; i++){
+            for(int j = 1; j < 300; j++){
+                Point tt = Calculate(1.0/300*j+i);
+                glVertex3f(tt.x,tt.y,tt.z);
+
+            }
         }
+        glEnd();
     }
-    glEnd();
     Point tt = Calculate(t);
     Globals::main_camera->e->x = tt.x;
     Globals::main_camera->e->y = tt.y;
@@ -164,6 +249,9 @@ void draw_scene(){
     glutSolidSphere(0.5, 20, 20);
     glPopMatrix();
     
+    
+    
+    
     glDisable(GL_CULL_FACE);
     //glBegin(GL_QUADS);
     glPushMatrix();
@@ -177,10 +265,129 @@ void draw_scene(){
     glmatrix.transpose();
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
-    
     Globals::terrain->draw();
     glPopMatrix();
 
+    glDisable(GL_LIGHTING);
+    float size_of_texture_cube = 150;
+    glPushMatrix();
+    glmatrix.identity();
+    scale2.identity();
+    trans2.identity();
+    glmatrix = camera * glmatrix * scale2*trans2;
+    glmatrix.transpose();
+    glLoadMatrixd(glmatrix.getPointer());
+
+    glEnable(GL_TEXTURE_2D);
+    //glActiveTexture(GL_TEXTURE1);
+    
+    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glEnable(GL_TEXTURE_2D);
+    glBegin(GL_QUADS);
+    glNormal3f(0, 0, -1);
+    glTexCoord2f(0, 0); glVertex3f( size_of_texture_cube,-size_of_texture_cube,size_of_texture_cube );
+    glTexCoord2f(1, 0); glVertex3f(-size_of_texture_cube,-size_of_texture_cube,size_of_texture_cube);
+    glTexCoord2f(1, 1); glVertex3f( -size_of_texture_cube, size_of_texture_cube,size_of_texture_cube); //back up right
+    glTexCoord2f(0, 1); glVertex3f(  size_of_texture_cube,size_of_texture_cube, size_of_texture_cube ); //back up left
+    glEnd();
+    
+    //Front[0]
+    
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glEnable(GL_TEXTURE_2D);
+    glBegin(GL_QUADS);
+    glNormal3f(0, 0, 1);
+    glTexCoord2f(0, 0); glVertex3f(  -size_of_texture_cube, -size_of_texture_cube, -size_of_texture_cube);
+    glTexCoord2f(1, 0); glVertex3f( size_of_texture_cube, -size_of_texture_cube, -size_of_texture_cube);
+    glTexCoord2f(1, 1); glVertex3f( size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube);   //up right
+    glTexCoord2f(0, 1); glVertex3f(  -size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube); //up left
+    glEnd();
+    
+    //Left[2]
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBegin(GL_QUADS);
+    glNormal3f(-1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f(  -size_of_texture_cube, -size_of_texture_cube, size_of_texture_cube);
+    glTexCoord2f(1, 0); glVertex3f( -size_of_texture_cube, -size_of_texture_cube, -size_of_texture_cube);
+    glTexCoord2f(1, 1); glVertex3f( -size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube); //up
+    glTexCoord2f(0, 1); glVertex3f(  -size_of_texture_cube, size_of_texture_cube, size_of_texture_cube); //up
+    glEnd();
+    
+    
+    //Right[3]
+    glBindTexture(GL_TEXTURE_2D, texture[3]);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBegin(GL_QUADS);
+    glNormal3f(1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f( size_of_texture_cube, -size_of_texture_cube, -size_of_texture_cube);
+    glTexCoord2f(1, 0); glVertex3f( size_of_texture_cube, -size_of_texture_cube, size_of_texture_cube);
+    glTexCoord2f(1, 1); glVertex3f( size_of_texture_cube, size_of_texture_cube, size_of_texture_cube);
+    glTexCoord2f(0, 1); glVertex3f( size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube);
+    glEnd();
+    
+    //Top[4]
+    glBindTexture(GL_TEXTURE_2D, texture[4]);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBegin(GL_QUADS);
+    
+    glNormal3f(0.0, 1.0, 0.0);
+    glTexCoord2f(0, 1); glVertex3f( -size_of_texture_cube, size_of_texture_cube, size_of_texture_cube); //connect to back up left
+    glTexCoord2f(0, 0); glVertex3f( -size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube); //connect to front up left
+    glTexCoord2f(1, 0); glVertex3f( size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube); //connect to front up right
+    glTexCoord2f(1, 1); glVertex3f( size_of_texture_cube, size_of_texture_cube, size_of_texture_cube);  //connect to back right
+    
+    
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
+    
+    glPopMatrix();
+
+    
+
+    glEnable(GL_LIGHTING);
 
     glEnable(GL_CULL_FACE);
     glmatrix.identity();
@@ -648,7 +855,7 @@ void Window::processSpecialKeys(int key, int x, int y){
         Globals::particle_effect_on = !Globals::particle_effect_on;
     }
     else if (key == GLUT_KEY_F3){
-        //shadow_set_up();
+        Globals::camera_line_on = !Globals::camera_line_on;
     }
 }
 /**
@@ -671,16 +878,16 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     }else if(key == '3'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
-        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/BabyCutted.wav");
     }
     //playing let it go
     else if(key == '4'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
-        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/LetItGoCutted.wav");
 
     }
@@ -688,8 +895,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     else if(key == '5'){
         stopPlaying();
         char *tmp[4];
-        play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
-        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
+        //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
 
     }
@@ -697,15 +904,17 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
     else if(key == '6'){
         //stopPlaying();
         char *tmp[4];
-        playApplause(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Applause_clipped.wav");
-        //playApplause(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Applause_clipped.wav");
+        //playApplause(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Applause_clipped.wav");
+        playApplause(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Applause_clipped.wav");
         //playApplause(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/Applause_clipped.wav");
        }
     //playing boo
     else if(key == '7'){
         //stopPlaying();
         char *tmp[4];
-        playBoo(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/boo.wav");
+        //playBoo(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/boo.wav");
+        playBoo(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/boo.wav");
+
        
     }
     //Motion controller
@@ -713,7 +922,9 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::bulbasaur->angle == 0.0){
             Globals::bulbasaur->turned = true;
             char *tmp[4];
-            playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
+            //playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
+            playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
+
         }
         if(Globals::bulbasaur->angle == 180.0){
             Globals::bulbasaur->turned = false;
@@ -723,7 +934,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::charmander->angle == 0.0){
             Globals::charmander->turned = true;
             char *tmp[4];
-            playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
+            //playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
+            playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
         }
         if(Globals::charmander->angle == 180.0){
             Globals::charmander->turned = false;
@@ -733,7 +945,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::meowth->angle == 0.0){
             Globals::meowth->turned = true;
             char *tmp[4];
-            playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
+            //playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
+            playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
         }
         if(Globals::meowth->angle == 180.0){
             Globals::meowth->turned = false;
@@ -743,7 +956,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::Snorlax->angle == 0.0){
             Globals::Snorlax->turned = true;
             char *tmp[4];
-            playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
+            //playTurnback(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/002.WAV");
+            playTurnback(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/002.WAV");
         }
         if(Globals::Snorlax->angle == 180.0){
             Globals::Snorlax->turned = false;
