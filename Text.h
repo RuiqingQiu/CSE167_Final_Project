@@ -23,10 +23,10 @@ public:
     const char* title[4] = {"Voice", "Of", "Pokemon", "Competition"};
     const char* song1[4] = {"Superheroes", "By", "The", "Script"};
     const char* song2[4] = {"Baby", "By", "Justin", "Bieber"};
-    const char* song3[5] = {"Let", "It", "Go", "From", "Frozen"};
+    const char* song3[5] = {"Let", "It", "Go From", "Frozen"};
     const char* song4[4] = {"Roar", "By", "Katy", "Perry"};
 
-    
+    int song = 0; //0 title, 1 song1, 2 song2, 3 song3, 4 song4
 
     //Computes a scaling value so that the strings
     float computeScale(const char* strs[4]);
@@ -36,5 +36,15 @@ public:
     void initRendering();
     
     void drawTitle();
+    
+    void drawSong1();
+    void drawSong2();
+
+    void drawSong3();
+    void drawSong4();
+    void draw();
+
+
+    
 };
 #endif /* defined(__CSE167_Final_Project__Text__) */
