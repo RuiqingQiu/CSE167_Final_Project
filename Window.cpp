@@ -40,21 +40,21 @@ Point Points[5][4] ={
     {
         {20,3.5,-30},
         {40,3.5,-20},
-        {20,3.5,-10},
+        {50,3.5,-10},
         {0,3.5,25}
     },
     {
-        { -40,3.5,0 },
+        { -30,3.5,0 },
         { -20,3.5,-50},
-        { 0,3.5,-40 },
+        { -20,3.5,-40 },
         { 20,3.5,-30 }
 
     },
     {
         {0,3.5,25},
-        {-10,3.5,10},
-        {-20,3.5,5},
-        {-40,3.5,0}
+        {-30,3.5,20},
+        {-20,3.5,20},
+        {-30,3.5,0}
     }
    };
 Point CalculateU(float t,int row) {
@@ -108,6 +108,18 @@ Point Calculate(float t) {
 void draw_scene(){
     //cout << "here" << endl;
     glColor3f(1.0, 1.0, 1.0);
+    glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
+    glLoadIdentity();
+    Matrix4 camera;
+    if(Globals::secondCameraOn){
+        Globals::second_camera->e->x = 0;
+        Globals::second_camera->e->y = 100;
+        Globals::second_camera->e->z = 100;
+        Globals::second_camera->update();
+        camera = Globals::second_camera->getMatrix();
+        camera.transpose();
+        glLoadMatrixd(camera.getPointer());
+    }
     glBegin(GL_POINTS);
     for(int i = 0; i < 5; i++){
         for(int j = 1; j < 300; j++){
@@ -123,7 +135,7 @@ void draw_scene(){
     Globals::main_camera->e->y = tt.y;
     Globals::main_camera->e->z = tt.z;
     Globals::main_camera->update();
-    Matrix4 camera = Globals::main_camera->getMatrix();
+    camera = Globals::main_camera->getMatrix();
     Matrix4 scale;
     scale.makeScale(10, 10, 10);
     glMatrixMode(GL_MODELVIEW);  // make sure we're in Modelview mode
@@ -563,7 +575,7 @@ void draw_scene(){
     glmatrix.transpose();
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
-    Globals::text->drawScene();
+    Globals::text->drawTitle();
 
 }
 void Window::displayPikachu(void){
@@ -729,6 +741,10 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::Eevee->angle == 180.0){
             Globals::Eevee->turned = false;
         }
+    }
+    else if (key == 't'){
+        int seed = time(0);
+        Globals::terrain->generate(seed, 100, 2, 0.3);
     }
 }
 
