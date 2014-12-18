@@ -399,18 +399,7 @@
 		AAAD8C371A3575B2007D8951 = {
 			isa = PBXGroup;
 			children = (
-				AAE38EE71A42B8FF00171505 /* nightsky_down.bmp */,
-				AAE38EE81A42B8FF00171505 /* nightsky_east.bmp */,
-				AAE38EE91A42B8FF00171505 /* nightsky_north.bmp */,
-				AAE38EEA1A42B8FF00171505 /* nightsky_south.bmp */,
-				AAE38EEB1A42B8FF00171505 /* nightsky_up.bmp */,
-				AAE38EEC1A42B8FF00171505 /* nightsky_west.bmp */,
-				AAE38EE11A42B81900171505 /* ()airBK.tga */,
-				AAE38EE21A42B81900171505 /* ()airDN.tga */,
-				AAE38EE31A42B81900171505 /* ()airFT.tga */,
-				AAE38EE41A42B81900171505 /* ()airLT.tga */,
-				AAE38EE51A42B81900171505 /* ()airRT.tga */,
-				AAE38EE61A42B81900171505 /* ()airUP.tga */,
+				AAE38EED1A42BC5500171505 /* skybox */,
 				AAE38EE01A42B5E000171505 /* 002.WAV */,
 				5B8260501A4259B200D88369 /* Light */,
 				AAE38EDD1A424A6700171505 /* Text.cpp */,
@@ -494,6 +483,25 @@
 				AAE38E411A41177500171505 /* L_System.h */,
 			);
 			name = L_System;
+			sourceTree = "<group>";
+		};
+		AAE38EED1A42BC5500171505 /* skybox */ = {
+			isa = PBXGroup;
+			children = (
+				AAE38EE71A42B8FF00171505 /* nightsky_down.bmp */,
+				AAE38EE81A42B8FF00171505 /* nightsky_east.bmp */,
+				AAE38EE91A42B8FF00171505 /* nightsky_north.bmp */,
+				AAE38EEA1A42B8FF00171505 /* nightsky_south.bmp */,
+				AAE38EEB1A42B8FF00171505 /* nightsky_up.bmp */,
+				AAE38EEC1A42B8FF00171505 /* nightsky_west.bmp */,
+				AAE38EE11A42B81900171505 /* ()airBK.tga */,
+				AAE38EE21A42B81900171505 /* ()airDN.tga */,
+				AAE38EE31A42B81900171505 /* ()airFT.tga */,
+				AAE38EE41A42B81900171505 /* ()airLT.tga */,
+				AAE38EE51A42B81900171505 /* ()airRT.tga */,
+				AAE38EE61A42B81900171505 /* ()airUP.tga */,
+			);
+			name = skybox;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

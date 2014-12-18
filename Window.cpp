@@ -62,7 +62,8 @@ GLuint texture[5];
 int Window::LoadGLTextures(){
     texture[0] = SOIL_load_OGL_texture
     (
-     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airFT.tga"
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_north.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airFT.tga"
      ,
      SOIL_LOAD_AUTO,
      SOIL_CREATE_NEW_ID,
@@ -75,7 +76,8 @@ int Window::LoadGLTextures(){
     }
     texture[1] = SOIL_load_OGL_texture
     (
-     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airBK.tga"
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_south.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airBK.tga"
      ,
      SOIL_LOAD_AUTO,
      SOIL_CREATE_NEW_ID,
@@ -89,7 +91,8 @@ int Window::LoadGLTextures(){
     
     texture[2] = SOIL_load_OGL_texture
     (
-     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airRT.tga"
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_west.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airRT.tga"
      ,
      SOIL_LOAD_AUTO,
      SOIL_CREATE_NEW_ID,
@@ -103,7 +106,8 @@ int Window::LoadGLTextures(){
     
     texture[3] = SOIL_load_OGL_texture
     (
-     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airLT.tga"
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/nightsky_east.bmp"
+     //"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airLT.tga"
      ,
      SOIL_LOAD_AUTO,
      SOIL_CREATE_NEW_ID,
