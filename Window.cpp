@@ -895,6 +895,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         //stop playing the music
     }else if(key == '2'){
         stopPlaying();
+        Globals::text->song = 0;
+
         //playing justin biber baby
     }else if(key == '3'){
         stopPlaying();
