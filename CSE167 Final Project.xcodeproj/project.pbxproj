@@ -11,6 +11,7 @@
 		13DB6B661A3C0218004183D0 /* Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 13DB6B641A3C0218004183D0 /* Sound.c */; };
 		5B41FA7A1A3E6B5300A1FB17 /* Terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B41FA781A3E6B5300A1FB17 /* Terrain.cpp */; };
 		5B82604F1A40E5A700D88369 /* grass.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5B82604E1A40E59800D88369 /* grass.jpg */; };
+		5B8260531A4259D100D88369 /* SpotLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B8260511A4259D100D88369 /* SpotLight.cpp */; };
 		AA0702CA1A38DD1500000E38 /* PikachuDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702C81A38DD1500000E38 /* PikachuDh.tga */; };
 		AA0702CB1A38DD1500000E38 /* PikachuEyeDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702C91A38DD1500000E38 /* PikachuEyeDh.tga */; };
 		AA0702CD1A38DD2600000E38 /* PikachuHohoDh.tga in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA0702CC1A38DD2600000E38 /* PikachuHohoDh.tga */; };
@@ -63,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		13BB632C1A42A64C004D74BA /* boo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = boo.wav; sourceTree = "<group>"; };
 		13D688521A417EEE00FFCE8D /* Applause_clipped.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Applause_clipped.wav; sourceTree = "<group>"; };
 		13DB6B621A3BA058004183D0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		13DB6B641A3C0218004183D0 /* Sound.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Sound.c; sourceTree = "<group>"; };
@@ -75,6 +77,8 @@
 		5B41FA781A3E6B5300A1FB17 /* Terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Terrain.cpp; sourceTree = "<group>"; };
 		5B41FA791A3E6B5300A1FB17 /* Terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Terrain.h; sourceTree = "<group>"; };
 		5B82604E1A40E59800D88369 /* grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grass.jpg; sourceTree = "<group>"; };
+		5B8260511A4259D100D88369 /* SpotLight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpotLight.cpp; sourceTree = "<group>"; };
+		5B8260521A4259D100D88369 /* SpotLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotLight.h; sourceTree = "<group>"; };
 		5BEF67571A3975D100DFA47E /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		AA0702C31A38DCA200000E38 /* Pikachu.mtl */ = {isa = PBXFileReference; lastKnownFileType = text; path = Pikachu.mtl; sourceTree = "<group>"; };
 		AA0702C81A38DD1500000E38 /* PikachuDh.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = PikachuDh.tga; sourceTree = "<group>"; };
@@ -203,6 +207,15 @@
 			name = Terrain;
 			sourceTree = "<group>";
 		};
+		5B8260501A4259B200D88369 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				5B8260511A4259D100D88369 /* SpotLight.cpp */,
+				5B8260521A4259D100D88369 /* SpotLight.h */,
+			);
+			name = Light;
+			sourceTree = "<group>";
+		};
 		AA0702D01A38DD3B00000E38 /* Pikachu */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +336,7 @@
 		AA07035E1A3CF46E00000E38 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				13BB632C1A42A64C004D74BA /* boo.wav */,
 				13DB6B6F1A3D06F4004183D0 /* RoarCutted.wav */,
 				13D688521A417EEE00FFCE8D /* Applause_clipped.wav */,
 				13DB6B6E1A3D05FB004183D0 /* LetItGoCutted.wav */,
@@ -539,6 +553,7 @@
 				AAE38E421A41177500171505 /* L_System.cpp in Sources */,
 				AAAD8C5E1A357632007D8951 /* main.cpp in Sources */,
 				AA0702E81A39318100000E38 /* Model3D.cpp in Sources */,
+				5B8260531A4259D100D88369 /* SpotLight.cpp in Sources */,
 				AAAD8C5B1A35760E007D8951 /* stb_image_aug.c in Sources */,
 				AAAD8C691A35771F007D8951 /* Matrix4.cpp in Sources */,
 			);

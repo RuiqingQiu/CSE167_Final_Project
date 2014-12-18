@@ -20,8 +20,10 @@
 #include "Terrain.h"
 #include "L_System.h"
 #include "Text.h"
+#include "SpotLight.h"
 extern "C" int play(int, char **,char* filePath);
 extern "C" int playApplause(int, char **,char* filePath);
+extern "C" int playBoo(int, char **,char* filePath);
 
 
 namespace Globals
@@ -51,5 +53,7 @@ namespace Globals
     extern L_System* l_system;
     
     extern Text* text;
+    
+    extern SpotLight* spotlight;
 };
 #endif /* defined(__CSE167_Final_Project__main__) */

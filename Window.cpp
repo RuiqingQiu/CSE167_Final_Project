@@ -169,7 +169,7 @@ void draw_scene(){
     glPushMatrix();
     glmatrix.identity();
     Matrix4 trans2;
-    trans2.makeTranslate(-150, -5, -100);
+    trans2.makeTranslate(-100, -5, -100);
     Matrix4 scale2;
     scale2.makeScale(0.2, 0.2, 0.2);
     scale2.identity();
@@ -202,6 +202,11 @@ void draw_scene(){
         }
         else{
             tmp.makeTranslate(0, 0, -Globals::pika->distance);
+            if (Globals::spotlight->target==1) {
+                Globals::spotlight->on =1 ;
+            }else{
+                //Globals::spotlight->on =0 ;
+            }
         }
         trans = trans * tmp* rot;
     }
@@ -378,6 +383,12 @@ void draw_scene(){
         }
         else{
             tmp.makeTranslate(0, 0, -Globals::psyduck->distance);
+            if (Globals::spotlight->target==0) {
+                Globals::spotlight->on =1 ;
+            }else{
+                //Globals::spotlight->on =0 ;
+            }
+
         }
         trans = trans * tmp* rot;
         
@@ -432,7 +443,11 @@ void draw_scene(){
         }
         else{
             tmp.makeTranslate(0, 0, -Globals::vulpix->distance);
-        }
+            if (Globals::spotlight->target==2) {
+                Globals::spotlight->on =1 ;
+            }else{
+                //Globals::spotlight->on =0 ;
+            }        }
         trans = trans * tmp* rot;
         
     }
@@ -483,6 +498,11 @@ void draw_scene(){
         }
         else{
             tmp.makeTranslate(0, 0, -Globals::Eevee->distance);
+            if (Globals::spotlight->target==3) {
+                Globals::spotlight->on =1 ;
+            }else{
+                //Globals::spotlight->on =0 ;
+            }
         }
         trans = trans * tmp* rot;
         
@@ -563,7 +583,7 @@ void draw_scene(){
         Globals::particle_engine->advance(t*25 / 1000.0f);
         Globals::particle_engine->draw();
     }
-    glEnable(GL_LIGHT1);
+    //glEnable(GL_LIGHT1);
 
     glColor4f(1, 1, 1, 1);
     glMatrixMode(GL_MODELVIEW);
@@ -575,7 +595,10 @@ void draw_scene(){
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
     Globals::text->drawTitle();
-
+    
+    //Globals::spotlight->dir = Vector3(0, -10, -Globals::meowth->distance);
+    Globals::spotlight->draw();
+    //Globals::spotlight->enable();
 }
 void Window::displayPikachu(void){
     clock_t startTime = clock();
@@ -649,16 +672,16 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         stopPlaying();
         char *tmp[4];
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/BabyCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
-        //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/BabyCutted.wav");
+        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/BabyCutted.wav");
+        play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/BabyCutted.wav");
     }
     //playing let it go
     else if(key == '4'){
         stopPlaying();
         char *tmp[4];
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
-        //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/LetItGoCutted.wav");
+        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
+        play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/LetItGoCutted.wav");
 
     }
     //playing let it go
@@ -666,8 +689,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         stopPlaying();
         char *tmp[4];
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
-        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
-        //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
+        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
+        play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
 
     }
     //playing applause
@@ -675,7 +698,8 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         //stopPlaying();
         char *tmp[4];
         //playApplause(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Applause_clipped.wav");
-        playApplause(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Applause_clipped.wav");
+        //playApplause(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Applause_clipped.wav");
+        playApplause(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/Applause_clipped.wav");
        
         
     }
@@ -715,6 +739,9 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::psyduck->angle == 180.0){
             Globals::psyduck->turned = false;
         }
+        Globals::spotlight->on = 0;
+
+        Globals::spotlight->target =0 ;
     }
     else if (key == 's'){
         if(Globals::pika->angle == 0.0)
@@ -722,6 +749,9 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::pika->angle == 180.0){
             Globals::pika->turned = false;
         }
+        Globals::spotlight->on = 0;
+
+        Globals::spotlight->target =1;
     }
     else if (key == 'd'){
         if(Globals::vulpix->angle == 0.0)
@@ -729,6 +759,9 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::vulpix->angle == 180.0){
             Globals::vulpix->turned = false;
         }
+        Globals::spotlight->on = 0;
+
+        Globals::spotlight->target = 2;
     }
     else if (key == 'f'){
         if(Globals::Eevee->angle == 0.0)
@@ -736,10 +769,15 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         if(Globals::Eevee->angle == 180.0){
             Globals::Eevee->turned = false;
         }
+        Globals::spotlight->on = 0;
+
+        Globals::spotlight->target = 3;
+
     }
-    else if (key == 't'){
-        int seed = time(0);
-        Globals::terrain->generate(seed, 100, 2, 0.3);
+    else if(key == 'l')
+    {
+        glDisable(GL_LIGHT0);
+        glDisable(GL_LIGHT1);
     }
 }
 
