@@ -176,6 +176,7 @@
 		AAE38EDA1A424A3F00171505 /* text3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text3d.cpp; sourceTree = "<group>"; };
 		AAE38EDD1A424A6700171505 /* Text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Text.cpp; sourceTree = "<group>"; };
 		AAE38EDE1A424A6700171505 /* Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Text.h; sourceTree = "<group>"; };
+		AAE38EE01A42B5E000171505 /* 002.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 002.WAV; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +373,7 @@
 		AAAD8C371A3575B2007D8951 = {
 			isa = PBXGroup;
 			children = (
+				AAE38EE01A42B5E000171505 /* 002.WAV */,
 				AAE38EDD1A424A6700171505 /* Text.cpp */,
 				AAE38EDE1A424A6700171505 /* Text.h */,
 				AAE38EDA1A424A3F00171505 /* text3d.cpp */,
