@@ -798,7 +798,6 @@ void draw_scene(){
 
     for(int i = 0; i < sizeof(Globals::tree)/sizeof(float); i+=2){
         int tmp1 = int(Globals::tree[i]*200) % 3;
-        cout << tmp1 << endl;
         if(tmp1 == 0){
             scale.makeScale(3, 3, 3);
         }
