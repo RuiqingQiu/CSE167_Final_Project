@@ -206,6 +206,7 @@ int main(int argc, char *argv[])
     Globals::text->initRendering();
     
     Globals::text->_scale = Globals::text->computeScale(Globals::text->title);
+    Window::LoadGLTextures();
 
     glutMainLoop();
     

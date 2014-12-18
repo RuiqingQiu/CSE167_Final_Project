@@ -34,6 +34,8 @@ public:
     static void displayPikachu(void);
     static void idlePikachu(void);
     static void shadow_set_up();
+    static int LoadGLTextures();
+
 
     
 };

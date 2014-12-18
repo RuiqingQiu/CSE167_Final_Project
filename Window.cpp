@@ -57,6 +57,86 @@ Point Points[5][4] ={
         {-30,2,-5}
     }
    };
+GLuint texture[5];
+
+int Window::LoadGLTextures(){
+    texture[0] = SOIL_load_OGL_texture
+    (
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airFT.tga"
+     ,
+     SOIL_LOAD_AUTO,
+     SOIL_CREATE_NEW_ID,
+     SOIL_FLAG_INVERT_Y
+     );
+    if(texture[0] == 0)
+    {
+        printf("SOIL loading error: '%s'\n", SOIL_last_result());
+        return false;
+    }
+    texture[1] = SOIL_load_OGL_texture
+    (
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airBK.tga"
+     ,
+     SOIL_LOAD_AUTO,
+     SOIL_CREATE_NEW_ID,
+     SOIL_FLAG_INVERT_Y
+     );
+    if(texture[1] == 0)
+    {
+        printf("SOIL loading error: '%s'\n", SOIL_last_result());
+        return false;
+    }
+    
+    texture[2] = SOIL_load_OGL_texture
+    (
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airRT.tga"
+     ,
+     SOIL_LOAD_AUTO,
+     SOIL_CREATE_NEW_ID,
+     SOIL_FLAG_INVERT_Y
+     );
+    if(texture[2] == 0)
+    {
+        printf("SOIL loading error: '%s'\n", SOIL_last_result());
+        return false;
+    }
+    
+    texture[3] = SOIL_load_OGL_texture
+    (
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airLT.tga"
+     ,
+     SOIL_LOAD_AUTO,
+     SOIL_CREATE_NEW_ID,
+     SOIL_FLAG_INVERT_Y
+     );
+    if(texture[3] == 0)
+    {
+        printf("SOIL loading error: '%s'\n", SOIL_last_result());
+        return false;
+    }
+    
+    texture[4] = SOIL_load_OGL_texture
+    (
+     "/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/()airUP.tga"
+     ,
+     SOIL_LOAD_AUTO,
+     SOIL_CREATE_NEW_ID,
+     SOIL_FLAG_INVERT_Y
+     );
+    if(texture[4] == 0)
+    {
+        printf("SOIL loading error: '%s'\n", SOIL_last_result());
+        return false;
+    }
+    
+    /*
+     glBindTexture(GL_TEXTURE_2D, texture[0]);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+     */
+    return true;
+}
+
 Point CalculateU(float t,int row) {
     
     // the final point
@@ -164,6 +244,9 @@ void draw_scene(){
     glutSolidSphere(0.5, 20, 20);
     glPopMatrix();
     
+    
+    
+    
     glDisable(GL_CULL_FACE);
     //glBegin(GL_QUADS);
     glPushMatrix();
@@ -177,10 +260,129 @@ void draw_scene(){
     glmatrix.transpose();
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
-    
     Globals::terrain->draw();
     glPopMatrix();
 
+    glDisable(GL_LIGHTING);
+    float size_of_texture_cube = 150;
+    glPushMatrix();
+    glmatrix.identity();
+    scale2.identity();
+    trans2.identity();
+    glmatrix = camera * glmatrix * scale2*trans2;
+    glmatrix.transpose();
+    glLoadMatrixd(glmatrix.getPointer());
+
+    glEnable(GL_TEXTURE_2D);
+    //glActiveTexture(GL_TEXTURE1);
+    
+    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glEnable(GL_TEXTURE_2D);
+    glBegin(GL_QUADS);
+    glNormal3f(0, 0, -1);
+    glTexCoord2f(0, 0); glVertex3f( size_of_texture_cube,-size_of_texture_cube,size_of_texture_cube );
+    glTexCoord2f(1, 0); glVertex3f(-size_of_texture_cube,-size_of_texture_cube,size_of_texture_cube);
+    glTexCoord2f(1, 1); glVertex3f( -size_of_texture_cube, size_of_texture_cube,size_of_texture_cube); //back up right
+    glTexCoord2f(0, 1); glVertex3f(  size_of_texture_cube,size_of_texture_cube, size_of_texture_cube ); //back up left
+    glEnd();
+    
+    //Front[0]
+    
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glEnable(GL_TEXTURE_2D);
+    glBegin(GL_QUADS);
+    glNormal3f(0, 0, 1);
+    glTexCoord2f(0, 0); glVertex3f(  -size_of_texture_cube, -size_of_texture_cube, -size_of_texture_cube);
+    glTexCoord2f(1, 0); glVertex3f( size_of_texture_cube, -size_of_texture_cube, -size_of_texture_cube);
+    glTexCoord2f(1, 1); glVertex3f( size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube);   //up right
+    glTexCoord2f(0, 1); glVertex3f(  -size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube); //up left
+    glEnd();
+    
+    //Left[2]
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBegin(GL_QUADS);
+    glNormal3f(-1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f(  -size_of_texture_cube, -size_of_texture_cube, size_of_texture_cube);
+    glTexCoord2f(1, 0); glVertex3f( -size_of_texture_cube, -size_of_texture_cube, -size_of_texture_cube);
+    glTexCoord2f(1, 1); glVertex3f( -size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube); //up
+    glTexCoord2f(0, 1); glVertex3f(  -size_of_texture_cube, size_of_texture_cube, size_of_texture_cube); //up
+    glEnd();
+    
+    
+    //Right[3]
+    glBindTexture(GL_TEXTURE_2D, texture[3]);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBegin(GL_QUADS);
+    glNormal3f(1, 0, 0);
+    glTexCoord2f(0, 0); glVertex3f( size_of_texture_cube, -size_of_texture_cube, -size_of_texture_cube);
+    glTexCoord2f(1, 0); glVertex3f( size_of_texture_cube, -size_of_texture_cube, size_of_texture_cube);
+    glTexCoord2f(1, 1); glVertex3f( size_of_texture_cube, size_of_texture_cube, size_of_texture_cube);
+    glTexCoord2f(0, 1); glVertex3f( size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube);
+    glEnd();
+    
+    //Top[4]
+    glBindTexture(GL_TEXTURE_2D, texture[4]);
+    // Make sure no bytes are padded:
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    
+    // Select GL_MODULATE to mix texture with polygon color for shading:
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+    
+    // Use bilinear interpolation:
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glBegin(GL_QUADS);
+    
+    glNormal3f(0.0, 1.0, 0.0);
+    glTexCoord2f(0, 1); glVertex3f( -size_of_texture_cube, size_of_texture_cube, size_of_texture_cube); //connect to back up left
+    glTexCoord2f(0, 0); glVertex3f( -size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube); //connect to front up left
+    glTexCoord2f(1, 0); glVertex3f( size_of_texture_cube, size_of_texture_cube, -size_of_texture_cube); //connect to front up right
+    glTexCoord2f(1, 1); glVertex3f( size_of_texture_cube, size_of_texture_cube, size_of_texture_cube);  //connect to back right
+    
+    
+    glEnd();
+    glDisable(GL_TEXTURE_2D);
+    
+    glPopMatrix();
+
+    
+
+    glEnable(GL_LIGHTING);
 
     glEnable(GL_CULL_FACE);
     glmatrix.identity();
