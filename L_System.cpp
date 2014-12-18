@@ -31,21 +31,21 @@ void L_System::rotR(){
     glRotatef(-ANGLE, 0, 0, 1);
 }
 void L_System::drawLine(){
-    glPushAttrib(GL_LIGHTING_BIT);//saves current lighting stuff
+    //glPushAttrib(GL_LIGHTING_BIT);//saves current lighting stuff
     
     
     glColor3f(0.15, 1, 0.27);
-//    GLfloat ambient[4] = {0.55, 0.27, 0.07};    // ambient reflection
-//    GLfloat specular[4] = {0.55, 0.27, 0.07};   // specular reflection
-//    GLfloat diffuse[4] = {0.55, 0.27, 0.07};   // diffuse reflection
+//    GLfloat ambient[4] = {0, 1, 0};    // ambient reflection
+//    GLfloat specular[4] = {0.15, 1, 0.27};   // specular reflection
+//    GLfloat diffuse[4] = {0.15, 1, 0.27};   // diffuse reflection
 //    
 //    
 //    // set the ambient reflection for the object
 //    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
 //    // set the diffuse reflection for the object
 //    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
-    // set the specular reflection for the object
-    //glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
+//    //set the specular reflection for the object
+//    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
     glLineWidth(lineWidth);
     
     glBegin(GL_LINES);
@@ -54,7 +54,7 @@ void L_System::drawLine(){
     glEnd();
     
     glTranslatef(0, length, 0);
-    glPopAttrib();
+    //glPopAttrib();
 }
 
 void L_System::draw(){
