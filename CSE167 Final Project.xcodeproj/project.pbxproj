@@ -64,7 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		13BB632C1A42A64C004D74BA /* boo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = boo.wav; sourceTree = "<group>"; };
+		13BB632D1A42B755004D74BA /* boo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = boo.wav; sourceTree = "<group>"; };
 		13D688521A417EEE00FFCE8D /* Applause_clipped.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Applause_clipped.wav; sourceTree = "<group>"; };
 		13DB6B621A3BA058004183D0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		13DB6B641A3C0218004183D0 /* Sound.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Sound.c; sourceTree = "<group>"; };
@@ -348,7 +348,8 @@
 		AA07035E1A3CF46E00000E38 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				13BB632C1A42A64C004D74BA /* boo.wav */,
+				AAE38EE01A42B5E000171505 /* 002.WAV */,
+				13BB632D1A42B755004D74BA /* boo.wav */,
 				13DB6B6F1A3D06F4004183D0 /* RoarCutted.wav */,
 				13D688521A417EEE00FFCE8D /* Applause_clipped.wav */,
 				13DB6B6E1A3D05FB004183D0 /* LetItGoCutted.wav */,
