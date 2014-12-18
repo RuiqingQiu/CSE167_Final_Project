@@ -43,6 +43,7 @@ namespace Globals
     Model3D* Snorlax;
     bool secondCameraOn = false;
     bool particle_effect_on = false;
+    bool camera_line_on = false;
     //Particle System
     ParticleEngine* particle_engine;
     //Terrain
@@ -134,23 +135,23 @@ int main(int argc, char *argv[])
        //glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
        //pika = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Pikachu.obj");
     
-    Globals::pika = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Pikachu.obj");
-    Globals::bulbasaur = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Bulbasaur.obj");
-    Globals::charmander= new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Charmander.obj");
-    Globals::vulpix= new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Vulpix.obj");
-    Globals::meowth = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Meowth.obj");
-    Globals::psyduck = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Psyduck.obj");
-    Globals::Eevee = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Eevee.obj");
-    Globals::Snorlax = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Snorlax.obj");
+//    Globals::pika = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Pikachu.obj");
+//    Globals::bulbasaur = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Bulbasaur.obj");
+//    Globals::charmander= new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Charmander.obj");
+//    Globals::vulpix= new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Vulpix.obj");
+//    Globals::meowth = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Meowth.obj");
+//    Globals::psyduck = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Psyduck.obj");
+//    Globals::Eevee = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Eevee.obj");
+//    Globals::Snorlax = new Model3D("/Users/margaretwm3/Dropbox/CSE167_Final_Project/Snorlax.obj");
 
-//    Globals::pika = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Pikachu.obj");
-//    Globals::bulbasaur = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Bulbasaur.obj");
-//    Globals::charmander= new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Charmander.obj");
-//    Globals::vulpix= new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Vulpix.obj");
-//    Globals::meowth = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Meowth.obj");
-//    Globals::psyduck = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Psyduck.obj");
-//    Globals::Eevee = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Eevee.obj");
-//    Globals::Snorlax = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Snorlax.obj");
+    Globals::pika = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Pikachu.obj");
+    Globals::bulbasaur = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Bulbasaur.obj");
+    Globals::charmander= new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Charmander.obj");
+    Globals::vulpix= new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Vulpix.obj");
+    Globals::meowth = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Meowth.obj");
+    Globals::psyduck = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Psyduck.obj");
+    Globals::Eevee = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Eevee.obj");
+    Globals::Snorlax = new Model3D("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Snorlax.obj");
    
 //        Globals::pika = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Pikachu.obj");
 //        Globals::bulbasaur = new Model3D("/Users/Ennuma/Desktop/CSE167_Final_Project/Bulbasaur.obj");
@@ -181,8 +182,8 @@ int main(int argc, char *argv[])
     GLuint textureID = ParticleEngine::initRendering();
     //Create the particle engine
     Globals::particle_engine = new ParticleEngine(textureID);
-    play(argc, argv,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Superheroes.wav");
-    //play(argc, argv,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Superheroes.wav");
+    //play(argc, argv,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Superheroes.wav");
+    play(argc, argv,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Superheroes.wav");
     //play(argc, argv,"/Users/Ennuma/Desktop/CSE167_Final_Project/Superheroes.wav");
 
     
