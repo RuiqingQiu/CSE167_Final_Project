@@ -21,10 +21,10 @@ public:
     float _scale;
     //The four strings that are drawn
     const char* title[4] = {"Voice", "Of", "Pokemon", "Competition"};
-    const char* song1[4] = {"Superheroes", "By", "The", "Script"};
-    const char* song2[4] = {"Baby", "By", "Justin", "Bieber"};
-    const char* song3[5] = {"Let", "It", "Go From", "Frozen"};
-    const char* song4[4] = {"Roar", "By", "Katy", "Perry"};
+    const char* song1[4] = {"Superheroes", "By", "The", "Psyduck"};
+    const char* song2[4] = {"Baby", "By", "Justin", "Pikachu"};
+    const char* song3[5] = {"Let", "It", "Go From", "Vulpix"};
+    const char* song4[4] = {"Roar", "By", "Katy", "Eevee"};
 
     int song = 0; //0 title, 1 song1, 2 song2, 3 song3, 4 song4
 

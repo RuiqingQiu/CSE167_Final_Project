@@ -235,7 +235,7 @@ int main(int argc, char *argv[])
     
     Globals::text->_scale = Globals::text->computeScale(Globals::text->title);
     Window::LoadGLTextures();
-
+    srand( time(0));
     for (int i = 0; i<sizeof(Globals::tree)/sizeof(float);  i++) {
         Globals::tree[i] = (float)rand() / ((float)RAND_MAX + 1);
     }

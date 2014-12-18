@@ -86,7 +86,7 @@ void Text::drawSong1()
     t3dDraw3D(song1[2], 0, 0, 0.2f);
     glPopMatrix();
     glPushMatrix();
-    glTranslatef(5, 0, 1.5f / _scale);
+    glTranslatef(6, 0, 1.5f / _scale);
     t3dDraw3D(song1[3], 0, 0, 0.2f);
     glPopMatrix();
     

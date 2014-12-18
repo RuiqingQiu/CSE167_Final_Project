@@ -796,6 +796,36 @@ void draw_scene(){
         Globals::l_system2->draw();
     }
 
+    for(int i = 0; i < sizeof(Globals::tree)/sizeof(float); i+=2){
+        int tmp1 = int(Globals::tree[i]*200) % 3;
+        cout << tmp1 << endl;
+        if(tmp1 == 0){
+            scale.makeScale(3, 3, 3);
+        }
+        else if(tmp1 == 1){
+            scale.makeScale(0.4, 0.4, 0.4);
+        }
+        else if(tmp1 == 2){
+            scale.makeScale(0.7, 0.7, 0.7);
+        }
+
+                float randx = Globals::tree[i];
+                float randy = Globals::tree[i+1];
+                trans.makeTranslate(randx*200-100, -5, randy*200-100);
+                glmatrix = camera * trans * scale;
+                glmatrix.transpose();
+                glLoadMatrixd(glmatrix.getPointer());
+        if(tmp1 == 0){
+            Globals::l_system->draw();
+        }
+        else if(tmp1 == 1){
+            Globals::l_system1->draw();
+        }
+        else if(tmp1 == 2){
+            Globals::l_system2->draw();
+        }
+    }
+
     if(Globals::particle_effect_on){
         //Particle effect
         glDisable(GL_LIGHTING);
@@ -917,15 +947,17 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/LetItGoCutted.wav");
         play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/LetItGoCutted.wav");
         //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/LetItGoCutted.wav");
-
+        //Globals::text->computeScale(Globals::text->song2);
+        Globals::text->computeScale(Globals::text->song2);
+        Globals::text->song = 2;
     }
     //playing let it go
     else if(key == '5'){
         stopPlaying();
         char *tmp[4];
         //play(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/RoarCutted.wav");
-        //play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
-        play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
+        play(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/RoarCutted.wav");
+        //play(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/RoarCutted.wav");
         Globals::text->computeScale(Globals::text->song3);
         Globals::text->song = 3;
     }
@@ -936,7 +968,9 @@ void Window::processNormalKeys(unsigned char key, int x, int y){
         //playApplause(0, tmp,"/Users/margaretwm3/Dropbox/CSE167_Final_Project/Applause_clipped.wav");
         playApplause(0, tmp,"/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/CSE167 Final Project/Applause_clipped.wav");
         //playApplause(0, tmp,"/Users/Ennuma/Desktop/CSE167_Final_Project/Applause_clipped.wav");
-       }
+        Globals::text->computeScale(Globals::text->song4);
+        Globals::text->song = 4;
+    }
     //playing boo
     else if(key == '7'){
         //stopPlaying();
