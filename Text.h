@@ -18,7 +18,6 @@
 using namespace std;
 class Text{
 public:
-    float _angle = -30.0f;
     float _scale;
     //The four strings that are drawn
     const char* STRS[4] = {"Voice", "Of", "Pokemon", "Competition"};

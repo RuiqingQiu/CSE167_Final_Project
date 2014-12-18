@@ -506,7 +506,8 @@ void draw_scene(){
     glLoadIdentity();
     glLoadMatrixd(glmatrix.getPointer());
     Globals::Eevee->draw();
-    
+    glDisable(GL_TEXTURE_2D);
+
     glEnable(GL_LIGHTING);
     glColor4f(1, 1, 1,1);
     //This part is for drawing L-system
@@ -536,7 +537,6 @@ void draw_scene(){
     }
     
 
-  
     if(Globals::particle_effect_on){
         //Particle effect
         glDisable(GL_LIGHTING);
