@@ -28,6 +28,7 @@ struct Particle {
     Vec3f color;
     float timeAlive; //The amount of time that this particle has been alive.
     float lifespan;  //The total amount of time that this particle is to live.
+    float size;
 };
 
 const float GRAVITY = 10.0f;

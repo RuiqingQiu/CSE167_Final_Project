@@ -42,16 +42,16 @@ Vec3f ParticleEngine::curColor(){
         color = Vec3f((0.333333f - colorTime) * 6, 1.0f, 0.0f);
     }
     else if (colorTime < 0.5f) {
-        color = Vec3f(0.0f, 1.0f, (colorTime - 0.333333f) * 6);
+        color = Vec3f(0.0f, 1.0f, (colorTime - 0.333333f) * 3);
     }
     else if (colorTime < 0.666667f) {
-        color = Vec3f(0.0f, (0.666667f - colorTime) * 6, 1.0f);
+        color = Vec3f(0.0f, (0.666667f - colorTime) * 6, 0.3f);
     }
     else if (colorTime < 0.833333f) {
-        color = Vec3f((colorTime - 0.666667f) * 6, 0.0f, 1.0f);
+        color = Vec3f((colorTime - 0.666667f) * 6, 0.0f, 0.3f);
     }
     else {
-        color = Vec3f(1.0f, 0.0f, (1.0f - colorTime) * 6);
+        color = Vec3f(1.0f, 0.0f, (1.0f - colorTime) * 3);
     }
     
     //Make sure each of the color's components range from 0 to 1
@@ -73,13 +73,50 @@ Vec3f ParticleEngine::curVelocity() {
 
 //Alters p to be a particle newly produced by the fountain.
 void ParticleEngine::createParticle(Particle* p) {
-    p->pos = Vec3f(0, 0, 0);
-    p->velocity = curVelocity() + Vec3f(5.5f * randomFloat() - 0.25f,
-                                        0.5f * randomFloat() - 0.25f,
-                                        5.5f * randomFloat() - 0.25f);
-    p->color = curColor();
-    p->timeAlive = 0;
-    p->lifespan = randomFloat() + 2;
+    float rand = randomFloat();
+    if (rand<0.2) {
+        p->pos = Vec3f(0, 0, 0);
+        p->velocity = curVelocity() + Vec3f(5.5f * randomFloat() - 0.25f,
+                                            0.5f * randomFloat() - 0.25f,
+                                            5.5f * randomFloat() - 0.25f);
+        p->color = curColor();
+        p->timeAlive = 0;
+        p->lifespan = randomFloat() + 2;
+        p->size = PARTICLE_SIZE;
+    }else if(rand < 0.4){
+        p->pos = Vec3f(0,0, 0);
+        p->velocity = curVelocity() + Vec3f(5.5f * randomFloat() - 0.25f,
+                                            0.5f * randomFloat() - 0.25f,
+                                            5.5f * randomFloat() - 0.25f);
+        p->color = curColor();
+        p->timeAlive = 0;
+        p->lifespan = randomFloat();
+        p->size = PARTICLE_SIZE;
+        ;
+
+    }else if(rand < 0.6)
+    {
+        p->pos = Vec3f(-1, 0, 0);
+        p->velocity = curVelocity() + Vec3f(5.5f * randomFloat() - 0.25f,
+                                            0.5f * randomFloat() - 0.25f,
+                                            5.5f * randomFloat() - 0.25f);
+        p->color = curColor();
+        p->timeAlive = 0;
+        p->lifespan = randomFloat()+5;
+        p->size = PARTICLE_SIZE;
+
+    }else if(rand < 0.8)
+    {
+        p->pos = Vec3f(1, 0, 0);
+        p->velocity = curVelocity() + Vec3f(5.5f * randomFloat() - 0.25f,
+                                            0.5f * randomFloat() - 0.25f,
+                                            5.5f * randomFloat() - 0.25f);
+        p->color = curColor();
+        p->timeAlive = 0;
+        p->lifespan = randomFloat()+5;
+        p->size = PARTICLE_SIZE;
+
+    }
 }
 
 
@@ -95,6 +132,22 @@ void ParticleEngine::step() {
         
         p->pos += p->velocity * STEP_TIME;
         p->velocity += Vec3f(0.0f, -GRAVITY * STEP_TIME, 0.0f);
+        float rand = randomFloat();
+        if (rand < 0.1) {
+            p->velocity+= Vec3f(2.0f, 0.0f, 0.0f);
+        }else if(rand < 0.2)
+        {
+            p->velocity+= Vec3f(-2.0f, 0.0f, 0.0f);
+
+        }else if(rand < 0.3)
+        {
+            p->velocity+= Vec3f(0.0f, 0.0f, 2.0f);
+            
+        }else if(rand < 0.4)
+        {
+            p->velocity+= Vec3f(0.0f, 0.0f, -2.0f);
+            
+        }
         p->timeAlive += STEP_TIME;
         if (p->timeAlive > p->lifespan) {
             createParticle(p);
@@ -136,7 +189,7 @@ void ParticleEngine::draw() {
     for(unsigned int i = 0; i < ps.size(); i++) {
         Particle* p = ps[i];
         glColor4f(p->color[0], p->color[1], p->color[2],(1 - p->timeAlive / p->lifespan));
-        float size = PARTICLE_SIZE / 2;
+        float size = p->size;
         
         Vec3f pos = adjParticlePos(p->pos);
         
@@ -217,8 +270,8 @@ GLuint ParticleEngine::initRendering() {
     //Image* alphaChannel = loadBMP("/Users/ruiqingqiu/Desktop/Qiu_Code/CSE167/ParticleSystemGood/circlealpha.bmp");
     
     
-    Image* image = loadBMP("/Users/margaretwm3/Dropbox/CSE167_Final_Project/circlealpha.bmp");
-    Image* alphaChannel = loadBMP("/Users/margaretwm3/Dropbox/CSE167_Final_Project/circlealpha.bmp");
+    //Image* image = loadBMP("/Users/margaretwm3/Dropbox/CSE167_Final_Project/circlealpha.bmp");
+    //Image* alphaChannel = loadBMP("/Users/margaretwm3/Dropbox/CSE167_Final_Project/circlealpha.bmp");
     
     Image* image = loadBMP("/Users/Ennuma/Desktop/CSE167_Final_Project/circle.bmp");
     Image* alphaChannel = loadBMP("/Users/Ennuma/Desktop/CSE167_Final_Project/circlealpha.bmp");
